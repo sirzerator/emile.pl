@@ -68,6 +68,10 @@
       "relation": "oneToMany",
       "target": "api::post.post",
       "mappedBy": "author"
+    },
+    "fullname": {
+      "type": "string",
+      "required": true
     }
   }
 }

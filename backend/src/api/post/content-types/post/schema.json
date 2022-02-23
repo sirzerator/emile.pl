@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "Title": {
+    "title": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -25,7 +25,7 @@
       "type": "string",
       "required": true
     },
-    "Introduction": {
+    "introduction": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -33,7 +33,7 @@
       },
       "type": "text"
     },
-    "Content": {
+    "content": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -45,8 +45,21 @@
     "author": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
+      "target": "api::author.author",
       "inversedBy": "posts"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }
