@@ -11,17 +11,16 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.0.7",
-    "@strapi/plugin-users-permissions": "4.0.7",
-    "@strapi/plugin-i18n": "4.0.7",
+    "@strapi/plugin-i18n": "4.1.0",
+    "@strapi/plugin-users-permissions": "4.1.0",
+    "@strapi/strapi": "4.1.0",
     "pg": "8.6.0"
   },
   "author": {
     "name": "Émile Plourde-Lavoie",
-	"email": "nostradamus1935@echosvirtuels.com"
+    "email": "nostradamus1935@echosvirtuels.com"
   },
-  "strapi": {
-  },
+  "strapi": {},
   "engines": {
     "node": ">=12.x.x <=16.x.x",
     "npm": ">=6.0.0"
