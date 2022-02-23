@@ -1,0 +1,10 @@
+.typography {
+	a {
+		color: black;
+		text-decoration: none;
+
+		&:hover, &.active {
+			color: var(--text-color);
+		}
+	}
+}
