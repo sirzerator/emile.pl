@@ -4,8 +4,8 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-    "develop:backend": "yarn --cwd backend develop",
-    "develop:frontend": "wait-on http://localhost:1337/admin && yarn --cwd frontend dev",
+    "develop:backend": "pnpm --dir backend develop",
+    "develop:frontend": "wait-on http://localhost:1337/admin && pnpm --dir frontend dev",
     "develop": "cross-env FORCE_COLOR=1 npm-run-all -l -p develop:*"
   },
   "devDependencies": {
