@@ -16,9 +16,12 @@
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^5.10.1",
 		"@typescript-eslint/parser": "^5.10.1",
+		"autoprefixer": "^10.4.2",
 		"eslint": "^7.32.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^3.2.1",
+		"postcss": "^8.4.5",
+		"postcss-load-config": "^3.1.1",
 		"prettier": "^2.5.1",
 		"prettier-plugin-svelte": "^2.5.0",
 		"sass": "^1.37.0",
@@ -26,13 +29,11 @@
 		"svelte-check": "^2.2.6",
 		"svelte-preprocess": "^4.10.1",
 		"tslib": "^2.3.1",
-		"typescript": "~4.5.4",
-		"postcss": "^8.4.5",
-		"postcss-load-config": "^3.1.1",
-		"autoprefixer": "^10.4.2"
+		"typescript": "~4.5.4"
 	},
 	"type": "module",
 	"dependencies": {
 		"dayjs": "^1.11.0",
+		"qs": "^6.10.3"
 	}
 }

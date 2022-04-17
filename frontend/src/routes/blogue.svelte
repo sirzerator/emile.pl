@@ -10,8 +10,11 @@
 </script>
 
 <script lang="ts">
+	import dayjs from '$lib/dayjs';
 	import type { Post } from '$lib/types';
 	import { goto } from '$app/navigation';
+
+	export function formatDate(date) { return dayjs(date).format('LL'); }
 
 	export let posts: Array<Post>;
 </script>
@@ -31,27 +34,40 @@
 			{#each posts as post}
 			<li>
 				<div class="list_inner">
+					{#if post.attributes.image.data}
 					<div class="image">
-						<img src="/img/thumbs/4-3.jpg" alt="thumb" />
+						<img src={post.attributes.image.data.attributes.formats.medium.url} alt="thumb" />
 						<div
 							class="main"
-							style="background-image: /img/thumbs/4-3.jpg"
-							></div>
+							style={`background-image: url('${post.attributes.image.data.attributes.formats.medium.url}')`}
+						/>
 					</div>
+					{/if}
+
 					<div class="details">
 						<div class="extra">
+							{#if false && post.attributes.author}
 							<p class="date">
-							By <a href="#">{post.author.fullname}</a><span>{post.publishedAt}</span>
+								By <a href="#">{post.attributes.author.data.attributes.fullname}</a>
+								<span>{post.attributes.publishedAt}</span>
 							</p>
+							{:else}
+							<p class="date">
+								<span>{formatDate(post.attributes.publishedAt)}</span>
+							</p>
+							{/if}
 						</div>
+
 						<h3 class="title">
-							{post.title}
+							{post.attributes.title}
 						</h3>
+
 						<div class="intro">
-							{post.introduction}
+							{post.attributes.introduction}
 						</div>
+
 						<div class="tokyo_tm_read_more">
-							<a><span>Read More</span></a>
+							<a href={`/blogue/${post.id}/${post.attributes.slug}`}><span>Read More</span></a>
 						</div>
 					</div>
 				</div>
