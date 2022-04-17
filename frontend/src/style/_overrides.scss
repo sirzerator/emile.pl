@@ -17,16 +17,50 @@
 	}
 }
 
+.tokyo_tm_all_wrap .leftpart {
+	padding: 0 102px;
+}
+
+.tokyo_tm_news ul li .image {
+	aspect-ratio: 1.78 / 1;
+}
+
+.tokyo_tm_about {
+	.description {
+		.left {
+			font-style: normal;
+		}
+
+		.right {
+			dl {
+				dt {
+					min-width: 90px;
+					display: inline-block;
+					font-weight: 700;
+					color: #000;
+					float: left;
+				}
+			}
+		}
+	}
+}
+
 @media (max-width: 1600px) {
 	.tokyo_tm_all_wrap .leftpart {
-		width: 450px;
-	}
+		padding: 0 76px;
+  }
 }
 
 @media (max-width: 1200px) {
 	.tokyo_tm_all_wrap .leftpart {
 		width: 100%;
 	}
+}
+
+@media (max-width: 768px) {
+	.tokyo_tm_all_wrap .leftpart {
+		padding: 0 0;
+  }
 }
 
 @media (max-width: 1200px) {

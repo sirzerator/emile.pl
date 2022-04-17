@@ -1,4 +1,9 @@
 .typography {
+	p {
+		hyphens: auto;
+		text-align: justify;
+	}
+
 	a {
 		color: black;
 		text-decoration: none;
