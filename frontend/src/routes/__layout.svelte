@@ -12,7 +12,7 @@
 			<div class="logo">
 				<h1>Échos virtuels</h1>
 				<div class="slogan">
-								   Le web est à l'image de notre société; il n'en est, en somme, qu'un écho virtuel.
+					Le web est à l'image de notre société; il n'en est, en somme, qu'un écho virtuel.
 				</div>
 			</div>
 
@@ -54,9 +54,7 @@
 		<div class="rightpart_in">
 			<div class="tokyo_tm_section">
 				<div class="container">
-					<div>
-						<slot />
-					</div>
+					<slot />
 				</div>
 			</div>
 		</div>

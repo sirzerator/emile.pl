@@ -8,14 +8,20 @@ body {
 	p {
 		hyphens: auto;
 		text-align: justify;
+		margin-bottom: 12px;
 	}
 
 	a {
-		color: black;
-		text-decoration: none;
+		@extend %typography-link;
+	}
+}
 
-		&:hover, &.active {
-			color: var(--text-color);
-		}
+%typography-link {
+	color: black;
+	text-decoration: none;
+
+	&:hover, &.active {
+		color: var(--text-color);
+		text-decoration: underline;
 	}
 }

@@ -1,7 +1,6 @@
 <svelte:head>
 	<title>
-		À propos ~
-    Échos virtuels
+		À propos ~ Échos virtuels
 	</title>
 </svelte:head>
 
@@ -18,10 +17,16 @@
 					Bonjour! Je suis un développeur touche-à-tout, spécialisé 
 					en développement web et d'applications distribuées.
 					Je suis aussi administrateur système Linux, avec de l'expérience en gestion
-					de parcs de serveurs (<em>devops</em>, pourrait-on dire).<br>
+					de parcs de serveurs.
+				</p>
+				<p>
 					Partisan de l'informatique  libre, je roule ma bosse dans les méandres du 
-					bazar numérique depuis plus de 10&nbsp;ans.
-					Entrepreneur en série, je suis aussi fondateur de quelques entreprises.
+					bazar numérique depuis plus de 10&nbsp;ans. Entrepreneur en série, je suis 
+					aussi fondateur d'une 
+					<a href="https://oushkabe.ca" target="_blank">distillerie artisanale</a>.
+				</p>
+				<p>
+					Artisan du logiciel, je pratique l'egoless programming.
 				</p>
 
 				<div class="tokyo_tm_button">

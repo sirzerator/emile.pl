@@ -19,7 +19,7 @@
 	export let posts: Array<Post>;
 </script>
 
-<div class="my-4">
+<main>
 	<div class="tokyo_tm_news">
 		<div class="tokyo_tm_title">
 			<div class="title_flex">
@@ -75,4 +75,4 @@
 			{/each}
 		</ul>
 	</div>
-</div>
+</main>
