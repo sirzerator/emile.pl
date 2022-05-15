@@ -6,7 +6,7 @@
 	page.subscribe(({ url: { pathname } }) => currentPath = pathname );
 
 	export let locale: string;
-	page.subscribe(({ params }) => locale = params.lang || 'en');
+	page.subscribe(({ params }) => locale = params.lang);
 </script>
 
 <div id="app" class="tokyo_tm_all_wrap emilepl">

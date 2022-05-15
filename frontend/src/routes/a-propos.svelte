@@ -1,3 +1,22 @@
+<script lang="ts" context="module">
+	import type { Load } from '@sveltejs/kit';
+
+	export const load: Load = async ({ fetch }) => {
+		const res = await fetch('/api/about');
+		const { data } = await res.json();
+
+		return { props: { data } };
+	};
+</script>
+
+<script lang="ts">
+	import dayjs from '$lib/dayjs';
+	import type { About } from '$lib/types';
+	import { goto } from '$app/navigation';
+
+	export let data: About;
+</script>
+
 <svelte:head>
 	<title>
 		À propos ~ Échos virtuels
