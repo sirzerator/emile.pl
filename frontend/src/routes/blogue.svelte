@@ -19,6 +19,12 @@
 	export let posts: Array<Post>;
 </script>
 
+<svelte:head>
+	<title>
+		Blogue ~ Échos virtuels
+	</title>
+</svelte:head>
+
 <main>
 	<div class="tokyo_tm_news">
 		<div class="tokyo_tm_title">
