@@ -2,8 +2,11 @@
 	import "../style/main.scss";
 	import { page } from '$app/stores';
 
-	export let currentPath;
+	export let currentPath: string;
 	page.subscribe(({ url: { pathname } }) => currentPath = pathname );
+
+	export let locale: string;
+	page.subscribe(({ params }) => locale = params.lang || 'en');
 </script>
 
 <div id="app" class="tokyo_tm_all_wrap emilepl">
@@ -17,8 +20,8 @@
 			</div>
 
 			<div class="leftpart_languages typography">
-				<a on:click="{() => lang = 'en'}" href="/en">English</a>
-				<a on:click="{() => lang = 'fr'}" href="/fr">Français</a>
+				<a on:click="{() => locale = 'en'}" href="/en">English</a>
+				<a on:click="{() => locale = 'fr'}" href="/fr">Français</a>
 			</div>
 
 			<div class="menu">
