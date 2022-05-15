@@ -6,12 +6,12 @@
 	page.subscribe(({ url: { pathname } }) => currentPath = pathname );
 </script>
 
-<div id="app" class="tokyo_tm_all_wrap">
-	<div class="leftpart">
+<div id="app" class="tokyo_tm_all_wrap emilepl">
+	<div class="leftpart emilepl__sidebar">
 		<div class="leftpart_inner">
-			<div class="logo">
-				<h1>Échos virtuels</h1>
-				<div class="slogan">
+			<div class="emilepl__sidebar__logo">
+				<h1 class=""><a href="/">Échos virtuels</a></h1>
+				<div class="emilepl__sidebar__logo__slogan">
 					Le web est à l'image de notre société; il n'en est, en somme, qu'un écho virtuel.
 				</div>
 			</div>
@@ -50,7 +50,7 @@
 		</div>
 	</div>
 
-	<div class="rightpart">
+	<div class="rightpart emilepl__content">
 		<div class="rightpart_in">
 			<div class="tokyo_tm_section">
 				<div class="container">
