@@ -7,6 +7,7 @@ interface Localized {
 export interface About extends Localized {
 	siteName: string;
 	slogan: string;
+	job: string;
 	situation: string;
 	aka: string;
 	email: string;
@@ -14,8 +15,8 @@ export interface About extends Localized {
 	education: string;
 	availability: 'unavailable' | 'short_term' | 'medium_term' | 'long_term' | 'available';
 	bio: string;
-	created_at: string;
-	updated_at: string;
+	createdAt: string;
+	updatedAt: string;
 }
 
 export interface Post extends Localized {
@@ -24,8 +25,8 @@ export interface Post extends Localized {
 	description: string;
 	content: string;
 	author: Author;
-	created_at: string;
-	updated_at: string;
+	createdAt: string;
+	updatedAt: string;
 }
 
 export interface User {
@@ -36,8 +37,8 @@ export interface User {
 	confirmed: boolean;
 	blocked: boolean;
 	role: Role;
-	created_at: string;
-	updated_at: string;
+	createdAt: string;
+	updatedAt: string;
 	posts: Post[];
 	fullname: string;
 }
