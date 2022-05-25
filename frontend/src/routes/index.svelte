@@ -13,5 +13,10 @@
 					};
 			}
 		}
+
+		return {
+				status: 302,
+				redirect: '/en',
+		};
 	};
 </script>
