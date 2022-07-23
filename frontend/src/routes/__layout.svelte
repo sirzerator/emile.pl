@@ -1,12 +1,34 @@
+<script lang="ts" context="module">
+	import Cookies from 'js-cookie';
+	import { defaultLocale } from '$lib/translations';
+
+	export const load = async ({ url, session, stuff }) => {
+		const { pathname } = url;
+
+		const cookieLocale = Cookies.get('lang');
+		const sessionLocale = session.locale;
+		const locale = cookieLocale || sessionLocale || defaultLocale;
+
+		return {
+			session: {
+				locale,
+			},
+		};
+	}
+</script>
+
 <script lang="ts">
 	import "../style/main.scss";
-	import { page } from '$app/stores';
+	import { page, session } from '$app/stores';
 
 	export let currentPath: string;
 	page.subscribe(({ url: { pathname } }) => currentPath = pathname );
 
-	export let locale: string;
-	page.subscribe(({ params }) => locale = params.lang);
+	session.subscribe(({ locale }) => {
+		if (locale) {
+			Cookies.set('lang', locale);
+		}
+	});
 </script>
 
 <div id="app" class="tokyo_tm_all_wrap emilepl">
@@ -20,8 +42,8 @@
 			</div>
 
 			<div class="leftpart_languages typography">
-				<a on:click="{() => locale = 'en'}" href="/en">English</a>
-				<a on:click="{() => locale = 'fr'}" href="/fr">Français</a>
+				{#if $session.locale != 'en'}<a on:click="{() => $session.locale = 'en'}" href="#">English</a>{/if}
+				{#if $session.locale != 'fr'}<a on:click="{() => $session.locale = 'fr'}" href="#">Français</a>{/if}
 			</div>
 
 			<div class="menu">
