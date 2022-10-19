@@ -12,7 +12,6 @@
 <script lang="ts">
 	import dayjs from '$lib/dayjs';
 	import type { Post } from '$lib/types';
-	import { goto } from '$app/navigation';
 
 	export function formatDate(date) { return dayjs(date).format('LL'); }
 

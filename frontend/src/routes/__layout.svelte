@@ -1,6 +1,7 @@
 <script lang="ts" context="module">
 	import Cookies from 'js-cookie';
-	import { defaultLocale } from '$lib/translations';
+
+	import { defaultLocale, _t, _tl } from '$lib/translations';
 
 	export const load = async ({ url, session, stuff }) => {
 		const { pathname } = url;
@@ -19,14 +20,20 @@
 
 <script lang="ts">
 	import "../style/main.scss";
+
 	import { page, session } from '$app/stores';
 
 	export let currentPath: string;
 	page.subscribe(({ url: { pathname } }) => currentPath = pathname );
 
+	export let t;
+	export let tl;
+
 	session.subscribe(({ locale }) => {
 		if (locale) {
-			Cookies.set('lang', locale);
+			Cookies.set('lang', locale, { sameSite: 'strict' });
+			t = _t(locale);
+			tl = _tl(locale);
 		}
 	});
 </script>
@@ -35,9 +42,9 @@
 	<div class="leftpart emilepl__sidebar">
 		<div class="leftpart_inner">
 			<div class="emilepl__sidebar__logo">
-				<h1 class=""><a href="/">Échos virtuels</a></h1>
+				<h1 class=""><a href="/">{t('site.title')}</a></h1>
 				<div class="emilepl__sidebar__logo__slogan">
-					Le web est à l'image de notre société; il n'en est, en somme, qu'un écho virtuel.
+					{t('site.slogan')}
 				</div>
 			</div>
 
@@ -47,29 +54,29 @@
 			</div>
 
 			<div class="menu">
-				<a class:active="{currentPath === '/'}" href="/">
+				<a class:active="{currentPath === tl('sidebar', 'home')}" href="{tl('sidebar', 'home')}">
 					<img class="svg" src="/svg/home.svg" alt="" title="Accueil">
-					<span class="menu_content">Accueil</span>
+					<span class="menu_content">{t('site.navigation.home')}</span>
 				</a>
 
-				<a class:active="{currentPath === '/a-propos'}" href="/a-propos">
+				<a class:active="{currentPath === tl('sidebar', 'about')}" href="{tl('sidebar', 'about')}">
 					<img class="svg" src="/svg/avatar.svg" alt="" title="À propos">
-					<span class="menu_content">À propos</span>
+					<span class="menu_content">{t('site.navigation.about')}</span>
 				</a>
 
-				<a class:active="{currentPath === '/projets'}" href="/projets">
+				<a class:active="{currentPath === tl('sidebar', 'projects')}" href="{tl('sidebar', 'projects')}">
 					<img class="svg" src="/svg/briefcase.svg" alt="" title="Projets">
-					<span class="menu_content">Projets</span>
+					<span class="menu_content">{t('site.navigation.projects')}</span>
 				</a>
 
-				<a class:active="{currentPath === '/blogue'}" href="/blogue">
+				<a class:active="{currentPath === tl('sidebar', 'blog')}" href="{tl('sidebar', 'blog')}">
 					<img class="svg" src="/svg/paper.svg" alt="" title="Blogue">
-					<span class="menu_content">Blogue</span>
+					<span class="menu_content">{t('site.navigation.blog')}</span>
 				</a>
 
-				<a class:active="{currentPath === '/contact'}" href="/contact">
+				<a class:active="{currentPath === tl('sidebar', 'contact')}" href="{tl('sidebar', 'contact')}">
 					<img class="svg" src="/svg/mail.svg" alt="" title="Contact">
-					<span class="menu_content"> Contact</span>
+					<span class="menu_content">{t('site.navigation.contact')}</span>
 				</a>
 			</div>
 		</div>
