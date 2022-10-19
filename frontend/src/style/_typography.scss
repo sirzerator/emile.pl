@@ -14,6 +14,7 @@ body {
 
 	a {
 		@extend %typography-link;
+		hyphens: none;
 	}
 }
 

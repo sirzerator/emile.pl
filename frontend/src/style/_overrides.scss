@@ -18,7 +18,7 @@
 
 		.menu {
 			a:hover, a.active {
-				letter-spacing: 0;
+				letter-spacing: 0 !important;
 			}
 		}
 	}
@@ -69,7 +69,7 @@
 		.right {
 			dl {
 				dt {
-					min-width: 90px;
+					min-width: 105px;
 					display: inline-block;
 					font-weight: 700;
 					color: #000;
