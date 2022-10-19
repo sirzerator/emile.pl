@@ -1,9 +1,9 @@
 <script lang="ts" context="module">
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ fetch }) => {
-		const res = await fetch('/api/about');
-		const { data } = await res.json();
+	export const load: Load = async ({ fetch, session }) => {
+		const res = await fetch(`/api/about?locale=${session.locale}`);
+		const data = await res.json();
 
 		return { props: { data } };
 	};
@@ -15,6 +15,28 @@
 	import { goto } from '$app/navigation';
 
 	export let data: About;
+
+	let availabilityString: string;
+	let phoneHref: string;
+
+	$: phoneHref = data.telephone.replace(/[.]/g, '');
+	$: {
+		availabilityString = 'Indéterminé';
+		switch (data.availability) {
+			case 'short_term':
+				availabilityString = 'À court terme';
+				break;
+			case 'medium_term':
+				availabilityString = 'À moyen terme';
+				break;
+			case 'long_term':
+				availabilityString = 'À long terme';
+				break;
+			case 'available':
+				availabilityString = 'Disponible';
+				break;
+		}
+	}
 </script>
 
 <svelte:head>
@@ -29,24 +51,10 @@
 	</div>
 
 	<div class="description">
-		<h3 class="name">Émile Plourde-Lavoie, Développeur</h3>
+		<h3 class="name">Émile Plourde-Lavoie, {data.job}</h3>
 		<div class="description_inner">
 			<div class="left typography">
-				<p>
-					Bonjour! Je suis un développeur touche-à-tout, spécialisé 
-					en développement web et d'applications distribuées.
-					Je suis aussi administrateur système Linux, avec de l'expérience en gestion
-					de parcs de serveurs.
-				</p>
-				<p>
-					Partisan de l'informatique  libre, je roule ma bosse dans les méandres du 
-					bazar numérique depuis plus de 10&nbsp;ans. Entrepreneur en série, je suis 
-					aussi fondateur d'une 
-					<a href="https://oushkabe.ca" target="_blank">distillerie artisanale</a>.
-				</p>
-				<p>
-					Artisan du logiciel, je pratique l'egoless programming.
-				</p>
+				{@html data.bio}
 
 				<div class="tokyo_tm_button">
 					<button class="ib-button">Mes projets</button>
@@ -55,12 +63,12 @@
 
 			<div class="right">
 				<dl>
-					<dt>Situation:</dt> <dd>Montréal, Québec, Canada</dd>
-					<dt>AKA:</dt> <dd>nostradamus1935, sirzerator</dd>
-					<dt>Courriel:</dt> <dd><a href="mailto:emile@echosvirtuels.com">emile@echosvirtuels.com</a></dd>
-					<dt>Téléphone:</dt> <dd><a href="tel:+15812796502">+1.581.279.6502</a></dd>
-					<dt>Études:</dt> <dd>Université du Québec à Montréal</dd>
-					<dt>Freelance:</dt> <dd><a href="#">À moyen terme</a></dd>
+					<dt>Situation:</dt> <dd>{data.situation}</dd>
+					<dt>AKA:</dt> <dd>{data.aka}</dd>
+					<dt>Courriel:</dt> <dd><a href="mailto:{data.email}">{data.email}</a></dd>
+					<dt>Téléphone:</dt> <dd><a href="tel:{phoneHref}">{data.telephone}</a></dd>
+					<dt>Études:</dt> <dd>{data.education}</dd>
+					<dt>Freelance:</dt> <dd><a href="#">{availabilityString}</a></dd>
 				</dl>
 			</div>
 		</div>

@@ -12,10 +12,16 @@
 	.rightpart_in {
 		float: none;
 	}
-}
 
-.tokyo_tm_all_wrap .leftpart {
-	padding: 0 102px;
+	.leftpart {
+		padding: 0 102px;
+
+		.menu {
+			a:hover, a.active {
+				letter-spacing: 0;
+			}
+		}
+	}
 }
 
 .tokyo_tm_title {

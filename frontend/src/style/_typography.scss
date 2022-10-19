@@ -6,6 +6,7 @@ body {
 
 .typography {
 	p {
+		color: var(--text-color);
 		hyphens: auto;
 		text-align: justify;
 		margin-bottom: 12px;
@@ -18,10 +19,9 @@ body {
 
 %typography-link {
 	color: black;
-	text-decoration: none;
+	text-decoration: underline;
 
 	&:hover, &.active {
-		color: var(--text-color);
-		text-decoration: underline;
+		color: var(--accent-color);
 	}
 }
