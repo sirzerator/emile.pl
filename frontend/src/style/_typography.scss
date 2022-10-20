@@ -16,6 +16,15 @@ body {
 		@extend %typography-link;
 		hyphens: none;
 	}
+
+	.tokyo_tm_button a {
+		color: white;
+		text-decoration: none;
+
+		&:hover, &.active {
+			color: white;
+		}
+	}
 }
 
 %typography-link {
