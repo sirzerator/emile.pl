@@ -16,7 +16,7 @@
 	<a class="list_inner" {href}>
 		{#if post.image}
 			<div class="image">
-				<img src={post.image.formats.medium.url} alt="thumb" />
+				<img src={post.image.formats.medium.url} alt="" />
 				<div
 					class="main"
 					style={`background-image: url('${post.image.formats.medium.url}')`}

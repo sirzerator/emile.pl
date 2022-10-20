@@ -30,6 +30,30 @@ body {
 			color: white;
 		}
 	}
+
+	blockquote {
+		width: 100%;
+		height: auto;
+		clear: both;
+		float: left;
+		position: relative;
+		padding-left: 70px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		font-size: 20px;
+		font-style: italic;
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			width: 70px;
+			height: 50px;
+			display: block;
+			background: url('/svg/quote.svg') center left no-repeat;
+			background-size: 40px 40px;
+		}
+	}
 }
 
 %typography-link {

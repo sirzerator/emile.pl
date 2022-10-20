@@ -1,3 +1,8 @@
+.tokyo_tm_section .container {
+	min-height: 100%;
+	height: auto;
+}
+
 .tokyo_tm_home .details .name {
 	font-size: 50px;
 }
@@ -30,6 +35,7 @@
 
 .tokyo_tm_news {
 	float: none;
+	padding-bottom: 55px;
 
 	&_inner {
 		display: flex;
@@ -54,6 +60,20 @@
 		.image {
 			aspect-ratio: 1.78 / 1;
 		}
+	}
+
+	.tokyo_tm_modalbox_news {
+		.main_content, .details {
+			float: none;
+		}
+
+		.image {
+			height: 450px;
+			background-size: cover;
+			background-position: center center;
+		}
+
+		padding-bottom: 45px;
 	}
 }
 
