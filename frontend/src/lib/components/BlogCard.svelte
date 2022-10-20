@@ -26,10 +26,10 @@
 
 		<div class="details">
 			<div class="extra">
-				{#if false && post.author}
+				{#if post.author}
 					<p class="date">
-						By <a href="#">{post.author.fullname}</a>
-						<span>{post.publishedAt}</span>
+						<a href="#">{post.author.fullname}</a>
+						<span>{formatDate(post.publishedAt)}</span>
 					</p>
 				{:else}
 					<p class="date">
