@@ -15,8 +15,33 @@ export const GET: RequestHandler = async ({ url: { searchParams } }) => {
 	const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts?${query}`);
 	const { data, meta: { pagination: { page, pageCount, pageSize, total } } } = await res.json();
 
+	const posts = data.map(({
+			id,
+			attributes: {
+				author: {
+					data: author,
+				},
+				image: {
+					data: image,
+				},
+				...post
+			},
+		}) => {
+			return {
+				id,
+				author: author ? {
+					id: author.id,
+					...author.attributes,
+				} : null,
+				image: image ? {
+					id: image.id,
+					...image.attributes,
+				} : null,
+				...post
+			};
+	})
 	return json({
-		data,
+		data: posts,
 		total,
 		page,
 		pageCount,

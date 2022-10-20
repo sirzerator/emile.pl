@@ -7,43 +7,43 @@
 
 	let href: string;
 
-	$: href = `/blogue/${post.id}/${post.attributes.slug}`
+	$: href = `/blogue/${post.id}/${post.slug}`
 
 	const formatDate = (date) => dayjs(date).format('LL');
 </script>
 
 <li class="blog-card">
 	<a class="list_inner" {href}>
-		{#if post.attributes.image.data}
+		{#if post.image}
 			<div class="image">
-				<img src={post.attributes.image.data.attributes.formats.medium.url} alt="thumb" />
+				<img src={post.image.formats.medium.url} alt="thumb" />
 				<div
 					class="main"
-					style={`background-image: url('${post.attributes.image.data.attributes.formats.medium.url}')`}
+					style={`background-image: url('${post.image.formats.medium.url}')`}
 				/>
 			</div>
 		{/if}
 
 		<div class="details">
 			<div class="extra">
-				{#if false && post.attributes.author}
+				{#if false && post.author}
 					<p class="date">
-						By <a href="#">{post.attributes.author.data.attributes.fullname}</a>
-						<span>{post.attributes.publishedAt}</span>
+						By <a href="#">{post.author.fullname}</a>
+						<span>{post.publishedAt}</span>
 					</p>
 				{:else}
 					<p class="date">
-						<span>{formatDate(post.attributes.publishedAt)}</span>
+						<span>{formatDate(post.publishedAt)}</span>
 					</p>
 				{/if}
 			</div>
 
 			<h3 class="title">
-				{post.attributes.title}
+				{post.title}
 			</h3>
 
 			<div class="intro">
-				{post.attributes.introduction}
+				{post.introduction}
 			</div>
 
 			<div class="tokyo_tm_read_more">
