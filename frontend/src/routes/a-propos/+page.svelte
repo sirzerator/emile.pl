@@ -1,33 +1,22 @@
-<script lang="ts" context="module">
-	import type { Load } from '@sveltejs/kit';
-
-	export const load: Load = async ({ fetch, session }) => {
-		const res = await fetch(`/api/about?locale=${session.locale}`);
-		const data = await res.json();
-
-		return { props: { data } };
-	};
-</script>
-
 <script lang="ts">
+	import type { PageData } from './$types';
+
+	import { page } from '$app/stores';
+
 	import dayjs from '$lib/dayjs';
 	import type { About } from '$lib/types';
-	import { goto } from '$app/navigation';
-	import { session } from '$app/stores';
 	import { _t } from '$lib/translations';
 
-	export let data: About;
+	export let data: PageData;
 
-	export let t;
+	let phoneHref: string;
+	let t;
 
-	session.subscribe(({ locale }) => {
+	page.subscribe(({ data: { locale } }) => {
 		if (locale) {
 			t = _t(locale);
 		}
 	});
-
-	let availabilityString: string;
-	let phoneHref: string;
 
 	$: phoneHref = data.telephone.replace(/[.]/g, '');
 </script>
@@ -50,7 +39,7 @@
 				{@html data.bio}
 
 				<div class="tokyo_tm_button">
-					<button class="ib-button">Mes projets</button>
+					<a class="button" href="/projects">{t('about.my_projects')}</a>
 				</div>
 			</div>
 

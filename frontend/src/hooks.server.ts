@@ -50,12 +50,6 @@ export const handle = async ({ event, resolve }) => {
 	event.locals.locale = locale;
 
 	return resolve(event, {
-		transformPage: ({ html }) => html.replace(/<html.*>/, `<html lang="${locale}">`),
+		transformPageChunk: ({ html }) => html.replace(/<html.*>/, `<html lang="${locale}">`),
 	});
-};
-
-export function getSession({ locals: { locale } }) {
-  return {
-	  locale,
-  };
 };

@@ -1,37 +1,28 @@
-<script lang="ts" context="module">
+<script lang="ts">
 	import Cookies from 'js-cookie';
 
-	import { defaultLocale, _t, _tl } from '$lib/translations';
-
-	export const load = async ({ url, session, stuff }) => {
-		const { pathname } = url;
-
-		const cookieLocale = Cookies.get('lang');
-		const sessionLocale = session.locale;
-		const locale = cookieLocale || sessionLocale || defaultLocale;
-
-		return {
-			session: {
-				locale,
-			},
-		};
-	}
-</script>
-
-<script lang="ts">
 	import "../style/main.scss";
 
-	import { page, session } from '$app/stores';
+	import { invalidateAll } from '$app/navigation';
+	import { page } from '$app/stores';
+
+	import dayjs from '$lib/dayjs';
+	import { _t, _tl } from '$lib/translations';
 
 	export let currentPath: string;
+
+	export const setLocale = (locale) => {
+		Cookies.set('lang', locale, { sameSite: 'strict' });
+		invalidateAll();
+	};
+
+	let t;
+	let tl;
+
 	page.subscribe(({ url: { pathname } }) => currentPath = pathname );
 
-	export let t;
-	export let tl;
-
-	session.subscribe(({ locale }) => {
+	page.subscribe(({ data: { locale } }) => {
 		if (locale) {
-			Cookies.set('lang', locale, { sameSite: 'strict' });
 			t = _t(locale);
 			tl = _tl(locale);
 		}
@@ -49,8 +40,8 @@
 			</div>
 
 			<div class="leftpart_languages typography">
-				{#if $session.locale != 'en'}<a on:click="{() => $session.locale = 'en'}" href="#">English</a>{/if}
-				{#if $session.locale != 'fr'}<a on:click="{() => $session.locale = 'fr'}" href="#">Français</a>{/if}
+				{#if $page.data.locale !== 'en'}<a on:click="{() => setLocale('en')}" href="#">English</a>{/if}
+				{#if $page.data.locale !== 'fr'}<a on:click="{() => setLocale('fr')}" href="#">Français</a>{/if}
 			</div>
 
 			<div class="menu">

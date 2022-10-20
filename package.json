@@ -15,5 +15,8 @@
   },
   "main": "index.js",
   "author": "Émile Plourde-Lavoie <nostradamus1935@echosvirtuels.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "vite": "^3.1.8"
+  }
 }

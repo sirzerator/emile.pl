@@ -1,21 +1,21 @@
-<script lang="ts" context="module">
-	import type { Load } from '@sveltejs/kit';
-
-	export const load: Load = async ({ fetch }) => {
-		const res = await fetch('/api/posts');
-		const { data } = await res.json();
-
-		return { props: { posts: data } };
-	};
-</script>
-
 <script lang="ts">
+	import type { PageData } from './$types';
+
+	import { page } from '$app/stores';
+
 	import dayjs from '$lib/dayjs';
 	import type { Post } from '$lib/types';
+	import { _t } from '$lib/translations';
 
-	export function formatDate(date) { return dayjs(date).format('LL'); }
+	export let data: PageData;
 
-	export let posts: Array<Post>;
+	let posts: Post[];
+
+	page.subscribe(({ data: { posts: postsData } }) => {
+		posts = postsData;
+	});
+
+	function formatDate(date) { return dayjs(date).format('LL'); }
 </script>
 
 <svelte:head>

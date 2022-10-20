@@ -1,6 +1,6 @@
-import type { EndpointOutput } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
 
-export async function get({ params }): Promise<EndpointOutput> {
+export const GET: RequestHandler = async ({ params }) => {
 	const res = await fetch(`${import.meta.env.VITE_ASSETS_URL}/${params.file}`);
 	const data = await res.arrayBuffer();
 
@@ -13,12 +13,11 @@ export async function get({ params }): Promise<EndpointOutput> {
 			break;
 		case 'jpeg':
 		case 'jpg':
-			headers['Content-Type'] = 'image/png';
+			headers['Content-Type'] = 'image/jpg';
 			break;
 	}
 
-	return {
-		body: new Uint8Array(data),
+	return new Response(new Uint8Array(data), {
 		headers,
-	};
+	});
 }

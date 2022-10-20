@@ -1,14 +1,3 @@
-<script lang="ts" context="module">
-	import type { Load } from '@sveltejs/kit';
-
-	export const load: Load = async ({ fetch, session }) => {
-		const res = await fetch(`/api/about?locale=${session.locale}`);
-		const data = await res.json();
-
-		return { props: { data } };
-	};
-</script>
-
 <script lang="ts">
 	import { page } from '$app/stores';
 	import type { Post } from '$lib/types';
