@@ -43,6 +43,9 @@ const translations = {
 			situation: 'Situation',
 			studies: 'Études',
 		},
+		blog: {
+			read_more: 'Lire plus',
+		},
 		site: {
 			navigation: {
 				about: 'À propos',
@@ -70,6 +73,9 @@ const translations = {
 			phone: 'Phone',
 			situation: 'Location',
 			studies: 'Studies',
+		},
+		blog: {
+			read_more: 'Read more',
 		},
 		site: {
 			navigation: {
