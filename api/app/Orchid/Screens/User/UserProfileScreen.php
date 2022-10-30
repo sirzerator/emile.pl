@@ -26,8 +26,7 @@ class UserProfileScreen extends Screen
      *
      * @return array
      */
-    public function query(Request $request): iterable
-    {
+    public function query(Request $request): iterable {
         return [
             'user' => $request->user(),
         ];
@@ -38,8 +37,7 @@ class UserProfileScreen extends Screen
      *
      * @return string|null
      */
-    public function name(): ?string
-    {
+    public function name(): ?string {
         return 'My account';
     }
 
@@ -48,8 +46,7 @@ class UserProfileScreen extends Screen
      *
      * @return string|null
      */
-    public function description(): ?string
-    {
+    public function description(): ?string {
         return 'Update your account details such as name, email address and password';
     }
 
@@ -58,16 +55,14 @@ class UserProfileScreen extends Screen
      *
      * @return Action[]
      */
-    public function commandBar(): iterable
-    {
+    public function commandBar(): iterable {
         return [];
     }
 
     /**
      * @return \Orchid\Screen\Layout[]
      */
-    public function layout(): iterable
-    {
+    public function layout(): iterable {
         return [
             Layout::block(UserEditLayout::class)
                 ->title(__('Profile Information'))
@@ -94,8 +89,7 @@ class UserProfileScreen extends Screen
     /**
      * @param Request $request
      */
-    public function save(Request $request): void
-    {
+    public function save(Request $request): void {
         $request->validate([
             'user.name'  => 'required|string',
             'user.email' => [
@@ -114,8 +108,7 @@ class UserProfileScreen extends Screen
     /**
      * @param Request $request
      */
-    public function changePassword(Request $request): void
-    {
+    public function changePassword(Request $request): void {
         $guard = config('platform.guard', 'web');
         $request->validate([
             'old_password' => 'required|current_password:'.$guard,
