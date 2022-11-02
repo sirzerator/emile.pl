@@ -10,67 +10,33 @@ use Orchid\Support\Facades\Layout;
 
 class PlatformScreen extends Screen
 {
-    /**
-     * Query data.
-     *
-     * @return array
-     */
-    public function query(): iterable
-    {
+    public function query(): iterable {
         return [];
     }
 
-    /**
-     * Display header name.
-     *
-     * @return string|null
-     */
-    public function name(): ?string
-    {
-        return 'Get Started';
+    public function name(): ?string {
+        return 'emile.pl';
     }
 
-    /**
-     * Display header description.
-     *
-     * @return string|null
-     */
-    public function description(): ?string
-    {
-        return 'Welcome to your Orchid application.';
+    public function description(): ?string {
+        return "Site personnel d'Émile";
     }
 
-    /**
-     * Button commands.
-     *
-     * @return \Orchid\Screen\Action[]
-     */
-    public function commandBar(): iterable
-    {
+    public function commandBar(): iterable {
         return [
             Link::make('Website')
-                ->href('http://orchid.software')
+                ->href('https://emile.pl')
+                ->target('_blank')
                 ->icon('globe-alt'),
 
-            Link::make('Documentation')
-                ->href('https://orchid.software/en/docs')
-                ->icon('docs'),
-
             Link::make('GitHub')
-                ->href('https://github.com/orchidsoftware/platform')
+                ->href('https://github.com/sirzerator/emile.pl')
+                ->target('_blank')
                 ->icon('social-github'),
         ];
     }
 
-    /**
-     * Views.
-     *
-     * @return \Orchid\Screen\Layout[]
-     */
-    public function layout(): iterable
-    {
-        return [
-            Layout::view('platform::partials.welcome'),
-        ];
+    public function layout(): iterable {
+        return [];
     }
 }
