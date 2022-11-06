@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Screens;
 
-use App\Orchid\Layouts\PostListLayout;
+use App\Orchid\Layouts\PostTableLayout;
 use App\Models\Post;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
@@ -33,7 +33,7 @@ class PostListScreen extends Screen
 
     public function layout(): iterable {
         return [
-            PostListLayout::class,
+            PostTableLayout::class,
         ];
     }
 }

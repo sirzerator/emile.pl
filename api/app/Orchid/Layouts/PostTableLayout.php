@@ -7,7 +7,7 @@ use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
-class PostListLayout extends Table
+class PostTableLayout extends Table
 {
     /**
      * Data source.
