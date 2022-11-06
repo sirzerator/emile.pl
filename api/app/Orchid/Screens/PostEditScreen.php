@@ -6,9 +6,11 @@ use App\Http\Requests\Post\CreateRequest;
 use App\Models\Locale;
 use App\Models\Post;
 use App\Models\User;
+use App\Orchid\Layouts\Modals\DeleteConfirmationModal;
 use Illuminate\Http\Request;
 use Orchid\Screen\Fields\DateTimer;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Fields\Select;
@@ -16,7 +18,9 @@ use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Screen;
+use Orchid\Support\Color;
 use Orchid\Support\Facades\Alert;
 
 class PostEditScreen extends Screen
@@ -48,6 +52,10 @@ class PostEditScreen extends Screen
                 ->method('createOrUpdate')
                 ->canSee($this->post->exists),
             Button::make('Delete')
+
+            ModalToggle::make('Remove')
+                ->modal('deleteConfirmationModal')
+                ->type(new Color('danger'))
                 ->icon('trash')
                 ->method('remove')
                 ->canSee($this->post->exists),
@@ -82,6 +90,8 @@ class PostEditScreen extends Screen
                 DateTimer::make('post.published_at')
                     ->title('Published')->enableTime(true)
             ]),
+
+            DeleteConfirmationModal::make($this->post->title),
         ];
     }
 
