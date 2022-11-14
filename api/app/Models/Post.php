@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Screen\AsSource;
 
-class Post extends Model
+class Post extends BaseModel
 {
     use AsSource, HasFactory, SoftDeletes;
 
