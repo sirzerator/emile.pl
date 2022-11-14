@@ -65,7 +65,7 @@ class PostEditScreen extends Screen
     }
 
     public function layout(): iterable {
-        return [
+        $layout = [
             Layout::columns([
                 Layout::rows([
                     Input::make('post.title')
@@ -74,13 +74,25 @@ class PostEditScreen extends Screen
                     Input::make('post.slug')
                         ->required()
                         ->title('Slug'),
+
+                    Picture::make('post.featured_image_url'),
+                ]),
+
+                Layout::rows([
+                    DateTimer::make('post.published_at')
+                        ->title('Published')->enableTime(true),
+
                     Select::make('post.locale')
                         ->options(Locale::asOptions())
                         ->title('Locale'),
-                ]),
-                Layout::rows([
-                    Picture::make('post.featured_image_url'),
 
+                    Relation::make('translations')
+                        ->disabled(!$this->post->exists)
+                        ->fromModel(Post::class, 'title')
+                        ->applyScope('whereNotId', $this->post->id)
+                        ->applyScope('whereNotLocale', $this->post->locale)
+                        ->multiple()
+                        ->title('Translations'),
                 ]),
             ]),
 
@@ -93,14 +105,13 @@ class PostEditScreen extends Screen
                     ->required()
                     ->title('Content'),
             ]),
-
-            Layout::rows([
-                DateTimer::make('post.published_at')
-                    ->title('Published')->enableTime(true)
-            ]),
-
-            DeleteConfirmationModal::make($this->post->title),
         ];
+
+        if ($this->post->exists) {
+            $layout[] = DeleteConfirmationModal::make($this->post->title);
+        }
+
+        return $layout;
     }
 
     public function createOrUpdate(Post $post, CreateRequest $request) {

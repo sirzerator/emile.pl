@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Layouts;
 
+use App\Models\Locale;
 use App\Models\Post;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
@@ -25,6 +26,10 @@ class PostTableLayout extends Table
                 ->render(function (Post $post) {
                     return Link::make($post->title)
                         ->route('platform.post.edit', $post);
+                }),
+            TD::make('locale', 'Locale')
+                ->render(function (Post $post) {
+                    return Locale::title($post->locale);
                 }),
 
             TD::make('created_at', 'Created'),
