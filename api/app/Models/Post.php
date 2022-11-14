@@ -12,12 +12,13 @@ class Post extends Model
     use AsSource, HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'title',
-        'slug',
-        'locale',
-        'intro',
         'content',
+        'featured_image_url',
+        'intro',
+        'locale',
         'published_at',
+        'slug',
+        'title',
     ];
 
     public function original() {

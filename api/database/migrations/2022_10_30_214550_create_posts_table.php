@@ -12,6 +12,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('locale', 2);
+            $table->string('featured_image_url')->nullable()->default(null);
             $table->text('intro');
             $table->text('content');
             $table->dateTime('published_at')->default(null)->nullable();

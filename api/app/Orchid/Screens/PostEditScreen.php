@@ -64,16 +64,22 @@ class PostEditScreen extends Screen
 
     public function layout(): iterable {
         return [
-            Layout::rows([
-                Input::make('post.title')
-                    ->required()
-                    ->title('Title'),
-                Input::make('post.slug')
-                    ->required()
-                    ->title('Slug'),
-                Select::make('post.locale')
-                    ->options(Locale::asOptions())
-                    ->title('Locale'),
+            Layout::columns([
+                Layout::rows([
+                    Input::make('post.title')
+                        ->required()
+                        ->title('Title'),
+                    Input::make('post.slug')
+                        ->required()
+                        ->title('Slug'),
+                    Select::make('post.locale')
+                        ->options(Locale::asOptions())
+                        ->title('Locale'),
+                ]),
+                Layout::rows([
+                    Picture::make('post.featured_image_url'),
+
+                ]),
             ]),
 
             Layout::rows([
