@@ -12,7 +12,7 @@ class DeleteConfirmationModal
         return Layout::modal('deleteConfirmationModal', [
             Layout::rows([]),
         ])
-            ->title("Are you sure you want to delete « $itemName »")
+            ->title("Are you sure you want to delete « $itemName » ?")
             ->applyButton('Yes')
             ->closeButton('Cancel');
     }

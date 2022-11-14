@@ -12,6 +12,7 @@ use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
+use Orchid\Support\Color;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
@@ -75,13 +76,22 @@ class RoleEditScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Button::make(__('Save'))
-                ->icon('check')
-                ->method('save'),
-
             Button::make(__('Remove'))
+                ->type(Color::DANGER())
                 ->icon('trash')
                 ->method('remove')
+                ->canSee($this->role->exists),
+
+            Button::make(__('Add'))
+                ->type(Color::PRIMARY())
+                ->icon('check')
+                ->method('save')
+                ->canSee(!$this->role->exists),
+
+            Button::make(__('Save'))
+                ->type(Color::PRIMARY())
+                ->icon('note')
+                ->method('save')
                 ->canSee($this->role->exists),
         ];
     }

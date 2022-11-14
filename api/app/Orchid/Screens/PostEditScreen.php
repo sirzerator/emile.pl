@@ -43,21 +43,23 @@ class PostEditScreen extends Screen
 
     public function commandBar(): iterable {
         return [
-            Button::make('Create')
-                ->icon('pencil')
-                ->method('createOrUpdate')
-                ->canSee(!$this->post->exists),
-            Button::make('Update')
-                ->icon('note')
-                ->method('createOrUpdate')
-                ->canSee($this->post->exists),
-            Button::make('Delete')
-
             ModalToggle::make('Remove')
                 ->modal('deleteConfirmationModal')
-                ->type(new Color('danger'))
+                ->type(Color::DANGER())
                 ->icon('trash')
                 ->method('remove')
+                ->canSee($this->post->exists),
+
+            Button::make('Add')
+                ->type(Color::PRIMARY())
+                ->icon('check')
+                ->method('createOrUpdate')
+                ->canSee(!$this->post->exists),
+
+            Button::make('Save')
+                ->type(Color::PRIMARY())
+                ->icon('note')
+                ->method('createOrUpdate')
                 ->canSee($this->post->exists),
         ];
     }

@@ -6,6 +6,7 @@ use App\Orchid\Layouts\PostTableLayout;
 use App\Models\Post;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
+use Orchid\Support\Color;
 
 class PostListScreen extends Screen
 {
@@ -25,7 +26,7 @@ class PostListScreen extends Screen
 
     public function commandBar(): iterable {
         return [
-            Link::make(__('Add'))
+            Link::make('Add')
                 ->icon('plus')
                 ->route('platform.post.edit'),
         ];
