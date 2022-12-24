@@ -12,25 +12,21 @@ use Orchid\Support\Color;
 
 class PlatformProvider extends OrchidServiceProvider
 {
-    /**
-     * @param Dashboard $dashboard
-     */
-    public function boot(Dashboard $dashboard): void
-    {
-        parent::boot($dashboard);
-
-        // ...
-    }
-
-    /**
-     * @return Menu[]
-     */
-    public function registerMainMenu(): array
-    {
+    public function registerMainMenu(): array {
         return [
             Menu::make('Posts')
                 ->icon('book-open')
+                ->divider(true)
                 ->route('platform.post.list'),
+
+
+            Menu::make('Categories')
+                ->icon('folder-alt')
+                ->route('platform.category.list'),
+
+            Menu::make('Tags')
+                ->icon('tag')
+                ->route('platform.tag.list'),
 
             Menu::make(__('Users'))
                 ->icon('user')
@@ -44,12 +40,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->permission('platform.systems.roles'),
         ];
     }
-
-    /**
-     * @return Menu[]
-     */
-    public function registerProfileMenu(): array
-    {
+    public function registerProfileMenu(): array {
         return [
             Menu::make(__('Profile'))
                 ->route('platform.profile')
@@ -57,11 +48,7 @@ class PlatformProvider extends OrchidServiceProvider
         ];
     }
 
-    /**
-     * @return ItemPermission[]
-     */
-    public function registerPermissions(): array
-    {
+    public function registerPermissions(): array {
         return [
             ItemPermission::group(__('System'))
                 ->addPermission('platform.systems.roles', __('Roles'))

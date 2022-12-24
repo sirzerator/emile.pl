@@ -3,11 +3,11 @@
 namespace App\Orchid\Screens;
 
 use App\Http\Requests\Post\CreateRequest;
+use App\Models\Category;
 use App\Models\Locale;
 use App\Models\Post;
-use App\Models\User;
+use App\Models\Tag;
 use App\Orchid\Layouts\Modals\DeleteConfirmationModal;
-use Illuminate\Http\Request;
 use Orchid\Screen\Fields\DateTimer;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Picture;
@@ -79,6 +79,15 @@ class PostEditScreen extends Screen
                 ]),
 
                 Layout::rows([
+                    Relation::make('post.category_id')
+                        ->fromModel(Category::class, 'title')
+                        ->title('Category'),
+
+                    Relation::make('post.tags')
+                        ->fromModel(Tag::class, 'title')
+                        ->multiple()
+                        ->title('Tags'),
+
                     DateTimer::make('post.published_at')
                         ->title('Published')->enableTime(true),
 

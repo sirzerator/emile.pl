@@ -2,26 +2,26 @@
 
 namespace App\Orchid\Layouts;
 
+use App\Models\Tag;
 use App\Models\Locale;
-use App\Models\Post;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
-class PostTableLayout extends Table
+class TagTableLayout extends Table
 {
-    protected $target = 'posts';
+    protected $target = 'tags';
 
     protected function columns(): iterable {
         return [
             TD::make('title', 'Title')
-                ->render(function (Post $post) {
-                    return Link::make($post->title)
-                        ->route('platform.post.edit', $post);
+                ->render(function (Tag $tag) {
+                    return Link::make($tag->title)
+                        ->route('platform.tag.edit', $tag);
                 }),
             TD::make('locale', 'Locale')
-                ->render(function (Post $post) {
-                    return Locale::title($post->locale);
+                ->render(function (Tag $tag) {
+                    return Locale::title($tag->locale);
                 }),
 
             TD::make('created_at', 'Created'),
