@@ -12,6 +12,7 @@ class CreateRequest extends BaseRequest
             'post.slug' => 'required',
             'post.intro' => 'required',
             'post.content' => 'required',
+            'post.locale' => 'required|exists:locales,slug',
         ];
     }
 }
