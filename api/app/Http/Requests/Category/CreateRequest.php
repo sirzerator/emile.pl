@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Category;
 
-use App\Http\Requests\BaseRequest;
+use App\Http\Requests\ApiRequest;
 
-class CreateRequest extends BaseRequest
+class CreateRequest extends ApiRequest
 {
     public function rules() {
         return [
