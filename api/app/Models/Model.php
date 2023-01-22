@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Transformers\BaseTransformer;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-class BaseModel extends Model
+class Model extends EloquentModel
 {
     protected array $filters;
 

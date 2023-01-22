@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Orchid\Screen\AsSource;
 
-class Tag extends BaseModel
+class Tag extends Model
 {
     use AsSource, HasFactory;
 
