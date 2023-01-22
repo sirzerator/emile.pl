@@ -14,8 +14,8 @@ class Model extends EloquentModel
 
     public function __construct(array $attributes = []) {
         $this->filters = [
-            'locale' => \App\Models\Filters\Tag\Locale::class,
-            'pagination' => \App\Models\Filters\Tag\Pagination::class,
+            'locale' => \App\Http\Filters\Tag\Locale::class,
+            'pagination' => \App\Http\Filters\Tag\Pagination::class,
         ];
     }
 

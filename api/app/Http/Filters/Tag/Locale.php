@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Filters\Tag;
+namespace App\Http\Filters\Tag;
 
 use App\Http\Filters\Filter;
 
