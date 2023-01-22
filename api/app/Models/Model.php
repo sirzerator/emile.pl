@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Http\Filters\Filter;
 use App\Transformers\BaseTransformer;
+use HaydenPierce\ClassFinder\ClassFinder;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -13,10 +15,16 @@ class Model extends EloquentModel
     protected array $filters;
 
     public function __construct(array $attributes = []) {
-        $this->filters = [
-            'locale' => \App\Http\Filters\Tag\Locale::class,
-            'pagination' => \App\Http\Filters\Tag\Pagination::class,
-        ];
+        parent::__construct($attributes);
+
+        $shortName = (new \ReflectionClass(static::class))->getShortName();
+        $filters = ClassFinder::getClassesInNamespace("App\Http\Filters\\$shortName");
+
+        $this->filters = [];
+
+        foreach ($filters as $filter) {
+            $this->filters[Str::snake(((new \ReflectionClass($filter))->getShortName()))] = $filter;
+        }
     }
 
     public static function getTransformerInstance() {
@@ -32,10 +40,14 @@ class Model extends EloquentModel
         return parent::__call($method, $parameters);
     }
 
-    public function getFilter(string $slug, $data) {
+    public function getFilter(string $slug, $data): ?Filter {
         $filter = data_get($this->filters, $slug);
 
-        if (!is_a($filter, \App\Http\Filters\Filter::class, true)) {
+        if (!$filter) {
+            return null;
+        }
+
+        if (!is_a($filter, Filter::class, true)) {
             return abort(500, 'Filters must extend Filter');
         }
 
