@@ -12,7 +12,7 @@ class PostListScreen extends Screen
 {
     public function query(): iterable {
         return [
-            'posts' => Post::paginate(),
+            'posts' => Post::filters()->defaultSort('published_at', 'desc')->paginate(),
         ];
     }
 

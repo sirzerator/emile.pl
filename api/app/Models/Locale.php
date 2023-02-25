@@ -15,10 +15,10 @@ class Locale extends Model
         return data_get(self::$memo, $slug, 'NA');
     }
 
-    public static function asOptions(): array {
+    public static function asOptions(bool $withNull = false): array {
         return self::all()->reduce(function ($acc, $l) {
             $acc[$l->slug] = $l->name;
             return $acc;
-        }, []);
+        }, $withNull ? [ '' => __('(None)')]: []);
     }
 }

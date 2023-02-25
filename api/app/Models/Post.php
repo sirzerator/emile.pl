@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Orchid\Filters\Filterable;
 use Orchid\Screen\AsSource;
 
 class Post extends Model
 {
-    use AsSource, HasFactory, SoftDeletes;
+    use AsSource, Filterable, HasFactory, SoftDeletes;
 
     protected $fillable = [
         'content',
@@ -18,6 +19,21 @@ class Post extends Model
         'published_at',
         'slug',
         'title',
+    ];
+
+    protected $allowedSorts = [
+        'id',
+        'title',
+        'locale',
+        'published_at',
+        'created_at',
+        'updated_at',
+    ];
+
+    protected $allowedFilters = [
+        'title',
+        'locale',
+        'published_at',
     ];
 
     public function original() {
