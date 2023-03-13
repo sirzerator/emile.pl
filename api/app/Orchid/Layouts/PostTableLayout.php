@@ -32,6 +32,13 @@ class PostTableLayout extends Table
                     return Locale::title($post->locale);
                 }),
 
+            TD::make('translations', 'Translations')
+                ->render(function (Post $post) {
+                    return $post->translations
+                                ->map(fn ($t) => (string) Link::make($t->title)->route('platform.post.edit', $t))
+                                ->join(', ');
+                }),
+
             TD::make('published_at', 'Published')->sort(),
             TD::make('created_at', 'Created')->sort(),
             TD::make('updated_at', 'Updated')->sort(),

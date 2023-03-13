@@ -11,16 +11,6 @@ class Post extends Model
 {
     use AsSource, Filterable, HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'content',
-        'featured_image_url',
-        'intro',
-        'locale',
-        'published_at',
-        'slug',
-        'title',
-    ];
-
     protected $allowedSorts = [
         'id',
         'title',
@@ -36,11 +26,31 @@ class Post extends Model
         'published_at',
     ];
 
-    public function original() {
-        return $this->belongsTo(Post::class, 'original_id');
+    protected $fillable = [
+        'content',
+        'featured_image_url',
+        'intro',
+        'locale',
+        'published_at',
+        'slug',
+        'title',
+    ];
+
+    public function translation() {
+        return $this->hasOneThrough(
+            Post::class,
+            Pivots\PostTranslation::class,
+            'post_id',
+            'id',
+            'id',
+            'translation_id',
+        );
     }
 
     public function translations() {
-        return $this->hasMany(Post::class, 'original_id');
+        return $this->belongsToMany(Post::class, 'post_translation', 'post_id', 'translation_id')
+                    ->using(Pivots\PostTranslation::class)
+                    ->withPivot('post_is_source')
+                    ->withTimestamps();
     }
 }

@@ -95,13 +95,13 @@ class PostEditScreen extends Screen
                         ->options(Locale::asOptions())
                         ->title('Locale'),
 
-                    Relation::make('translations')
+                    Relation::make('post.translation')
+                        ->allowEmpty()
                         ->disabled(!$this->post->exists)
                         ->fromModel(Post::class, 'title')
                         ->applyScope('whereNotId', $this->post->id)
                         ->applyScope('whereNotLocale', $this->post->locale)
-                        ->multiple()
-                        ->title('Translations'),
+                        ->title('Traduction de'),
                 ]),
             ]),
 
@@ -125,6 +125,8 @@ class PostEditScreen extends Screen
 
     public function createOrUpdate(Post $post, CreateRequest $request) {
         $post->fill($request->get('post'))->save();
+
+        $post->translations()->sync(data_get($request->get('post'), 'translation'));
 
         Alert::info('You have successfully created a post.');
 
