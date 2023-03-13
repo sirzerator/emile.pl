@@ -22,9 +22,9 @@ class PostTableLayout extends Table
                 ->filter(Input::make())
                 ->sort()
                 ->render(function (Post $post) {
-                    return Link::make($post->title)
-                        ->route('platform.post.edit', $post);
+                    return Link::make($post->title)->route('platform.post.edit', $post);
                 }),
+
             TD::make('locale', 'Locale')
                 ->filter(Select::make('post.locale')->options(Locale::asOptions(withNull: true)))
                 ->sort()
@@ -36,12 +36,10 @@ class PostTableLayout extends Table
                 ->render(function (Post $post) {
                     return $post->translations
                                 ->map(fn ($t) => (string) Link::make($t->title)->route('platform.post.edit', $t))
-                                ->join(', ');
+                                ->join('');
                 }),
 
             TD::make('published_at', 'Published')->sort(),
-            TD::make('created_at', 'Created')->sort(),
-            TD::make('updated_at', 'Updated')->sort(),
         ];
     }
 }
