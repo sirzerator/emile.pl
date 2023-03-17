@@ -11,6 +11,12 @@ class Post extends Model
 {
     use AsSource, Filterable, HasFactory, SoftDeletes;
 
+    protected static function booted(): void {
+        static::creating(function (Post $post) {
+            $post->slug = preg_replace('/\s+/', '-', mb_strtolower(strip_accents($post->title)));
+        });
+    }
+
     protected $allowedSorts = [
         'id',
         'title',

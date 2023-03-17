@@ -9,6 +9,12 @@ class Category extends Model
 {
     use AsSource, HasFactory;
 
+    protected static function booted(): void {
+        static::creating(function (Category $category) {
+            $category->slug = preg_replace('/\s+/', '-', mb_strtolower(strip_accents($category->title)));
+        });
+    }
+
     protected $fillable = [
         'title',
         'locale',

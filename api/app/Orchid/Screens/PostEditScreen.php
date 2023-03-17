@@ -88,9 +88,8 @@ class PostEditScreen extends Screen
                         ->required()
                         ->title('Title'),
                     Input::make('post.slug')
-                        ->required()
-                        ->title('Slug'),
-
+                        ->title('Slug')
+                        ->disabled(),
                     Picture::make('post.featured_image_url'),
                 ]),
 

@@ -9,7 +9,7 @@ class CreateRequest extends ApiRequest
     public function rules() {
         return [
             'category.title' => 'required',
-            'category.slug' => 'required',
+            'tag.locale' => 'required|exists:locales,slug',
         ];
     }
 }

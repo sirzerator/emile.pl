@@ -9,6 +9,12 @@ class Tag extends Model
 {
     use AsSource, HasFactory;
 
+    protected static function booted(): void {
+        static::creating(function (Tag $tag) {
+            $tag->slug = preg_replace('/\s+/', '-', mb_strtolower(strip_accents($tag->title)));
+        });
+    }
+
     protected $fillable = [
         'title',
         'locale',

@@ -63,8 +63,8 @@ class CategoryEditScreen extends Screen
                     ->required()
                     ->title('Title'),
                 Input::make('category.slug')
-                    ->required()
-                    ->title('Slug'),
+                    ->title('Slug')
+                    ->disabled(),
                 Select::make('category.locale')
                     ->options(Locale::asOptions())
                     ->title('Locale'),

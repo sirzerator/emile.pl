@@ -9,7 +9,6 @@ class CreateRequest extends ApiRequest
     public function rules() {
         return [
             'tag.title' => 'required',
-            'tag.slug' => 'required',
             'tag.locale' => 'required|exists:locales,slug',
         ];
     }

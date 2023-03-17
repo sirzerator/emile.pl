@@ -63,8 +63,8 @@ class TagEditScreen extends Screen
                     ->required()
                     ->title('Title'),
                 Input::make('tag.slug')
-                    ->required()
-                    ->title('Slug'),
+                    ->title('Slug')
+                    ->disabled(),
                 Select::make('tag.locale')
                     ->options(Locale::asOptions())
                     ->title('Locale'),
