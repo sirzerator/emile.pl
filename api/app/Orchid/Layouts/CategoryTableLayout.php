@@ -14,18 +14,24 @@ class CategoryTableLayout extends Table
 
     protected function columns(): iterable {
         return [
-            TD::make('title', 'Title')
+            TD::make('title', __('models.category.fields.title'))
                 ->render(function (Category $category) {
                     return Link::make($category->title)
                         ->route('platform.category.edit', $category);
                 }),
-            TD::make('locale', 'Locale')
+
+            TD::make('locale', __('models.category.fields.locale'))
                 ->render(function (Category $category) {
                     return Locale::title($category->locale);
-                }),
+                })
+                ->width(100),
 
-            TD::make('created_at', 'Created'),
-            TD::make('updated_at', 'Updated'),
+            TD::make('created_at', __('models.category.fields.created_at'))
+                ->render(fn (Category $t) => $t->created_at)
+                ->width(200),
+            TD::make('updated_at', __('models.category.fields.updated_at'))
+                ->render(fn (Category $t) => $t->updated_at)
+                ->width(200),
         ];
     }
 }

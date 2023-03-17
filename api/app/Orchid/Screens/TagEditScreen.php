@@ -26,29 +26,29 @@ class TagEditScreen extends Screen
     }
 
     public function name(): ?string {
-        return $this->tag->exists ? 'Edit tag' : 'New tag';
+        return $this->tag->exists ? $this->tag->title : _c('models.tag.name', 1);
     }
 
     public function description(): ?string {
-        return 'A single tag';
+        return $this->tag->exists ? __('models.tag.description.edit') : __('models.tag.description.new');
     }
 
     public function commandBar(): iterable {
         return [
-            ModalToggle::make('Remove')
+            ModalToggle::make(__('models.tag.actions.delete'))
                 ->modal('deleteConfirmationModal')
                 ->type(Color::DANGER())
                 ->icon('trash')
                 ->method('remove')
                 ->canSee($this->tag->exists),
 
-            Button::make('Add')
+            Button::make(__('models.tag.actions.add'))
                 ->type(Color::PRIMARY())
                 ->icon('check')
                 ->method('createOrUpdate')
                 ->canSee(!$this->tag->exists),
 
-            Button::make('Save')
+            Button::make(__('models.tag.actions.save'))
                 ->type(Color::PRIMARY())
                 ->icon('note')
                 ->method('createOrUpdate')
@@ -61,13 +61,13 @@ class TagEditScreen extends Screen
             Layout::rows([
                 Input::make('tag.title')
                     ->required()
-                    ->title('Title'),
+                    ->title(__('models.tag.fields.title')),
                 Input::make('tag.slug')
-                    ->title('Slug')
+                    ->title(__('models.tag.fields.slug'))
                     ->disabled(),
                 Select::make('tag.locale')
                     ->options(Locale::asOptions())
-                    ->title('Locale'),
+                    ->title(__('models.tag.fields.locale')),
             ]),
         ];
 
@@ -79,9 +79,11 @@ class TagEditScreen extends Screen
     }
 
     public function createOrUpdate(Tag $tag, CreateRequest $request) {
+        $action = $tag->id ? 'updated' : 'created';
+
         $tag->fill($request->get('tag'))->save();
 
-        Alert::info('You have successfully created a tag.');
+        Alert::info(__("models.tag.messages.$action"));
 
         return redirect()->route('platform.tag.list');
     }
@@ -89,7 +91,7 @@ class TagEditScreen extends Screen
     public function remove(Tag $tag) {
         $tag->delete();
 
-        Alert::info('You have successfully deleted the tag.');
+        Alert::info(__('models.tag.messages.deleted'));
 
         return redirect()->route('platform.tag.list');
     }

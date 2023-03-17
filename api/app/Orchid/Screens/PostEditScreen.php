@@ -35,29 +35,29 @@ class PostEditScreen extends Screen
     }
 
     public function name(): ?string {
-        return $this->post->exists ? 'Edit post' : 'New post';
+        return $this->post->exists ? $this->post->title : _c('models.post.name', 1);
     }
 
     public function description(): ?string {
-        return 'A single blog post';
+        return $this->post->exists ? __('models.post.description.edit') : __('models.post.description.new');
     }
 
     public function commandBar(): iterable {
         return [
-            ModalToggle::make('Remove')
+            ModalToggle::make(__('models.post.actions.delete'))
                 ->modal('deleteConfirmationModal')
                 ->type(Color::DANGER())
                 ->icon('trash')
                 ->method('remove')
                 ->canSee($this->post->exists),
 
-            Button::make('Add')
+            Button::make(__('models.post.actions.add'))
                 ->type(Color::PRIMARY())
                 ->icon('check')
                 ->method('createOrUpdate')
                 ->canSee(!$this->post->exists),
 
-            Button::make('Save')
+            Button::make(__('models.post.actions.save'))
                 ->type(Color::PRIMARY())
                 ->icon('note')
                 ->method('createOrUpdate')
@@ -72,11 +72,11 @@ class PostEditScreen extends Screen
                 ->fromModel(Post::class, 'title')
                 ->applyScope('whereNotId', $this->post->id)
                 ->applyScope('whereNotLocale', $this->post->locale)
-                ->title('Translation'),
+                ->title(__('models.post.fields.translation')),
 
             CheckBox::make('post.translation_is_source')
                 ->value(!!data_get($this->post->translation, 'post_is_source'))
-                ->title('This post is the source')
+                ->title(__('models.post.fields.post_is_source'))
                 ->sendTrueOrFalse()
                 ->disabled(!!data_get($this->post->translation, 'post_is_source')),
         ] : [];
@@ -86,9 +86,9 @@ class PostEditScreen extends Screen
                 Layout::rows([
                     Input::make('post.title')
                         ->required()
-                        ->title('Title'),
+                        ->title(__('models.post.fields.title')),
                     Input::make('post.slug')
-                        ->title('Slug')
+                        ->title(__('models.post.fields.slug'))
                         ->disabled(),
                     Picture::make('post.featured_image_url'),
                 ]),
@@ -96,19 +96,20 @@ class PostEditScreen extends Screen
                 Layout::rows([
                     Relation::make('post.category_id')
                         ->fromModel(Category::class, 'title')
-                        ->title('Category'),
+                        ->title(__('models.post.fields.category')),
 
                     Relation::make('post.tags')
                         ->fromModel(Tag::class, 'title')
                         ->multiple()
-                        ->title('Tags'),
+                        ->title(__('models.post.fields.tags')),
 
                     DateTimer::make('post.published_at')
-                        ->title('Published')->enableTime(true),
+                        ->title(__('models.post.fields.published_at'))
+                        ->enableTime(true),
 
                     Select::make('post.locale')
                         ->options(Locale::asOptions())
-                        ->title('Locale'),
+                        ->title(__('models.post.fields.locale')),
 
                     ...$translationFields,
                 ]),
@@ -117,11 +118,11 @@ class PostEditScreen extends Screen
             Layout::rows([
                 TextArea::make('post.intro')
                     ->required()
-                    ->title('Introduction')
+                    ->title(__('models.post.fields.intro'))
                     ->rows(3),
                 Quill::make('post.content')
                     ->required()
-                    ->title('Content'),
+                    ->title(__('models.post.fields.content')),
             ]),
         ];
 

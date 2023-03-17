@@ -17,16 +17,16 @@ class CategoryListScreen extends Screen
     }
 
     public function name(): ?string {
-        return 'Categories';
+        return _c('models.category.name', 2);
     }
 
     public function description(): ?string {
-        return 'All categories';
+        return __('models.category.description.all');
     }
 
     public function commandBar(): iterable {
         return [
-            Link::make('Add')
+            Link::make(_('models.category.actions.add'))
                 ->icon('plus')
                 ->route('platform.category.edit'),
         ];

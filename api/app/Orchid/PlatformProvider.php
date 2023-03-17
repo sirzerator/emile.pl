@@ -14,17 +14,17 @@ class PlatformProvider extends OrchidServiceProvider
 {
     public function registerMainMenu(): array {
         return [
-            Menu::make('Posts')
+            Menu::make(_c('models.post.name', 2))
                 ->icon('book-open')
                 ->divider(true)
                 ->route('platform.post.list'),
 
 
-            Menu::make('Categories')
+            Menu::make(_c('models.category.name', 2))
                 ->icon('folder-alt')
                 ->route('platform.category.list'),
 
-            Menu::make('Tags')
+            Menu::make(_c('models.tag.name', 2))
                 ->icon('tag')
                 ->route('platform.tag.list'),
 

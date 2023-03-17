@@ -26,29 +26,29 @@ class CategoryEditScreen extends Screen
     }
 
     public function name(): ?string {
-        return $this->category->exists ? 'Edit category' : 'New category';
+        return $this->category->exists ? $this->category->title : _c('models.category.name', 1);
     }
 
     public function description(): ?string {
-        return 'A single category';
+        return $this->category->exists ? __('models.category.description.edit') : __('models.category.description.new');
     }
 
     public function commandBar(): iterable {
         return [
-            ModalToggle::make('Remove')
+            ModalToggle::make(__('models.category.actions.delete'))
                 ->modal('deleteConfirmationModal')
                 ->type(Color::DANGER())
                 ->icon('trash')
                 ->method('remove')
                 ->canSee($this->category->exists),
 
-            Button::make('Add')
+            Button::make(__('models.category.actions.add'))
                 ->type(Color::PRIMARY())
                 ->icon('check')
                 ->method('createOrUpdate')
                 ->canSee(!$this->category->exists),
 
-            Button::make('Save')
+            Button::make(__('models.category.actions.save'))
                 ->type(Color::PRIMARY())
                 ->icon('note')
                 ->method('createOrUpdate')
@@ -61,13 +61,13 @@ class CategoryEditScreen extends Screen
             Layout::rows([
                 Input::make('category.title')
                     ->required()
-                    ->title('Title'),
+                    ->title(__('models.category.fields.title')),
                 Input::make('category.slug')
-                    ->title('Slug')
+                    ->title(__('models.category.fields.slug'))
                     ->disabled(),
                 Select::make('category.locale')
                     ->options(Locale::asOptions())
-                    ->title('Locale'),
+                    ->title(__('models.category.fields.locale')),
             ]),
         ];
 
@@ -79,9 +79,11 @@ class CategoryEditScreen extends Screen
     }
 
     public function createOrUpdate(Category $category, CreateRequest $request) {
+        $action = $category->id ? 'updated' : 'created';
+
         $category->fill($request->get('category'))->save();
 
-        Alert::info('You have successfully created a category.');
+        Alert::info(__("models.category.messages.$action"));
 
         return redirect()->route('platform.category.list');
     }
@@ -89,7 +91,7 @@ class CategoryEditScreen extends Screen
     public function remove(Category $category) {
         $category->delete();
 
-        Alert::info('You have successfully deleted the category.');
+        Alert::info(__('models.category.messages.deleted'));
 
         return redirect()->route('platform.category.list');
     }

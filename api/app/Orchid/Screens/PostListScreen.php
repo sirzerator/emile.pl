@@ -17,16 +17,16 @@ class PostListScreen extends Screen
     }
 
     public function name(): ?string {
-        return 'Blog posts';
+        return _c('models.post.name', 2);
     }
 
     public function description(): ?string {
-        return 'All blog posts';
+        return _('models.post.description.all');
     }
 
     public function commandBar(): iterable {
         return [
-            Link::make('Add')
+            Link::make(_('models.post.actions.add'))
                 ->icon('plus')
                 ->route('platform.post.edit'),
         ];

@@ -17,16 +17,16 @@ class TagListScreen extends Screen
     }
 
     public function name(): ?string {
-        return 'Tags';
+        return _c('models.tag.name', 2);
     }
 
     public function description(): ?string {
-        return 'All tags';
+        return _('models.tag.description.all');
     }
 
     public function commandBar(): iterable {
         return [
-            Link::make('Add')
+            Link::make(_('models.tag.actions.add'))
                 ->icon('plus')
                 ->route('platform.tag.edit'),
         ];
