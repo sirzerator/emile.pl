@@ -44,7 +44,7 @@ class Post extends Model
             'id',
             'id',
             'translation_id',
-        );
+        )->select('posts.*', 'post_is_source');
     }
 
     public function translations() {

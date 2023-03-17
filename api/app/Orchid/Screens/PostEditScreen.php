@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use App\Orchid\Layouts\Modals\DeleteConfirmationModal;
 use Orchid\Screen\Fields\DateTimer;
+use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\Quill;
@@ -65,6 +66,21 @@ class PostEditScreen extends Screen
     }
 
     public function layout(): iterable {
+        $translationFields =  $this->post->exists ? [
+            Relation::make('post.translation')
+                ->allowEmpty()
+                ->fromModel(Post::class, 'title')
+                ->applyScope('whereNotId', $this->post->id)
+                ->applyScope('whereNotLocale', $this->post->locale)
+                ->title('Translation'),
+
+            CheckBox::make('post.translation_is_source')
+                ->value(!!data_get($this->post->translation, 'post_is_source'))
+                ->title('This post is the source')
+                ->sendTrueOrFalse()
+                ->disabled(!!data_get($this->post->translation, 'post_is_source')),
+        ] : [];
+
         $layout = [
             Layout::columns([
                 Layout::rows([
@@ -95,13 +111,7 @@ class PostEditScreen extends Screen
                         ->options(Locale::asOptions())
                         ->title('Locale'),
 
-                    Relation::make('post.translation')
-                        ->allowEmpty()
-                        ->disabled(!$this->post->exists)
-                        ->fromModel(Post::class, 'title')
-                        ->applyScope('whereNotId', $this->post->id)
-                        ->applyScope('whereNotLocale', $this->post->locale)
-                        ->title('Traduction de'),
+                    ...$translationFields,
                 ]),
             ]),
 
@@ -124,9 +134,20 @@ class PostEditScreen extends Screen
     }
 
     public function createOrUpdate(Post $post, CreateRequest $request) {
-        $post->fill($request->get('post'))->save();
+        $data = $request->get('post');
 
-        $post->translations()->sync(data_get($request->get('post'), 'translation'));
+        $post->fill($data)->save();
+
+        $translation = data_get($data, 'translation');
+        if ($translation) {
+            $post->translations()->sync([
+                $translation => [
+                    'post_is_source' => data_get($data, 'translation_is_source'),
+                ],
+            ]);
+        } else {
+            $post->translations()->sync(null);
+        }
 
         Alert::info('You have successfully created a post.');
 
