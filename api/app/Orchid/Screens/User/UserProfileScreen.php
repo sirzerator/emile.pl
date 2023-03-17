@@ -19,49 +19,24 @@ use Orchid\Support\Facades\Toast;
 
 class UserProfileScreen extends Screen
 {
-    /**
-     * Query data.
-     *
-     * @param Request $request
-     *
-     * @return array
-     */
     public function query(Request $request): iterable {
         return [
             'user' => $request->user(),
         ];
     }
 
-    /**
-     * Display header name.
-     *
-     * @return string|null
-     */
     public function name(): ?string {
         return 'My account';
     }
 
-    /**
-     * Display header description.
-     *
-     * @return string|null
-     */
     public function description(): ?string {
         return 'Update your account details such as name, email address and password';
     }
 
-    /**
-     * Button commands.
-     *
-     * @return Action[]
-     */
     public function commandBar(): iterable {
         return [];
     }
 
-    /**
-     * @return \Orchid\Screen\Layout[]
-     */
     public function layout(): iterable {
         return [
             Layout::block(UserEditLayout::class)
@@ -86,9 +61,6 @@ class UserProfileScreen extends Screen
         ];
     }
 
-    /**
-     * @param Request $request
-     */
     public function save(Request $request): void {
         $request->validate([
             'user.name'  => 'required|string',
@@ -105,9 +77,6 @@ class UserProfileScreen extends Screen
         Toast::info(__('Profile updated.'));
     }
 
-    /**
-     * @param Request $request
-     */
     public function changePassword(Request $request): void {
         $guard = config('platform.guard', 'web');
         $request->validate([
