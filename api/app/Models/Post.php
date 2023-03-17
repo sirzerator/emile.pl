@@ -27,6 +27,7 @@ class Post extends Model
     ];
 
     protected $fillable = [
+        'category_id',
         'content',
         'featured_image_url',
         'intro',
@@ -35,6 +36,14 @@ class Post extends Model
         'slug',
         'title',
     ];
+
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function tags() {
+        return $this->belongsToMany(Tag::class)->withTimestamps();
+    }
 
     public function translation() {
         return $this->hasOneThrough(

@@ -149,6 +149,9 @@ class PostEditScreen extends Screen
             $post->translations()->sync(null);
         }
 
+        $tags = data_get($data, 'tags');
+        $post->tags()->sync($tags);
+
         Alert::info('You have successfully created a post.');
 
         return redirect()->route('platform.post.list');
