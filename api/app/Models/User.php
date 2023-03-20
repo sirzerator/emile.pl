@@ -39,11 +39,6 @@ class User extends Authenticatable
         'email_verified_at'    => 'datetime',
     ];
 
-    /**
-     * The attributes for which you can use filters in url.
-     *
-     * @var array
-     */
     protected $allowedFilters = [
         'id',
         'name',
