@@ -23,7 +23,7 @@ abstract class ApiRequest extends FormRequest
     }
 
     public function getPagination() {
-        return $this->getModel()->getFilter('pagination', $this->query());
+        return $this->getModel()->getField('pagination', $this->query());
     }
 
     public function rules() {

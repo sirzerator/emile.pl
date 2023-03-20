@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Http\Filters\Filter;
+use App\Http\Fields\Field;
 use App\Transformers\BaseTransformer;
 use HaydenPierce\ClassFinder\ClassFinder;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
@@ -12,18 +12,18 @@ use Illuminate\Support\Str;
 
 class Model extends EloquentModel
 {
-    protected array $filters;
+    protected array $fields;
 
     public function __construct(array $attributes = []) {
         parent::__construct($attributes);
 
         $shortName = (new \ReflectionClass(static::class))->getShortName();
-        $filters = ClassFinder::getClassesInNamespace("App\Http\Filters\\$shortName");
+        $fields = ClassFinder::getClassesInNamespace("App\Http\Fields\\$shortName");
 
-        $this->filters = [];
+        $this->fields = [];
 
-        foreach ($filters as $filter) {
-            $this->filters[Str::snake(((new \ReflectionClass($filter))->getShortName()))] = $filter;
+        foreach ($fields as $filter) {
+            $this->fields[Str::snake(((new \ReflectionClass($filter))->getShortName()))] = $filter;
         }
     }
 
@@ -40,29 +40,29 @@ class Model extends EloquentModel
         return parent::__call($method, $parameters);
     }
 
-    public function getFilter(string $slug, $data): ?Filter {
-        $filter = data_get($this->filters, $slug);
+    public function getField(string $slug, $data): ?Field {
+        $filter = data_get($this->fields, $slug);
 
         if (!$filter) {
             return null;
         }
 
-        if (!is_a($filter, Filter::class, true)) {
-            return abort(500, 'Filters must extend Filter');
+        if (!is_a($filter, Field::class, true)) {
+            return abort(500, 'Fields must extend Field');
         }
 
         return new $filter($data);
     }
 
-    public function getFilters(): Collection {
-        return $this->filters;
+    public function getFields(): array {
+        return $this->fields;
     }
 
     /**
      * @param  array|string  $keys
      * @return array
      */
-    public function getFiltersExcept($keys): array {
-        return Arr::except($this->filters, $keys);
+    public function getFieldsExcept($keys): array {
+        return Arr::except($this->fields, $keys);
     }
 }

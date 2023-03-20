@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Filters\Tag;
+namespace App\Http\Fields\Tag;
 
-use App\Http\Filters\Filter;
+use App\Http\Fields\Field;
 
-class Locale extends Filter
+class Locale extends Field
 {
     public ?string $locale;
 
-    public function __construct(array $data) {
-        $this->locale = data_get($data, 'locale');
+    public function __construct(array &$params) {
+        $this->locale = data_get($params, 'locale');
+        unset($params['locale']);
     }
 
     public function apply($query) {
