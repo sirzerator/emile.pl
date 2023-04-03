@@ -1,6 +1,7 @@
 # Copyrighted design
 frontend/src/style/_reset.scss
 frontend/src/style/_tokyo.scss
+frontend/src/style/_dark.scss
 
 ############################
 # OS X
