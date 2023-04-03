@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Fields;
+namespace App\Fields;
 
 class PaginationField extends Field
 {

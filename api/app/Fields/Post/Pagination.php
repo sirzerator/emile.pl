@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Fields\Tag;
+namespace App\Fields\Post;
 
-use App\Http\Fields\PaginationField;
+use App\Fields\PaginationField;
 
 class Pagination extends PaginationField
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Fields\Post;
+namespace App\Fields\Post;
 
-use App\Http\Fields\Field;
+use App\Fields\Field;
 
 class Locale extends Field
 {

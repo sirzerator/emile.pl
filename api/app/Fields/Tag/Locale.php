@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Fields\Tag;
+namespace App\Fields\Tag;
 
-use App\Http\Fields\Field;
+use App\Fields\Field;
 
 class Locale extends Field
 {

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Http\Fields\Field;
+use App\Fields\Field;
 use App\Transformers\BaseTransformer;
 use HaydenPierce\ClassFinder\ClassFinder;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
@@ -18,7 +18,7 @@ class Model extends EloquentModel
         parent::__construct($attributes);
 
         $shortName = (new \ReflectionClass(static::class))->getShortName();
-        $fields = ClassFinder::getClassesInNamespace("App\Http\Fields\\$shortName");
+        $fields = ClassFinder::getClassesInNamespace("App\Fields\\$shortName");
 
         $this->fields = [];
 
