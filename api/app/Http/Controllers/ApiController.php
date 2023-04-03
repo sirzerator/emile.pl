@@ -3,15 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ApiRequest;
+use App\Repositories\Repository;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller as IlluminateController;
 
 abstract class ApiController extends IlluminateController
 {
-    public function __construct() {
-        $this->repository = new $this->repositoryClass;
-    }
-
     protected function respondWithCollection($request, $collection) {
         if (!$request instanceof ApiRequest) {
             return abort(500, 'Invalid request class: must extend ApiRequest');
@@ -40,8 +37,11 @@ abstract class ApiController extends IlluminateController
     }
 
     protected function transformItem($request, $item) {
-        $transformer = $item::getTransformerInstance();
-
-        return $transformer->transform($item, []);
+        $transformer = $item::getTransformerInstance([
+            'includedFields' => $request->getFields(),
+            'excludedFields' => $request->getExcludedFields(),
+            'pivot' => data_get($item, 'pivot', null),
+        ]);
+        return $transformer->transform($item);
     }
 }

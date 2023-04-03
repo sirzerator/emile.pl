@@ -32,6 +32,10 @@ class Post extends Model
         'published_at',
     ];
 
+    protected array $collections = [
+        'translations',
+    ];
+
     protected $fillable = [
         'category_id',
         'content',
@@ -41,6 +45,10 @@ class Post extends Model
         'published_at',
         'slug',
         'title',
+    ];
+
+    protected array $items = [
+        'category',
     ];
 
     public function category() {

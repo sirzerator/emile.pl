@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Fields\Field;
-use App\Transformers\BaseTransformer;
+use App\Transformers\Transformer;
 use HaydenPierce\ClassFinder\ClassFinder;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Arr;
@@ -12,7 +12,9 @@ use Illuminate\Support\Str;
 
 class Model extends EloquentModel
 {
+    protected array $collections = [];
     protected array $fields;
+    protected array $items = [];
 
     public function __construct(array $attributes = []) {
         parent::__construct($attributes);
@@ -27,8 +29,8 @@ class Model extends EloquentModel
         }
     }
 
-    public static function getTransformerInstance() {
-        return new BaseTransformer();
+    public static function getTransformerInstance($args = []) {
+        return new Transformer(...$args);
     }
 
     public function __call($method, $parameters) {
@@ -38,6 +40,10 @@ class Model extends EloquentModel
         }
 
         return parent::__call($method, $parameters);
+    }
+
+    public function getCollections(): array {
+        return $this->collections;
     }
 
     public function getField(string $slug, $data): ?Field {
@@ -64,5 +70,9 @@ class Model extends EloquentModel
      */
     public function getFieldsExcept($keys): array {
         return Arr::except($this->fields, $keys);
+    }
+
+    public function getItems(): array {
+        return $this->items;
     }
 }
