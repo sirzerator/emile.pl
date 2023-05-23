@@ -2,11 +2,12 @@
 
 namespace App\Transformers;
 
+use App\Fields\ComputedField;
 use Illuminate\Support\Str;
 
 class Transformer
 {
-    public static $context = [];
+    protected static $context = [];
 
     public function __construct(
         protected array $includedFields,
@@ -23,6 +24,7 @@ class Transformer
 
         $this->addItems($output, $model);
         $this->addCollections($output, $model);
+        $this->addComputedFields($output, $model);
 
         if (!in_array('*', array_keys($this->includedFields), true)) {
             $output = array_intersect_key(
@@ -43,6 +45,12 @@ class Transformer
         unset(static::$context[$reflect->getShortName()]);
 
         return $this->authorize($model, $output);
+    }
+
+    public function addComputedFields(&$output, &$model) {
+        foreach ($model->getComputedFields() as $key => $field) {
+            $output[$key] = $field::compute($model);
+        }
     }
 
     public function addCollection($relation, &$output, &$model) {

@@ -4,7 +4,5 @@ namespace App\Fields;
 
 abstract class Field
 {
-    public function apply($query) {
-        return $query;
-    }
+    abstract public function __construct(array &$data);
 }

@@ -2,12 +2,12 @@
 
 namespace App\Fields;
 
-class PaginationField extends Field
+class PaginationField extends Field implements FilterableField
 {
     public int $perPage = 10;
     public int $page = 1;
 
-    public function __construct(array $data) {
+    public function __construct(array &$data) {
         $perPage = data_get($data, 'per_page');
         if ($perPage === '*') {
             $perPage = -1;
@@ -26,7 +26,7 @@ class PaginationField extends Field
         unset($data['per_page']);
     }
 
-    public function apply($query) {
+    public function filter($query) {
         return $query
             ->take($this->perPage)
             ->skip($this->perPage * ($this->page - 1));

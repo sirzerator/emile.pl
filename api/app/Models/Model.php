@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Fields\ComputedField;
+use App\Fields\FilterableField;
 use App\Fields\Field;
 use App\Transformers\Transformer;
 use HaydenPierce\ClassFinder\ClassFinder;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class Model extends EloquentModel
@@ -60,8 +61,16 @@ class Model extends EloquentModel
         return new $filter($data);
     }
 
+    public function getComputedFields(): array {
+        return array_filter($this->fields, fn($f) => in_array(ComputedField::class, class_implements($f)));
+    }
+
     public function getFields(): array {
         return $this->fields;
+    }
+
+    public function getFilterableFields(): array {
+        return array_filter($this->fields, fn($f) => in_array(FilterableField::class, class_implements($f)));
     }
 
     /**

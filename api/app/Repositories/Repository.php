@@ -10,10 +10,12 @@ class Repository
         // TODO
         // Filters
         $parameters = $request->query();
-        $availableFields = $request->getModel()->getFields();
-        foreach ($availableFields as $fieldClass) {
-            $filter = new $fieldClass($request->query());
-            $query = $filter->apply($query);
+        $filterableFields = $request->getModel()->getFilterableFields();
+
+        $queryParams = $request->query();
+        foreach ($filterableFields as $fieldClass) {
+            $filter = new $fieldClass($queryParams);
+            $query = $filter->filter($query);
         }
         // Sorts
         // Withs
