@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 abstract class ApiRequest extends FormRequest
 {
@@ -40,6 +41,17 @@ abstract class ApiRequest extends FormRequest
         return $this->fieldsMemo = $this->parseFields(
             $this->splitFields($fields)
         );
+    }
+
+    public function getId() {
+        $route = $this->route();
+        $routeName = $route->getName();
+
+        [$resourceNamePlural, $_] = explode('.', $routeName);
+
+        $resourceName = Str::singular($resourceNamePlural);
+
+        return data_get($route->parameters(), $resourceName);
     }
 
     public function getModel() {

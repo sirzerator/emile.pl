@@ -29,7 +29,6 @@ class Repository
     public function find($request) {
         $query = $request->getModel();
 
-        return $query
-            ->findOrFail($request->route('id'));
+        return $query->findOrFail($request->getId());
     }
 }

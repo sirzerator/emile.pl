@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\TagRepository;
+use App\Http\Requests\Tag\ApiRequest;
 use App\Http\Requests\Tag\IndexRequest;
-use App\Http\Requests\Tag\RetrieveRequest;
+use App\Http\Requests\Tag\ShowRequest;
 
 class TagController extends ApiController
 {
@@ -20,7 +21,7 @@ class TagController extends ApiController
         );
     }
 
-    public function retrieve(RetrieveRequest $request) {
+    public function show(ShowRequest $request) {
         return $this->respondWithItem(
             $request,
             $this->repository->find($request),

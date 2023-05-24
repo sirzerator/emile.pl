@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\PostRepository;
 use App\Http\Requests\Post\IndexRequest;
-use App\Http\Requests\Post\RetrieveRequest;
+use App\Http\Requests\Post\ShowRequest;
 
 class PostController extends ApiController
 {
@@ -20,7 +20,7 @@ class PostController extends ApiController
         );
     }
 
-    public function retrieve(RetrieveRequest $request) {
+    public function show(ShowRequest $request) {
         return $this->respondWithItem(
             $request,
             $this->repository->find($request),

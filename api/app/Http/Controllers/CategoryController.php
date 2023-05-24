@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\CategoryRepository;
 use App\Http\Requests\Category\IndexRequest;
-use App\Http\Requests\Category\RetrieveRequest;
+use App\Http\Requests\Category\ShowRequest;
 
 class CategoryController extends ApiController
 {
@@ -20,7 +20,7 @@ class CategoryController extends ApiController
         );
     }
 
-    public function retrieve(RetrieveRequest $request) {
+    public function show(ShowRequest $request) {
         return $this->respondWithItem(
             $request,
             $this->repository->find($request),
