@@ -4,7 +4,7 @@ namespace App\Http\Requests\Post;
 
 use App\Http\Requests\ApiRequest;
 
-class CreateRequest extends ApiRequest
+class StoreRequest extends ApiRequest
 {
     public function rules() {
         return [

@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Screens;
 
-use App\Http\Requests\Post\CreateRequest;
+use App\Http\Requests\Post\StoreRequest;
 use App\Models\Category;
 use App\Models\Locale;
 use App\Models\Post;
@@ -54,13 +54,13 @@ class PostEditScreen extends Screen
             Button::make(__('models.post.actions.add'))
                 ->type(Color::PRIMARY())
                 ->icon('check')
-                ->method('createOrUpdate')
+                ->method('storeOrUpdate')
                 ->canSee(!$this->post->exists),
 
             Button::make(__('models.post.actions.save'))
                 ->type(Color::PRIMARY())
                 ->icon('note')
-                ->method('createOrUpdate')
+                ->method('storeOrUpdate')
                 ->canSee($this->post->exists),
         ];
     }
@@ -133,7 +133,7 @@ class PostEditScreen extends Screen
         return $layout;
     }
 
-    public function createOrUpdate(Post $post, CreateRequest $request) {
+    public function storeOrUpdate(Post $post, StoreRequest $request) {
         $data = $request->get('post');
 
         $post->fill($data)->save();

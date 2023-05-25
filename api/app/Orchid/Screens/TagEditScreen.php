@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Screens;
 
-use App\Http\Requests\Tag\CreateRequest;
+use App\Http\Requests\Tag\StoreRequest;
 use App\Models\Tag;
 use App\Models\Locale;
 use App\Orchid\Layouts\Modals\DeleteConfirmationModal;
@@ -45,13 +45,13 @@ class TagEditScreen extends Screen
             Button::make(__('models.tag.actions.add'))
                 ->type(Color::PRIMARY())
                 ->icon('check')
-                ->method('createOrUpdate')
+                ->method('storeOrUpdate')
                 ->canSee(!$this->tag->exists),
 
             Button::make(__('models.tag.actions.save'))
                 ->type(Color::PRIMARY())
                 ->icon('note')
-                ->method('createOrUpdate')
+                ->method('storeOrUpdate')
                 ->canSee($this->tag->exists),
         ];
     }
@@ -78,7 +78,7 @@ class TagEditScreen extends Screen
         return $layout;
     }
 
-    public function createOrUpdate(Tag $tag, CreateRequest $request) {
+    public function storeOrUpdate(Tag $tag, StoreRequest $request) {
         $action = $tag->id ? 'updated' : 'created';
 
         $tag->fill($request->get('tag'))->save();

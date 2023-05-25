@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Screens;
 
-use App\Http\Requests\Category\CreateRequest;
+use App\Http\Requests\Category\StoreRequest;
 use App\Models\Category;
 use App\Models\Locale;
 use App\Orchid\Layouts\Modals\DeleteConfirmationModal;
@@ -45,13 +45,13 @@ class CategoryEditScreen extends Screen
             Button::make(__('models.category.actions.add'))
                 ->type(Color::PRIMARY())
                 ->icon('check')
-                ->method('createOrUpdate')
+                ->method('storeOrUpdate')
                 ->canSee(!$this->category->exists),
 
             Button::make(__('models.category.actions.save'))
                 ->type(Color::PRIMARY())
                 ->icon('note')
-                ->method('createOrUpdate')
+                ->method('storeOrUpdate')
                 ->canSee($this->category->exists),
         ];
     }
@@ -78,7 +78,7 @@ class CategoryEditScreen extends Screen
         return $layout;
     }
 
-    public function createOrUpdate(Category $category, CreateRequest $request) {
+    public function storeOrUpdate(Category $category, StoreRequest $request) {
         $action = $category->id ? 'updated' : 'created';
 
         $category->fill($request->get('category'))->save();

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Category;
+namespace App\Http\Requests\Tag;
 
 use App\Http\Requests\ApiRequest;
 
-class CreateRequest extends ApiRequest
+class StoreRequest extends ApiRequest
 {
     public function rules() {
         return [
-            'category.title' => 'required',
+            'tag.title' => 'required',
             'tag.locale' => 'required|exists:locales,slug',
         ];
     }
