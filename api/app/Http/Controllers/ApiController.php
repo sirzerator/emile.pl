@@ -17,7 +17,7 @@ abstract class ApiController extends IlluminateController
         $pagination = $request->getPagination();
 
         return (new LengthAwarePaginator(
-            $this->transformCollection($request, $collection->items),
+            $this->prepareCollection($request, $collection->items),
             $collection->total,
             $pagination->perPage,
             $pagination->page,
@@ -25,23 +25,22 @@ abstract class ApiController extends IlluminateController
     }
 
     protected function respondWithItem($request, $item, $status = 200) {
-        $result = $this->transformItem($request, $item);
+        $result = $this->prepareItem($request, $item);
 
         return response($result, $status);
     }
 
-    protected function transformCollection($request, $items) {
+    protected function prepareCollection($request, $items) {
         return $items->map(function ($item) use ($request) {
-            return $this->transformItem($request, $item);
+            return $this->prepareItem($request, $item);
         });
     }
 
-    protected function transformItem($request, $item) {
-        $transformer = $item::getTransformerInstance([
-            'includedFields' => $request->getFields(),
-            'excludedFields' => $request->getExcludedFields(),
-            'pivot' => data_get($item, 'pivot', null),
-        ]);
-        return $transformer->transform($item);
+    protected function prepareItem($request, $item) {
+        return $item->getResourceInstance(
+            $request->getFields(),
+            $request->getExcludedFields(),
+            data_get($item, 'pivot', null),
+        );
     }
 }

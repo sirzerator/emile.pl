@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Contracts\Http\Kernel;
-use Illuminate\Http\Request;
+use App\Http\Requests\ApiRequest;
 
 define('LARAVEL_START', microtime(true));
 
@@ -45,11 +45,12 @@ require __DIR__.'/../vendor/autoload.php';
 */
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
+$app->alias('request', 'App\Http\Request\ApiRequest');
 
 $kernel = $app->make(Kernel::class);
 
 $response = $kernel->handle(
-    $request = Request::capture()
+    $request = ApiRequest::capture()
 )->send();
 
 $kernel->terminate($request, $response);

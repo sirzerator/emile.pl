@@ -5,11 +5,12 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 
-abstract class ApiRequest extends FormRequest
+class ApiRequest extends FormRequest
 {
+    protected static $model;
+
     protected $fieldsMemo;
     protected $excludedFieldsMemo;
-    protected $model;
 
     public function getExcludedFields(): array {
         if ($this->excludedFieldsMemo !== null) {
@@ -51,12 +52,14 @@ abstract class ApiRequest extends FormRequest
 
         $resourceName = Str::singular($resourceNamePlural);
 
-        return data_get($route->parameters(), $resourceName);
+        return data_get($route->parameters(), $resourceName)
+            ?: $this->query('id')
+            ?: $this->input('id');
     }
 
     public function getModel() {
-        if ($this->model !== null) {
-            return $this->model;
+        if (self::$model !== null) {
+            return self::$model;
         }
 
         $modelName = data_get(explode('\\', static::class), 3);
@@ -65,7 +68,7 @@ abstract class ApiRequest extends FormRequest
             return abort(500, 'Unable to determine model class name');
         }
 
-        return $this->model = new ("App\\Models\\$modelName");
+        return self::$model = new ("App\\Models\\$modelName");
     }
 
     public function getPagination() {

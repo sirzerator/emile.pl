@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Fields\ComputedField;
 use App\Fields\FilterableField;
 use App\Fields\Field;
-use App\Transformers\Transformer;
+use App\Http\Resources\ApiResource;
 use HaydenPierce\ClassFinder\ClassFinder;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Arr;
@@ -28,10 +28,6 @@ class Model extends EloquentModel
         foreach ($fields as $filter) {
             $this->fields[Str::snake(((new \ReflectionClass($filter))->getShortName()))] = $filter;
         }
-    }
-
-    public static function getTransformerInstance($args = []) {
-        return new Transformer(...$args);
     }
 
     public function __call($method, $parameters) {
@@ -83,5 +79,9 @@ class Model extends EloquentModel
 
     public function getItems(): array {
         return $this->items;
+    }
+
+    public function getResourceInstance($includedFields = [], $excludedFields = [], $pivot = null) {
+        return new ApiResource($this, $includedFields, $excludedFields, $pivot);
     }
 }
