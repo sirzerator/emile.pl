@@ -33,6 +33,7 @@ class Post extends Model
     ];
 
     protected array $collections = [
+        'tags',
         'translations',
     ];
 

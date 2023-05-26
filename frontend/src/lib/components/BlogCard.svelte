@@ -29,6 +29,9 @@
                 <p class="date">
                     <span>{formatDate(post.published_at)}</span>
                 </p>
+				{#if post.category}
+					<span class="category">{post.category.title}</span>
+				{/if}
 			</div>
 
 			<h3 class="title">

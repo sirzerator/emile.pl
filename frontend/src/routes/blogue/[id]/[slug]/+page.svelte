@@ -42,18 +42,26 @@
 				<p class="date">
 					<span>{formatDate(data.published_at)}</span>
 				</p>
+
+				{#if data.tags && data.tags.length > 0}
+					<div class="tags">
+						{#each data.tags as tag}
+							<span class="tag">{tag.title}</span>
+						{/each}
+					</div>
+				{/if}
+
+				{#if data.category}
+					<span class="category">{data.category.title}</span>
+				{/if}
 			</div>
 
-			<h3 class="title">
-				{data.title}
-			</h3>
+			<h3 class="title">{data.title}</h3>
 		</div>
 
 		<div class="main_content ">
 			<div class="descriptions">
-				<p class="bigger">
-				{data.intro}
-				</p>
+				<p class="bigger">{data.intro}</p>
 
 				<div class="typography">
 					{@html data.content}

@@ -15,6 +15,10 @@ export interface About extends Localized {
 	bio: string;
 }
 
+export interface Category extends Localized {
+	title: string;
+}
+
 export interface Post extends Localized {
 	id: number;
 	title: string;
@@ -23,6 +27,7 @@ export interface Post extends Localized {
 	content: string;
 	published_at: string | null;
 	featured_image_url: string | null;
+	category: Category | null;
 }
 
 export interface User {

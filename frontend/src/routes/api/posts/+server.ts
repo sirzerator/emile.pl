@@ -10,6 +10,7 @@ export const GET: RequestHandler = async ({ url: { searchParams } }) => {
 		locale,
 		order: '-published_at',
         published: true,
+		fields: 'title,slug,intro,featured_image_url,published_at,category.title,tags.title,translations.slug',
 	});
 
 	const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts?${query}`);
