@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class ApiRequest extends FormRequest
@@ -11,6 +12,18 @@ class ApiRequest extends FormRequest
 
     protected $fieldsMemo;
     protected $excludedFieldsMemo;
+
+    // PHP's default query string parser replaces . by _
+    // which would break our query language
+    public static function parseQueryString($data) {
+        $data = preg_replace_callback('/(?:^|(?<=&))[^=[]+/', function ($match) {
+            return bin2hex(urldecode($match[0]));
+        }, $data);
+
+        parse_str($data, $values);
+
+        return array_combine(array_map('hex2bin', array_keys($values)), $values);
+    }
 
     public function getExcludedFields(): array {
         if ($this->excludedFieldsMemo !== null) {
@@ -115,5 +128,24 @@ class ApiRequest extends FormRequest
             }
             return $acc;
         }, $acc);
+    }
+
+    public function input($key = null, $default = null)
+    {
+        return data_get(
+            $this->getInputSource()->all() + self::parseQueryString(data_get($this->server->all(), 'QUERY_STRING')),
+            $key,
+            $default
+        );
+    }
+
+    public function query($key = null, $default = null) {
+        $queryParameters = self::parseQueryString(data_get($this->server->all(), 'QUERY_STRING'));
+
+        if (!$key) {
+            return $queryParameters;
+        }
+
+        return data_get($queryParameters, $key, $default);
     }
 }
