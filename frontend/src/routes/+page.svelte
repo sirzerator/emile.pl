@@ -1,21 +1,31 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import type { Post } from '$lib/types';
+
+	import type { About } from '$lib/types';
+	import { _t, _tl } from '$lib/translations';
 
 	export let data: About;
+
+	let t;
+
+	page.subscribe(({ data: { locale } }) => {
+		if (locale) {
+			t = _t(locale);
+		}
+	});
 </script>
 
 <svelte:head>
 	<title>
 		Émile Plourde-Lavoie ~
-		{ data.siteName }
+		{t('site.title')}
 	</title>
 </svelte:head>
 
 <div class="tokyo_tm_home">
 	<div class="home_content">
 		<div class="avatar">
-			<div class="image avatar_img"></div>
+            <div class="image avatar_img"><img src="/photo.jpg"></div>
 		</div>
 
 		<div class="details">

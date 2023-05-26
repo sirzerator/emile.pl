@@ -31,10 +31,11 @@ const translations = {
 		about: {
 			aka: 'AKA',
 			availabilities: {
-				available: 'Available',
+				available: 'Disponible',
 				long_term: 'Dans 6 mois',
 				medium_term: 'Dans 3 mois',
 				short_term: 'Le mois prochain',
+				unavailable: 'Indisponible',
 			},
 			availability: 'Disponibilité',
 			email: 'Courriel',
@@ -55,7 +56,7 @@ const translations = {
 				projects: 'Projets',
 			},
 			slogan: "Le web est à l'image de notre société; il n'en est, en somme, qu'un écho virtuel.",
-			title: 'Échos virtuels',
+			title: 'Échos Virtuels',
 		},
 	},
 	en: {
@@ -66,6 +67,7 @@ const translations = {
 				long_term: 'In 6 months',
 				medium_term: 'In 3 months',
 				short_term: 'Next month',
+				unavailable: 'Unavailable',
 			},
 			availability: 'Availability',
 			email: 'Email',
@@ -86,7 +88,7 @@ const translations = {
 				projects: 'Projects',
 			},
 			slogan: "The web is a reflection of our society; of which it is, in sum, but a virtual echo.",
-			title: 'Échos virtuels',
+			title: 'Virtual Echoes',
 		},
 	},
 };

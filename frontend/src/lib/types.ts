@@ -5,8 +5,6 @@ interface Localized {
 }
 
 export interface About extends Localized {
-	siteName: string;
-	slogan: string;
 	job: string;
 	situation: string;
 	aka: string;
@@ -15,8 +13,6 @@ export interface About extends Localized {
 	education: string;
 	availability: 'unavailable' | 'short_term' | 'medium_term' | 'long_term' | 'available';
 	bio: string;
-	createdAt: string;
-	updatedAt: string;
 }
 
 export interface Post extends Localized {

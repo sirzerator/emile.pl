@@ -5,8 +5,8 @@ import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ url: { searchParams } }) => {
 	const locale: string = searchParams.get('locale') || defaultLocale;
-	const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/about?locale=${locale}`);
-	const { data } = await res.json();
+	const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/options/group/about?locale=${locale}`);
+	const data = await res.json();
 
-	return json(data.attributes);
+	return json(data);
 }
