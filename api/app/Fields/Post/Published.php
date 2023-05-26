@@ -14,6 +14,7 @@ class Published extends Field implements FilterableField, ComputedField
 
     public function __construct(array &$data) {
         if (!isset($data['published'])) {
+            $this->published = null;
             return;
         }
 
