@@ -14,28 +14,21 @@
 
 <li class="blog-card">
 	<a class="list_inner" {href}>
-		{#if post.image}
+		{#if post.featured_image_url}
 			<div class="image">
-				<img src={post.image.formats.medium.url} alt="" />
+				<img src={post.featured_image_url} alt="" />
 				<div
 					class="main"
-					style={`background-image: url('${post.image.formats.medium.url}')`}
+					style={`background-image: url('${post.featured_image_url}')`}
 				/>
 			</div>
 		{/if}
 
 		<div class="details">
 			<div class="extra">
-				{#if post.author}
-					<p class="date">
-						<a href="#">{post.author.fullname}</a>
-						<span>{formatDate(post.publishedAt)}</span>
-					</p>
-				{:else}
-					<p class="date">
-						<span>{formatDate(post.publishedAt)}</span>
-					</p>
-				{/if}
+                <p class="date">
+                    <span>{formatDate(post.published_at)}</span>
+                </p>
 			</div>
 
 			<h3 class="title">
@@ -43,7 +36,7 @@
 			</h3>
 
 			<div class="intro">
-				{post.introduction}
+				{post.intro}
 			</div>
 
 			<div class="tokyo_tm_read_more">

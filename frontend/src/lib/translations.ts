@@ -47,6 +47,9 @@ const translations = {
 		blog: {
 			read_more: 'Lire plus',
 		},
+		interface: {
+			share: 'Partager',
+		},
 		site: {
 			navigation: {
 				about: 'À propos',
@@ -78,6 +81,9 @@ const translations = {
 		},
 		blog: {
 			read_more: 'Read more',
+		},
+		interface: {
+			share: 'Share',
 		},
 		site: {
 			navigation: {

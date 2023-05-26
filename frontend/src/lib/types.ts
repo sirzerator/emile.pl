@@ -18,11 +18,11 @@ export interface About extends Localized {
 export interface Post extends Localized {
 	id: number;
 	title: string;
-	description: string;
+	slug: string;
+	intro: string;
 	content: string;
-	author: Author;
-	createdAt: string;
-	updatedAt: string;
+	published_at: string | null;
+	featured_image_url: string | null;
 }
 
 export interface User {

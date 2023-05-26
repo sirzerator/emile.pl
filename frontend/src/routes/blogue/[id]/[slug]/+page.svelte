@@ -19,12 +19,14 @@
 
 	let socialList = [
 		{
+			name: 'Facebook',
 			link: "https://www.facebook.com/",
-			src: 'require("../assets/img/svg/social/facebook.svg")',
+			src: '/svg/social/facebook.svg',
 		},
 		{
+			name: 'Twitter',
 			link: "https://twitter.com/",
-			src: 'require("../assets/img/svg/social/twitter.svg")',
+			src: '/svg/social/twitter.svg',
 		},
 	];
 
@@ -33,20 +35,13 @@
 
 <div class="tokyo_tm_news">
 	<div class="tokyo_tm_modalbox_news">
-		<div class="image" style={`background-image: url('${data.image.formats.large.url}')`} />
+		<div class="image" style={`background-image: url('${data.featured_image_url}')`} />
 
 		<div class="details">
 			<div class="extra">
-				{#if data.author}
-					<p class="date">
-						<a href="#">{data.author.fullname}</a>
-						<span>{formatDate(data.publishedAt)}</span>
-					</p>
-				{:else}
-					<p class="date">
-						<span>{formatDate(data.publishedAt)}</span>
-					</p>
-				{/if}
+				<p class="date">
+					<span>{formatDate(data.published_at)}</span>
+				</p>
 			</div>
 
 			<h3 class="title">
@@ -57,22 +52,23 @@
 		<div class="main_content ">
 			<div class="descriptions">
 				<p class="bigger">
-				{data.introduction}
+				{data.intro}
 				</p>
 
 				<div class="typography">
 					{@html data.content}
 				</div>
 			</div>
-
 			<div class="news_share">
-				<span>Share:</span>
+				<span>{t('interface.share')}:</span>
 				<ul class="social">
-					<li v-for="(social, i) in socialList" :key="i">
-						<a :href="social.link" target="_blank" rel="noreferrer">
-							<img class="svg" :src="social.src" alt="social" />
-						</a>
-					</li>
+					{#each socialList as social}
+						<li>
+							<a href={social.link} target="_blank" rel="noreferrer">
+								<img class="svg" src={social.src} alt={social.name}>
+							</a>
+						</li>
+					{/each}
 				</ul>
 
 			</div>

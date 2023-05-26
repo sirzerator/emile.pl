@@ -1,6 +1,5 @@
 import qs from 'qs';
 import { json } from '@sveltejs/kit';
-import { transformPost } from '$lib/transformers';
 import { defaultLocale } from '$lib/translations';
 import type { RequestHandler } from './$types';
 
@@ -9,11 +8,10 @@ export const GET: RequestHandler = async ({ params, url: { searchParams } }) => 
 
 	const query = qs.stringify({
 		locale,
-		populate: 'author,image',
 	});
 
 	const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/${params.id}?${query}`);
-	const { data } = await res.json();
+	const post = await res.json();
 
-	return json(transformPost(data));
+	return json(post);
 }

@@ -1,6 +1,5 @@
 import qs from 'qs';
 import { json } from '@sveltejs/kit';
-import { transformPost } from '$lib/transformers';
 import { defaultLocale } from '$lib/translations';
 import type { RequestHandler } from './$types';
 
@@ -9,20 +8,18 @@ export const GET: RequestHandler = async ({ url: { searchParams } }) => {
 
 	const query = qs.stringify({
 		locale,
-		populate: 'author,image',
-		sort: 'visibleAfter',
+		order: '-published_at',
+        published: true,
 	});
 
 	const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts?${query}`);
-	const { data, meta: { pagination: { page, pageCount, pageSize, total } } } = await res.json();
-
-	const posts = data.map(transformPost);
+	const { data, current_page: page, last_page: pageCount, per_page: perPage, total } = await res.json();
 
 	return json({
-		data: posts,
+		data,
 		total,
 		page,
 		pageCount,
-		perPage: pageSize,
+		perPage,
 	});
 }
