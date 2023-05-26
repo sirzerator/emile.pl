@@ -29,6 +29,19 @@ class Repository
     public function find($request) {
         $query = $request->getModel();
 
+        // TODO
+        // Filters
+        $parameters = $request->query();
+        $filterableFields = $request->getModel()->getFilterableFields();
+
+        $queryParams = $request->query();
+        foreach ($filterableFields as $fieldClass) {
+            $filter = new $fieldClass($queryParams);
+            $query = $filter->filter($query);
+        }
+        // Sorts
+        // Withs
+
         return $query->findOrFail($request->getId());
     }
 }
