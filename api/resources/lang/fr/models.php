@@ -27,6 +27,19 @@ return [
             'updated' => 'Catégorie mise-à-jour.',
         ],
     ],
+    'option' => [
+        'name' => 'Option|Options',
+        'title' => [
+            'aka' => 'Alias (AKA)',
+            'availability' => 'Disponibilités',
+            'bio' => 'Biographie',
+            'education' => 'Éducation',
+            'email' => 'Courriel',
+            'job' => 'Occupation',
+            'situation' => 'Situation',
+            'telephone' => 'Téléphone',
+        ],
+    ],
     'post' => [
         'name' => 'Article|Articles',
         'actions' => [

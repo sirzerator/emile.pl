@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace App\Orchid;
 
-use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
 use Orchid\Screen\Actions\Menu;
-use Orchid\Support\Color;
 
 class PlatformProvider extends OrchidServiceProvider
 {
@@ -26,7 +24,12 @@ class PlatformProvider extends OrchidServiceProvider
 
             Menu::make(_c('models.tag.name', 2))
                 ->icon('tag')
+                ->divider(true)
                 ->route('platform.tag.list'),
+
+            Menu::make(_c('models.option.name', 2))
+                ->icon('settings')
+                ->route('platform.options.edit'),
 
             Menu::make(__('Users'))
                 ->icon('user')

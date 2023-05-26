@@ -48,7 +48,7 @@ class ApiRequest extends FormRequest
         $route = $this->route();
         $routeName = $route->getName();
 
-        [$resourceNamePlural, $_] = explode('.', $routeName);
+        [$resourceNamePlural, $_] = explode('.', "{$routeName}.");
 
         $resourceName = Str::singular($resourceNamePlural);
 

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Orchid\Screens\OptionsScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\CategoryEditScreen;
 use App\Orchid\Screens\CategoryListScreen;
@@ -41,6 +42,10 @@ Route::screen('tag/{tag?}', TagEditScreen::class)
 
 Route::screen('tags', TagListScreen::class)
     ->name('platform.tag.list');
+
+// Options
+Route::screen('options', OptionsScreen::class)
+    ->name('platform.options.edit');
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)
