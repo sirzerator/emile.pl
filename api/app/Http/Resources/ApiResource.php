@@ -62,8 +62,8 @@ class ApiResource extends JsonResource
 
         $output[$relationName] = $targetRelation->map(function ($item) use ($relationName) {
             return $item->getResourceInstance(
-                data_get($this->includedFields, $relationName, []),
-                data_get($this->excludedFields, $relationName, []),
+                $this->getIncludedFieldsFor($relationName),
+                $this->getExcludedFieldsFor($relationName),
                 $this->resource->pivot,
             );
         });
@@ -101,8 +101,8 @@ class ApiResource extends JsonResource
         }
 
         $output[$relation] = $resource->{$camelRelation}->getResourceInstance(
-            data_get($this->includedFields, $relation, []),
-            data_get($this->excludedFields, $relation, []),
+            $this->getIncludedFieldsFor($camelRelation),
+            $this->getExcludedFieldsFor($camelRelation),
             $resource->pivot,
         );
     }
@@ -126,6 +126,26 @@ class ApiResource extends JsonResource
         }
 
         return in_array($relation, array_keys($this->includedFields), true)
-            || in_array('*', array_keys($this->includedFields), true);
+            || (in_array('*', array_keys($this->includedFields), true) && is_array($this->includedFields['*']));
+    }
+
+    protected function getExcludedFieldsFor($relationName) {
+        $excludedFields = data_get($this->excludedFields, $relationName, []);
+
+        if (isset($this->excludedFields['*']) && is_array($this->excludedFields['*'])) {
+            $excludedFields = array_merge($excludedFields, $this->excludedFields['*']);
+        }
+
+        return $excludedFields;
+    }
+
+    protected function getIncludedFieldsFor($relationName) {
+        $includedFields = data_get($this->includedFields, $relationName, []);
+
+        if (isset($this->includedFields['*']) && is_array($this->includedFields['*'])) {
+            $includedFields = array_merge($includedFields, $this->includedFields['*']);
+        }
+
+        return $includedFields;
     }
 }
