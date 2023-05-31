@@ -46,6 +46,10 @@ class OptionController extends ApiController
 
         $data = $this->repository->get($request);
 
+        if ($data->total === 0) {
+            return abort(404);
+        }
+
         return response()->json($data->items->keyBy('slug')->map(fn($t) => $t->value));
     }
 }
