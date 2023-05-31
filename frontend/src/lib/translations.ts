@@ -45,6 +45,7 @@ const translations = {
 			studies: 'Études',
 		},
 		blog: {
+			nothing_to_display: 'Rien à afficher.',
 			read_more: 'Lire plus',
 		},
 		contact: {
@@ -90,6 +91,7 @@ const translations = {
 			studies: 'Studies',
 		},
 		blog: {
+			nothing_to_display: 'Nothing to display.',
 			read_more: 'Read more',
 		},
 		contact: {
