@@ -13,6 +13,8 @@ class ApiRequest extends FormRequest
     protected $fieldsMemo;
     protected $excludedFieldsMemo;
 
+    private $merged = [];
+
     // PHP's default query string parser replaces . by _
     // which would break our query language
     public static function parseQueryString($data) {
@@ -130,8 +132,7 @@ class ApiRequest extends FormRequest
         }, $acc);
     }
 
-    public function input($key = null, $default = null)
-    {
+    public function input($key = null, $default = null) {
         return data_get(
             $this->getInputSource()->all() + self::parseQueryString(data_get($this->server->all(), 'QUERY_STRING')),
             $key,
@@ -139,8 +140,13 @@ class ApiRequest extends FormRequest
         );
     }
 
+    public function merge(array $input) {
+        $this->merged = array_merge($this->merged, $input);
+        return parent::merge($input);
+    }
+
     public function query($key = null, $default = null) {
-        $queryParameters = self::parseQueryString(data_get($this->server->all(), 'QUERY_STRING'));
+        $queryParameters = self::parseQueryString(data_get($this->server->all(), 'QUERY_STRING')) + $this->merged;
 
         if (!$key) {
             return $queryParameters;
