@@ -29,7 +29,7 @@ return [
     ],
     'option' => [
         'name' => 'Option|Options',
-        'title' => [
+        'about' => [
             'aka' => 'Alias (AKA)',
             'availability' => 'Disponibilités',
             'bio' => 'Biographie',

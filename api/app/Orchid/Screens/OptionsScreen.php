@@ -52,27 +52,26 @@ class OptionsScreen extends Screen
                         ->level(3),
 
                     Quill::make('options.fr.about.bio')
-                        ->title(__('models.option.title.bio'))
-                        ->value($this->getOptionValueFor('bio', 'fr'))
-                        ->rows(10),
+                        ->title(__('models.option.about.bio'))
+                        ->value($this->getAboutOptionValueFor('bio', 'fr')),
                     Input::make('options.fr.about.job')
-                        ->value($this->getOptionValueFor('job', 'fr'))
-                        ->title(__('models.option.title.job')),
+                        ->value($this->getAboutOptionValueFor('job', 'fr'))
+                        ->title(__('models.option.about.job')),
                     Input::make('options.fr.about.situationg')
-                        ->value($this->getOptionValueFor('situation', 'fr'))
-                        ->title(__('models.option.title.situation')),
+                        ->value($this->getAboutOptionValueFor('situation', 'fr'))
+                        ->title(__('models.option.about.situation')),
                     Input::make('options.fr.about.aka')
-                        ->value($this->getOptionValueFor('aka', 'fr'))
-                        ->title(__('models.option.title.aka')),
+                        ->value($this->getAboutOptionValueFor('aka', 'fr'))
+                        ->title(__('models.option.about.aka')),
                     Input::make('options.fr.about.email')
-                        ->value($this->getOptionValueFor('email', 'fr'))
-                        ->title(__('models.option.title.email')),
+                        ->value($this->getAboutOptionValueFor('email', 'fr'))
+                        ->title(__('models.option.about.email')),
                     Input::make('options.fr.about.telephone')
-                        ->value($this->getOptionValueFor('telephone', 'fr'))
-                        ->title(__('models.option.title.telephone')),
+                        ->value($this->getAboutOptionValueFor('telephone', 'fr'))
+                        ->title(__('models.option.about.telephone')),
                     Input::make('options.fr.about.education')
-                        ->value($this->getOptionValueFor('education', 'fr'))
-                        ->title(__('models.option.title.education')),
+                        ->value($this->getAboutOptionValueFor('education', 'fr'))
+                        ->title(__('models.option.about.education')),
                     Select::make('options.fr.about.availability')
                         ->options([
                             'available' => 'Disponible',
@@ -81,7 +80,7 @@ class OptionsScreen extends Screen
                             'long_term' => 'Dans 6 mois',
                             'unavailable' => 'Non disponible',
                         ])
-                        ->value($this->getOptionValueFor('availability', 'fr')),
+                        ->value($this->getAboutOptionValueFor('availability', 'fr')),
                 ]),
 
                 Layout::rows([
@@ -90,27 +89,26 @@ class OptionsScreen extends Screen
                         ->level(3),
 
                     Quill::make('options.en.about.bio')
-                        ->title(__('models.option.title.bio'))
-                        ->value($this->getOptionValueFor('bio', 'en'))
-                        ->rows(10),
+                        ->title(__('models.option.about.bio'))
+                        ->value($this->getAboutOptionValueFor('bio', 'en')),
                     Input::make('options.en.about.job')
-                        ->value($this->getOptionValueFor('job', 'en'))
-                        ->title(__('models.option.title.job')),
+                        ->value($this->getAboutOptionValueFor('job', 'en'))
+                        ->title(__('models.option.about.job')),
                     Input::make('options.en.about.situationg')
-                        ->value($this->getOptionValueFor('situation', 'en'))
-                        ->title(__('models.option.title.situation')),
+                        ->value($this->getAboutOptionValueFor('situation', 'en'))
+                        ->title(__('models.option.about.situation')),
                     Input::make('options.en.about.aka')
-                        ->value($this->getOptionValueFor('aka', 'en'))
-                        ->title(__('models.option.title.aka')),
+                        ->value($this->getAboutOptionValueFor('aka', 'en'))
+                        ->title(__('models.option.about.aka')),
                     Input::make('options.en.about.email')
-                        ->value($this->getOptionValueFor('email', 'en'))
-                        ->title(__('models.option.title.email')),
+                        ->value($this->getAboutOptionValueFor('email', 'en'))
+                        ->title(__('models.option.about.email')),
                     Input::make('options.en.about.telephone')
-                        ->value($this->getOptionValueFor('telephone', 'en'))
-                        ->title(__('models.option.title.telephone')),
+                        ->value($this->getAboutOptionValueFor('telephone', 'en'))
+                        ->title(__('models.option.about.telephone')),
                     Input::make('options.en.about.education')
-                        ->value($this->getOptionValueFor('education', 'en'))
-                        ->title(__('models.option.title.education')),
+                        ->value($this->getAboutOptionValueFor('education', 'en'))
+                        ->title(__('models.option.about.education')),
                     Select::make('options.en.about.availability')
                         ->options([
                             'available' => 'Disponible',
@@ -119,7 +117,7 @@ class OptionsScreen extends Screen
                             'long_term' => 'Dans 6 mois',
                             'unavailable' => 'Non disponible',
                         ])
-                        ->value($this->getOptionValueFor('availability', 'en')),
+                        ->value($this->getAboutOptionValueFor('availability', 'en')),
                 ]),
             ]),
         ];
@@ -140,7 +138,11 @@ class OptionsScreen extends Screen
         return redirect()->route('platform.options.edit');
     }
 
-    protected function getOptionValueFor($slug, $locale): string {
+    protected function getAboutOptionValueFor($slug, $locale): string {
+        return $this->getOptionValueFor($slug, $locale, 'about');
+    }
+
+    protected function getOptionValueFor($slug, $locale, $group): string {
         $option = $this->options->where('slug', $slug)->where('locale', $locale)->first();
 
         if (!$option) {
