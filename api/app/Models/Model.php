@@ -11,23 +11,29 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
-class Model extends EloquentModel
+abstract class Model extends EloquentModel
 {
     protected array $collections = [];
     protected array $fields;
     protected array $items = [];
 
+    private static array $fieldsMemo;
+
     public function __construct(array $attributes = []) {
         parent::__construct($attributes);
 
-        $shortName = (new \ReflectionClass(static::class))->getShortName();
-        $fields = ClassFinder::getClassesInNamespace("App\Fields\\$shortName");
+        if (!isset(self::$fieldsMemo)) {
+            self::$fieldsMemo = [];
 
-        $this->fields = [];
+            $shortName = (new \ReflectionClass(static::class))->getShortName();
+            $fields = ClassFinder::getClassesInNamespace("App\Fields\\$shortName");
 
-        foreach ($fields as $filter) {
-            $this->fields[Str::snake(((new \ReflectionClass($filter))->getShortName()))] = $filter;
+            foreach ($fields as $filter) {
+                self::$fieldsMemo[Str::snake(((new \ReflectionClass($filter))->getShortName()))] = $filter;
+            }
         }
+
+        $this->fields = self::$fieldsMemo;
     }
 
     public function __call($method, $parameters) {
