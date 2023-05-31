@@ -15,6 +15,10 @@ export interface About extends Localized {
 	bio: string;
 }
 
+export interface Contact extends Localized {
+	content: string;
+}
+
 export interface Category extends Localized {
 	title: string;
 }

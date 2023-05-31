@@ -47,6 +47,16 @@ const translations = {
 		blog: {
 			read_more: 'Lire plus',
 		},
+		contact: {
+			fields: {
+				name: 'Nom complet',
+				email: 'Courriel',
+				message: 'Message',
+			},
+			actions: {
+				send_message: 'Envoyer',
+			},
+		},
 		interface: {
 			share: 'Partager',
 		},
@@ -81,6 +91,16 @@ const translations = {
 		},
 		blog: {
 			read_more: 'Read more',
+		},
+		contact: {
+			fields: {
+				name: 'Nom complet',
+				email: 'Courriel',
+				message: 'Message',
+			},
+			actions: {
+				send_message: 'Envoyer',
+			},
 		},
 		interface: {
 			share: 'Share',

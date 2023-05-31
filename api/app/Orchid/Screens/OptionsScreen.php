@@ -120,6 +120,33 @@ class OptionsScreen extends Screen
                         ->value($this->getAboutOptionValueFor('availability', 'en')),
                 ]),
             ]),
+            Layout::columns([
+                Layout::rows([
+                    TitleField::make('contact')
+                        ->title('Contact (FR)')
+                        ->level(3),
+
+                    Quill::make('options.fr.contact.content')
+                        ->title(__('models.option.contact.content'))
+                        ->value($this->getOptionValueFor('content', 'fr', 'contact')),
+                    Input::make('options.fr.contact.subtitle')
+                        ->value($this->getOptionValueFor('subtitle', 'fr', 'contact'))
+                        ->title(__('models.option.contact.subtitle')),
+                ]),
+
+                Layout::rows([
+                    TitleField::make('about')
+                        ->title('Contact (EN)')
+                        ->level(3),
+
+                    Quill::make('options.en.contact.content')
+                        ->title(__('models.option.contact.content'))
+                        ->value($this->getOptionValueFor('content', 'en', 'contact')),
+                    Input::make('options.en.contact.subtitle')
+                        ->value($this->getOptionValueFor('subtitle', 'en', 'contact'))
+                        ->title(__('models.option.contact.subtitle')),
+                ]),
+            ]),
         ];
     }
 

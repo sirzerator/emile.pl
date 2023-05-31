@@ -39,6 +39,10 @@ return [
             'situation' => 'Situation',
             'telephone' => 'Téléphone',
         ],
+        'contact' => [
+            'content' => 'Contenu',
+            'subtitle' => 'Sous-titre',
+        ],
     ],
     'post' => [
         'name' => 'Article|Articles',
