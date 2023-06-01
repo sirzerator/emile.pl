@@ -25,7 +25,7 @@
 		if (locale) {
 			t = _t(locale);
 			tl = _tl(locale);
-            dayjs.locale(locale);
+			dayjs.locale(locale);
 		}
 	});
 </script>

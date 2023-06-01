@@ -55,7 +55,7 @@ const translations = {
 				message: 'Message',
 			},
 			actions: {
-				send_message: 'Envoyer',
+				submit: 'Envoyer',
 			},
 		},
 		interface: {
@@ -96,12 +96,12 @@ const translations = {
 		},
 		contact: {
 			fields: {
-				name: 'Nom complet',
-				email: 'Courriel',
+				name: 'Full name',
+				email: 'Email',
 				message: 'Message',
 			},
 			actions: {
-				send_message: 'Envoyer',
+				submit: 'Send',
 			},
 		},
 		interface: {

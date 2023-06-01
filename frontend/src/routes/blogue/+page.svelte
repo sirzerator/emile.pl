@@ -39,9 +39,9 @@
 
 		{#if posts.length > 0}
 			<ul class="tokyo_tm_news_inner">
-                {#each posts as post}
-                    <BlogCard post={post} {t} />
-                {/each}
+				{#each posts as post}
+					<BlogCard post={post} {t} />
+				{/each}
 			</ul>
 		{:else}
 			<p class="tokyo_tm_news_nothing text-center"><em>{t('blog.nothing_to_display')}</em></p>

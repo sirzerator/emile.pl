@@ -7,9 +7,9 @@ export const load: PageLoad = async ({ fetch, parent }) => {
 	const { locale } = await parent();
 
 	const query = qs.stringify({
-        locale: locale || defaultLocale,
+		locale: locale || defaultLocale,
 		order: '-published_at',
-        published: true,
+		published: true,
 		fields: 'title,slug,intro,featured_image_url,published_at,category.title,tags.title,translations.slug',
 	});
 
