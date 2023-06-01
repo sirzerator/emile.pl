@@ -10,6 +10,14 @@ class PostTranslation extends Pivot
     protected static function booted(): void {
         static::updated(function (PostTranslation $translation) {
             if ($translation->wasChanged('post_is_source') && !!$translation->post_is_source) {
+                static::where('post_id', $translation->translation_id)
+                    ->where('translation_id', '!=', $translation->post_id)
+                    ->update([ 'post_id' => $translation->post_id ]);
+
+                static::where('translation_id', $translation->translation_id)
+                    ->where('post_id', '!=', $translation->post_id)
+                    ->update([ 'translation_id' => $translation->post_id]);
+
                 static::where('translation_id', $translation->post_id)
                     ->orWhere('post_id', $translation->translation_id)
                     ->update([ 'post_is_source' => false ]);
@@ -21,11 +29,22 @@ class PostTranslation extends Pivot
                 return;
             }
 
+            $translation->refresh();
+
             $inverse = new PostTranslation();
             $inverse->translation_id = $translation->post_id;
             $inverse->post_id = $translation->translation_id;
             $inverse->post_is_source = !$translation->post_is_source;
             $inverse->save();
+        });
+
+        static::creating(function (PostTranslation &$translation) {
+            if (!$translation->post_is_source) {
+                if ($pt = static::where('translation_id', $translation->translation_id)
+                    ->where('post_is_source', true)->first()) {
+                    $translation->translation_id = $pt->post_id;
+                }
+            }
         });
 
         static::deleted(function (PostTranslation $translation) {
