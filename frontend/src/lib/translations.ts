@@ -2,7 +2,7 @@ export const defaultLocale = 'en';
 export const fallbackLocale = 'fr';
 
 type SupportedLocales = 'fr' | 'en';
-export const supportedLocales: SupportedLocales = ['fr', 'en'];
+export const supportedLocales: SupportedLocales[] = ['fr', 'en'];
 
 type MenuDefinition = Record<string, string>;
 const menus: Record<SupportedLocales, Record<string, MenuDefinition>> = {
@@ -57,6 +57,7 @@ const translations = {
 			actions: {
 				submit: 'Envoyer',
 			},
+            thanks: 'Merci pour votre message! Je vous reviens rapidement.',
 		},
 		interface: {
 			share: 'Partager',
@@ -103,6 +104,7 @@ const translations = {
 			actions: {
 				submit: 'Send',
 			},
+            thanks: "Thank you for your message! I'll get back to you quickly.",
 		},
 		interface: {
 			share: 'Share',

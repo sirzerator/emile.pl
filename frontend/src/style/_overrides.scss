@@ -160,6 +160,12 @@
 	background-color: grey;
 }
 
+.tokyo_tm_button a:disabled,
+.ib-button:disabled {
+    cursor: initial;
+    background-color: grey;
+}
+
 .tokyo_tm_all_wrap .leftpart_languages {
 	font-style: italic;
 	font-size: 14px;

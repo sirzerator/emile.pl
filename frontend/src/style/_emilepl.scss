@@ -31,7 +31,14 @@
 		}
 	}
 
-	&__contact__content {
-		@extend .tokyo__bigger;
-	}
+	&__contact {
+        &__thanks {
+            text-align: center;
+        }
+
+        &__thanks,
+        &__content {
+            @extend .tokyo__bigger;
+        }
+    }
 }
