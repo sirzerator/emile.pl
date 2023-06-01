@@ -9,6 +9,11 @@ use Illuminate\Routing\Controller as IlluminateController;
 
 abstract class ApiController extends IlluminateController
 {
+    public function __construct(
+        protected readonly Repository $repository,
+    ) {
+    }
+
     protected function respondWithCollection($request, $collection) {
         if (!$request instanceof ApiRequest) {
             return abort(500, 'Invalid request class: must extend ApiRequest');

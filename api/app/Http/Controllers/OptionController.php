@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Repository;
 use App\Http\Requests\Option\IndexRequest;
 use App\Http\Requests\Option\ShowRequest;
 use App\Http\Requests\Option\ShowGroupRequest;
@@ -10,11 +9,6 @@ use Validator;
 
 class OptionController extends ApiController
 {
-    public function __construct(
-        protected readonly Repository $repository,
-    ) {
-    }
-
     public function index(IndexRequest $request) {
         return $this->respondWithCollection(
             $request,
