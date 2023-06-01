@@ -90,4 +90,15 @@ abstract class Model extends EloquentModel
     public function getResourceInstance($includedFields = [], $excludedFields = [], $pivot = null) {
         return new ApiResource($this, $includedFields, $excludedFields, $pivot);
     }
+
+    public function getRules($action = '', array $input = []) {
+        switch ($action) {
+            default:
+                return [];
+        }
+    }
+
+    public function getValidationMessages(): array {
+        return [];
+    }
 }

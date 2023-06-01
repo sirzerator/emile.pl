@@ -4,6 +4,18 @@ namespace App\Repositories;
 
 class Repository
 {
+    public function create($request, array $input) {
+        $model = $request->getModel();
+
+        $model->fill($input);
+
+        if (!$model->save()) {
+            throw new \Exception('Could not save');
+        }
+
+        return $model;
+    }
+
     public function get($request) {
         $query = $request->getModel();
 

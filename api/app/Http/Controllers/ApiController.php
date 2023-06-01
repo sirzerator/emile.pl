@@ -6,6 +6,8 @@ use App\Http\Requests\ApiRequest;
 use App\Repositories\Repository;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller as IlluminateController;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 abstract class ApiController extends IlluminateController
 {
@@ -47,5 +49,31 @@ abstract class ApiController extends IlluminateController
             $request->getExcludedFields(),
             data_get($item, 'pivot', null),
         );
+    }
+
+    protected function validateAndStore($request) {
+        $input = $request->json()->all();
+
+        $model = $request->getModel();
+        $validator = Validator::make(
+            $input,
+            $model->getRules('store', $input),
+            $model->getValidationMessages()
+        );
+
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
+
+        $item = $this->repository->create($request, $input);
+
+        $fieldsRequest = new ApiRequest;
+        $fieldsRequest->setUserResolver($request->getUserResolver());
+        $fieldsRequest->merge([
+            'id' => $item->id,
+            'fields' => $request->get('fields'),
+        ]);
+
+        return $this->repository->find($fieldsRequest);
     }
 }

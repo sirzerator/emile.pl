@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
@@ -18,5 +19,13 @@ Route::apiResources([
     'posts' => PostController::class,
     'tags' => TagController::class,
 ]);
+
+Route::post('contacts', [ContactController::class, 'store']);
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('contacts', CategoryController::class)->except([
+        'create', 'edit', 'store',
+    ]);
+});
 
 Route::get('/options/group/{group}', [OptionController::class, 'showGroup']);

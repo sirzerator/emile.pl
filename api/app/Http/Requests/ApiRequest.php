@@ -61,15 +61,17 @@ class ApiRequest extends FormRequest
 
     public function getId() {
         $route = $this->route();
-        $routeName = $route->getName();
+        if ($route) {
+            $routeName = $route->getName();
+            [$resourceNamePlural, $_] = explode('.', "{$routeName}.");
+            $resourceName = Str::singular($resourceNamePlural);
 
-        [$resourceNamePlural, $_] = explode('.', "{$routeName}.");
+            if ($id = data_get($route->parameters(), $resourceName)) {
+                return $id;
+            }
+        }
 
-        $resourceName = Str::singular($resourceNamePlural);
-
-        return data_get($route->parameters(), $resourceName)
-            ?: $this->query('id')
-            ?: $this->input('id');
+        return $this->query('id') ?: $this->input('id');
     }
 
     public function getModel() {
