@@ -56,10 +56,10 @@
 					<span class="menu_content">{t('site.navigation.about')}</span>
 				</a>
 
-				<a class:active="{currentPath === tl('sidebar', 'projects')}" href="{tl('sidebar', 'projects')}">
+				<!--<a class:active="{currentPath === tl('sidebar', 'projects')}" href="{tl('sidebar', 'projects')}">
 					<img class="svg" src="/svg/briefcase.svg" alt="" title="Projets">
 					<span class="menu_content">{t('site.navigation.projects')}</span>
-				</a>
+				</a>-->
 
 				<a class:active="{currentPath === tl('sidebar', 'blog')}" href="{tl('sidebar', 'blog')}">
 					<img class="svg" src="/svg/paper.svg" alt="" title="Blogue">

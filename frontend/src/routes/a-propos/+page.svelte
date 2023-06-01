@@ -38,9 +38,9 @@
 			<div class="left typography">
 				{@html data.bio}
 
-				<div class="tokyo_tm_button">
+				<!--<div class="tokyo_tm_button">
 					<a class="button" href="/projects">{t('about.my_projects')}</a>
-				</div>
+				</div>-->
 			</div>
 
 			<div class="right">
