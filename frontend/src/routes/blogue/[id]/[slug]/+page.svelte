@@ -33,7 +33,7 @@
 	const formatDate = (date) => dayjs(date).format('LL');
 </script>
 
-<div class="tokyo_tm_news">
+<div class="tokyo_tm_news emilepl__blog__single">
 	<div class="tokyo_tm_modalbox_news">
 		<div class="image" style={`background-image: url('${data.featured_image_url}')`} />
 

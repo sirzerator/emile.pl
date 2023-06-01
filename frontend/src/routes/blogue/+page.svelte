@@ -28,7 +28,7 @@
 </svelte:head>
 
 <main>
-	<div class="tokyo_tm_news">
+	<div class="tokyo_tm_news emilepl__blog">
 		<div class="tokyo_tm_title">
 			<div class="title_flex">
 				<div class="left">
