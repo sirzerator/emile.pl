@@ -65,20 +65,7 @@ class PostEditScreen extends Screen
     }
 
     public function layout(): iterable {
-        $translationFields =  $this->post->exists ? [
-            Relation::make('post.translation')
-                ->allowEmpty()
-                ->fromModel(Post::class, 'title')
-                ->applyScope('whereNotId', $this->post->id)
-                ->applyScope('whereNotLocale', $this->post->locale)
-                ->title(__('models.post.fields.translation')),
-
-            CheckBox::make('post.translation_is_source')
-                ->value(!!data_get($this->post->translation, 'post_is_source'))
-                ->title(__('models.post.fields.post_is_source'))
-                ->sendTrueOrFalse()
-                ->disabled(!!data_get($this->post->translation, 'post_is_source')),
-        ] : [];
+        $translationFields = $this->getTranslationFields();
 
         $layout = [
             Layout::columns([
@@ -95,10 +82,12 @@ class PostEditScreen extends Screen
                 Layout::rows([
                     Relation::make('post.category_id')
                         ->fromModel(Category::class, 'title')
+                        ->applyScope('whereLocale', $this->post ? $this->post->locale : '')
                         ->title(__('models.post.fields.category')),
 
                     Relation::make('post.tags')
                         ->fromModel(Tag::class, 'title')
+                        ->applyScope('whereLocale', 'like', $this->post ? $this->post->locale : '%')
                         ->multiple()
                         ->title(__('models.post.fields.tags')),
 
@@ -137,15 +126,14 @@ class PostEditScreen extends Screen
 
         $post->fill($data)->save();
 
-        $translation = data_get($data, 'translation');
-        if ($translation) {
+        if ($translation = data_get($data, 'translation')) {
             $post->translations()->sync([
                 $translation => [
                     'post_is_source' => data_get($data, 'translation_is_source'),
                 ],
             ]);
-        } else {
-            $post->translations()->sync(null);
+        } elseif ($translations = data_get($data, 'translations')) {
+            $post->translations()->sync($translations);
         }
 
         $tags = data_get($data, 'tags');
@@ -162,5 +150,42 @@ class PostEditScreen extends Screen
         Alert::info('You have successfully deleted the post.');
 
         return redirect()->route('platform.post.list');
+    }
+
+    private function getTranslationFields() {
+        if (!$this->post->exists) {
+            return [];
+        }
+
+        if ($this->post->translations->count() > 0 && $this->post->translations->first()->pivot->post_is_source) {
+            return [
+                Relation::make('post.translations.')
+                    ->allowEmpty()
+                    ->fromModel(Post::class, 'title')
+                    ->multiple()
+                    ->applyScope('whereNotLocale', $this->post->locale)
+                    ->title(__('models.post.fields.translations')),
+
+                CheckBox::make('post.translation_is_source')
+                    ->value(!!data_get($this->post->translation, 'post_is_source'))
+                    ->title(__('models.post.fields.post_is_source'))
+                    ->sendTrueOrFalse()
+                    ->disabled(!!data_get($this->post->translation, 'post_is_source')),
+            ];
+        }
+
+        return [
+            Relation::make('post.translation')
+                ->allowEmpty()
+                ->fromModel(Post::class, 'title')
+                ->applyScope('whereNotLocale', $this->post->locale)
+                ->title(__('models.post.fields.translation')),
+
+            CheckBox::make('post.translation_is_source')
+                ->value(!!data_get($this->post->translation, 'post_is_source'))
+                ->title(__('models.post.fields.post_is_source'))
+                ->sendTrueOrFalse()
+                ->disabled(!!data_get($this->post->translation, 'post_is_source')),
+        ];
     }
 }

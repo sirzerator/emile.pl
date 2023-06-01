@@ -14,6 +14,9 @@ class LocaleSeeder extends Seeder
         ], [
             'slug' => 'en',
             'name' => 'English',
+        ], [
+            'slug' => 'es',
+            'name' => 'Español',
         ]]);
     }
 }
