@@ -17,19 +17,6 @@
 		}
 	});
 
-	let socialList = [
-		{
-			name: 'Facebook',
-			link: "https://www.facebook.com/",
-			src: '/svg/social/facebook.svg',
-		},
-		{
-			name: 'Twitter',
-			link: "https://twitter.com/",
-			src: '/svg/social/twitter.svg',
-		},
-	];
-
 	const formatDate = (date) => dayjs(date).format('LL');
 </script>
 
@@ -66,19 +53,6 @@
 				<div class="typography">
 					{@html data.content}
 				</div>
-			</div>
-			<div class="news_share">
-				<span>{t('interface.share')}:</span>
-				<ul class="social">
-					{#each socialList as social}
-						<li>
-							<a href={social.link} target="_blank" rel="noreferrer">
-								<img class="svg" src={social.src} alt={social.name}>
-							</a>
-						</li>
-					{/each}
-				</ul>
-
 			</div>
 		</div>
 	</div>

@@ -10,7 +10,7 @@ export const load: PageLoad = async ({ fetch, parent }) => {
 		locale: locale || defaultLocale,
 		order: '-published_at',
 		published: true,
-		fields: 'title,slug,intro,featured_image_url,published_at,category.title,tags.title,translations.slug',
+		fields: 'title,slug,intro,featured_image_url,published_at,category.title',
 	});
 
 	const res = await fetch(`/api/posts?${query}`);

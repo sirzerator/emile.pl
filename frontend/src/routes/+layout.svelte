@@ -3,29 +3,77 @@
 
 	import "../style/main.scss";
 
-	import { invalidateAll } from '$app/navigation';
+	import { goto, invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
 
 	import dayjs from '$lib/dayjs';
-	import { _t, _tl } from '$lib/translations';
+	import { _t, _tl, supportedLocales } from '$lib/translations';
 
 	export let currentPath: string;
 
 	export const setLocale = (locale) => {
 		Cookies.set('lang', locale, { sameSite: 'strict' });
-		invalidateAll();
+		if (translationPaths[locale]) {
+			goto(translationPaths[locale], {
+				replaceState: true,
+				invalidateAll: true,
+			});
+		} else {
+			goto('/', {
+				replaceState: true,
+				invalidateAll: true,
+			});
+			invalidateAll();
+		}
 	};
 
 	let t;
 	let tl;
+	let translationPaths: Record<supportedLocales, string> = {
+		en: '/',
+		fr: '/',
+	};
 
 	page.subscribe(({ url: { pathname } }) => currentPath = pathname );
 
-	page.subscribe(({ data: { locale } }) => {
+	page.subscribe(({ url: { pathname }, data: { translations, locale } }) => {
 		if (locale) {
 			t = _t(locale);
 			tl = _tl(locale);
-			dayjs.locale(locale);
+            dayjs.locale(locale);
+		}
+
+		translationPaths = {};
+
+		switch (pathname) {
+			case '/blog':
+			case '/blogue':
+				translationPaths = {
+					en: '/blog',
+					fr: '/blogue',
+				};
+				break;
+			case '/a-propos':
+			case '/about':
+				translationPaths = {
+					en: '/about',
+					fr: '/a-propos',
+				};
+				break;
+			case '/contact':
+			case '/':
+				translationPaths = {
+					en: pathname,
+					fr: pathname,
+				};
+				break;
+			default:
+				if (translations?.length > 0) {
+					translationPaths = translations.reduce((acc, t) => {
+						acc[t.locale] = t.path;
+						return acc;
+					}, {});
+				}
 		}
 	});
 </script>
@@ -41,8 +89,12 @@
 			</div>
 
 			<div class="leftpart_languages typography">
-				{#if $page.data.locale !== 'en'}<a on:click="{() => setLocale('en')}" href="#">English</a>{/if}
-				{#if $page.data.locale !== 'fr'}<a on:click="{() => setLocale('fr')}" href="#">Français</a>{/if}
+				{#if $page.data.locale !== 'en' && translationPaths.en}
+					<a on:click="{() => setLocale('en')}" href={translationPaths.en || $page.pathname}>English</a>
+				{/if}
+				{#if $page.data.locale !== 'fr' && translationPaths.fr}
+					<a on:click="{() => setLocale('fr')}" href={translationPaths.fr || $page.pathname}>Français</a>
+				{/if}
 			</div>
 
 			<div class="menu">
