@@ -13,7 +13,7 @@ export const load: PageLoad = async ({ fetch, parent }) => {
 		fields: 'title,slug,intro,featured_image_url,published_at,category.title,tags.title,translations.slug',
 	});
 
-	const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts?${query}`);
+	const res = await fetch(`/api/posts?${query}`);
 	const { data }: { data: Post[] } = await res.json();
 
 	return { posts: data };
