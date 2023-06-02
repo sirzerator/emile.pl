@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Fields\ComputedField;
+use App\Models\Pivots\ApiPivot;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
 
@@ -27,6 +28,9 @@ class ApiResource extends JsonResource
         $output = parent::toArray($request);
 
         $this->addComputedFields($output, $this->resource);
+        if ($this->pivot && in_array(ApiPivot::class, class_implements($this->pivot))) {
+            $this->addComputedFields($output, $this->pivot);
+        }
 
         if (!in_array('*', array_keys($this->includedFields), true)) {
             $output = array_intersect_key(
@@ -64,7 +68,7 @@ class ApiResource extends JsonResource
             return $item->getResourceInstance(
                 $this->getIncludedFieldsFor($relationName),
                 $this->getExcludedFieldsFor($relationName),
-                $this->resource->pivot,
+                $item->pivot,
             );
         });
     }

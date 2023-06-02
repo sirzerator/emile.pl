@@ -3,7 +3,6 @@
 namespace App\Models\Pivots;
 
 use App\Models\Post;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class PostTranslation extends Pivot
 {
