@@ -75,7 +75,7 @@ class ApiResource extends JsonResource
 
     protected function addCollections(&$output, &$resource) {
         foreach ($resource->getCollections() as $relation) {
-            if ($this->shouldIncludeRelation($relation, $resource)) {
+            if ($this->shouldIncludeRelation($relation)) {
                 $this->addCollection($relation, $output, $resource);
                 continue;
             }
@@ -88,7 +88,7 @@ class ApiResource extends JsonResource
 
     protected function addItems(&$output, &$resource) {
         foreach ($resource->getItems() as $relation) {
-            if ($this->shouldIncludeRelation($relation, $resource)) {
+            if ($this->shouldIncludeRelation($relation)) {
                 $this->addItem($relation, $output, $resource);
                 continue;
             }
@@ -115,7 +115,7 @@ class ApiResource extends JsonResource
         return $output;
     }
 
-    protected function shouldIncludeRelation($relation, &$resource): bool {
+    protected function shouldIncludeRelation($relation): bool {
         if (isset($this->includedFields['*']['*']) && !isset($this->excludedFields['*']['*'])) {
             return true;
         }
