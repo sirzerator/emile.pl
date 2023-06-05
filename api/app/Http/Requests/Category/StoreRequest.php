@@ -9,7 +9,7 @@ class StoreRequest extends ApiRequest
     public function rules() {
         return [
             'category.title' => 'required',
-            'tag.locale' => 'required|exists:locales,slug',
+            'category.locale' => 'required|exists:locales,slug',
         ];
     }
 }
