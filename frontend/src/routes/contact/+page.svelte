@@ -33,15 +33,15 @@
 
 		loading = true;
 
-		const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/contacts`, {
+		const res = await fetch(`/api/contacts`, {
 			method: 'POST',
 			headers: {
 			'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(data)
-		})
+		});
 
-		await res.json()
+		await res.json();
 
 		e.target.reset();
 		loading = false;
