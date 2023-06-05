@@ -82,12 +82,14 @@ class PostEditScreen extends Screen
                 Layout::rows([
                     Relation::make('post.category_id')
                         ->fromModel(Category::class, 'title')
+                        ->disabled(!$this->post->id)
                         ->applyScope('whereLocale', $this->post ? $this->post->locale : '')
                         ->title(__('models.post.fields.category')),
 
                     Relation::make('post.tags')
                         ->fromModel(Tag::class, 'title')
-                        ->applyScope('whereLocale', 'like', $this->post ? $this->post->locale : '%')
+                        ->disabled(!$this->post->id)
+                        ->applyScope('whereLocale', $this->post ? $this->post->locale : '')
                         ->multiple()
                         ->title(__('models.post.fields.tags')),
 
@@ -107,7 +109,7 @@ class PostEditScreen extends Screen
                 TextArea::make('post.intro')
                     ->required()
                     ->title(__('models.post.fields.intro'))
-                    ->rows(3),
+                    ->rows(5),
                 Quill::make('post.content')
                     ->required()
                     ->title(__('models.post.fields.content')),
