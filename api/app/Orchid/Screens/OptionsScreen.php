@@ -57,7 +57,7 @@ class OptionsScreen extends Screen
                     Input::make('options.fr.about.job')
                         ->value($this->getAboutOptionValueFor('job', 'fr'))
                         ->title(__('models.option.about.job')),
-                    Input::make('options.fr.about.situationg')
+                    Input::make('options.fr.about.situation')
                         ->value($this->getAboutOptionValueFor('situation', 'fr'))
                         ->title(__('models.option.about.situation')),
                     Input::make('options.fr.about.aka')
@@ -94,7 +94,7 @@ class OptionsScreen extends Screen
                     Input::make('options.en.about.job')
                         ->value($this->getAboutOptionValueFor('job', 'en'))
                         ->title(__('models.option.about.job')),
-                    Input::make('options.en.about.situationg')
+                    Input::make('options.en.about.situation')
                         ->value($this->getAboutOptionValueFor('situation', 'en'))
                         ->title(__('models.option.about.situation')),
                     Input::make('options.en.about.aka')
