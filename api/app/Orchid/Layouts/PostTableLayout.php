@@ -18,28 +18,28 @@ class PostTableLayout extends Table
         return [
             TD::make('id', 'ID')->sort(),
 
-            TD::make('title', 'Title')
+            TD::make('title', __('models.post.fields.title'))
                 ->filter(Input::make())
                 ->sort()
                 ->render(function (Post $post) {
                     return Link::make($post->title)->route('platform.post.edit', $post);
                 }),
 
-            TD::make('locale', 'Locale')
+            TD::make('locale', __('models.post.fields.locale'))
                 ->filter(Select::make('post.locale')->options(Locale::asOptions(withNull: true)))
                 ->sort()
                 ->render(function (Post $post) {
                     return Locale::title($post->locale);
                 }),
 
-            TD::make('translations', 'Translations')
+            TD::make('translations', __('models.post.fields.translations'))
                 ->render(function (Post $post) {
                     return $post->translations
                                 ->map(fn ($t) => (string) Link::make($t->title)->route('platform.post.edit', $t))
                                 ->join('');
                 }),
 
-            TD::make('published_at', 'Published')->sort(),
+            TD::make('published_at', __('models.post.fields.published_at'))->sort(),
         ];
     }
 }
