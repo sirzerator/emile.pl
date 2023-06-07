@@ -27,6 +27,24 @@ return [
             'updated' => 'Catégorie mise-à-jour.',
         ],
     ],
+    'contact' => [
+        'name' => 'Message|Messages',
+        'actions' => [
+            'add' => 'Ajouter',
+            'delete' => 'Supprimer',
+            'delete_confirmation' => 'Êtes-vous sûr de vouloir supprimer le contact de :0?',
+            'edit' => 'Modifier',
+            'save' => 'Enregistrer',
+            'view' => 'Afficher',
+        ],
+        'fields' => [
+            'created_at' => 'Envoi',
+            'email' => 'Courriel',
+            'message' => 'Message',
+            'name' => 'Nom',
+            'locale' => 'Langue',
+        ],
+    ],
     'option' => [
         'name' => 'Option|Options',
         'about' => [

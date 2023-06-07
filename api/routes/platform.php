@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
-use App\Orchid\Screens\OptionsScreen;
-use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\CategoryEditScreen;
 use App\Orchid\Screens\CategoryListScreen;
+use App\Orchid\Screens\ContactEditScreen;
+use App\Orchid\Screens\ContactListScreen;
+use App\Orchid\Screens\OptionsScreen;
+use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\PostEditScreen;
 use App\Orchid\Screens\PostListScreen;
-use App\Orchid\Screens\TagEditScreen;
-use App\Orchid\Screens\TagListScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
+use App\Orchid\Screens\TagEditScreen;
+use App\Orchid\Screens\TagListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
@@ -42,6 +44,13 @@ Route::screen('tag/{tag?}', TagEditScreen::class)
 
 Route::screen('tags', TagListScreen::class)
     ->name('platform.tag.list');
+
+// Contact
+Route::screen('contacts', ContactListScreen::class)
+    ->name('platform.contact.list');
+
+Route::screen('contacts/{contact?}', ContactEditScreen::class)
+    ->name('platform.contact.edit');
 
 // Options
 Route::screen('options', OptionsScreen::class)
