@@ -32,7 +32,7 @@
 		<div class="tokyo_tm_title">
 			<div class="title_flex">
 				<div class="left">
-					<h3>{t('site.navigation.blog')}</h3>
+					<h1>{t('site.navigation.blog')}</h1>
 				</div>
 			</div>
 		</div>

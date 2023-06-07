@@ -64,7 +64,7 @@
 					<span>{t('site.navigation.contact')}</span>
 					<h3>{data.slogan}</h3>
 				{:else}
-					<h3>{t('site.navigation.contact')}</h3>
+					<h1>{t('site.navigation.contact')}</h1>
 				{/if}
 			</div>
 		</div>

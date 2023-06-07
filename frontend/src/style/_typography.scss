@@ -10,11 +10,22 @@ body {
 }
 
 .typography {
+    > * + * {
+        margin-block-start: 1.5rem;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 17px;
+    }
+
 	p {
 		color: var(--text-color);
 		hyphens: auto;
 		text-align: justify;
-		margin-bottom: 12px;
 	}
 
 	a {

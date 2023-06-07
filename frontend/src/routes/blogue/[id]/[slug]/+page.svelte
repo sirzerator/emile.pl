@@ -43,17 +43,13 @@
 				{/if}
 			</div>
 
-			<h3 class="title">{data.title}</h3>
+			<h1 class="title">{data.title}</h1>
 		</div>
 
-		<div class="main_content ">
-			<div class="descriptions">
-				<p class="bigger">{data.intro}</p>
+		<div class="main_content typography">
+            <p class="bigger">{data.intro}</p>
 
-				<div class="typography">
-					{@html data.content}
-				</div>
-			</div>
+            {@html data.content}
 		</div>
 	</div>
 </div>

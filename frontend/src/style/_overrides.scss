@@ -31,6 +31,12 @@
 
 .tokyo_tm_title {
 	float: none;
+
+    h1 {
+      font-weight: 800;
+      font-family: "Montserrat";
+      font-size: 30px;
+    }
 }
 
 .tokyo_tm_news.emilepl__blog {
@@ -84,6 +90,10 @@
 		.main_content, .details {
 			float: none;
 		}
+
+        .details .title {
+            margin-bottom: 0;
+        }
 
 		.image {
 			height: 450px;
@@ -178,7 +188,7 @@
 }
 
 .tokyo__bigger,
-.tokyo_tm_modalbox_news .main_content .descriptions .bigger {
+.tokyo_tm_modalbox_news .main_content .bigger {
   color: #888;
   font-size: 20px;
   margin-bottom: 33px;
