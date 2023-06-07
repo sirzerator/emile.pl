@@ -60,9 +60,9 @@
 	<div class="tokyo_tm_title">
 		<div class="title_flex">
 			<div class="left">
-				{#if data.slogan}
+				{#if data.subtitle}
 					<span>{t('site.navigation.contact')}</span>
-					<h3>{data.slogan}</h3>
+					<h1>{data.subtitle}</h1>
 				{:else}
 					<h1>{t('site.navigation.contact')}</h1>
 				{/if}
