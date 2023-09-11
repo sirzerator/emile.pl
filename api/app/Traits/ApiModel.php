@@ -24,11 +24,14 @@ trait ApiModel
         if (!isset(self::$fieldsMemo)) {
             self::$fieldsMemo = [];
 
-            $shortName = (new \ReflectionClass(static::class))->getShortName();
-            $fields = ClassFinder::getClassesInNamespace("App\Fields\\$shortName");
+            $modelShortName = (new \ReflectionClass(static::class))->getShortName();
+            $filesInNamespace = array_map(
+                fn ($f) => pathinfo($f, PATHINFO_FILENAME),
+                glob(app_path("Fields/$modelShortName/*.php"))
+            );
 
-            foreach ($fields as $filter) {
-                self::$fieldsMemo[Str::snake(((new \ReflectionClass($filter))->getShortName()))] = $filter;
+            foreach ($filesInNamespace as $field) {
+                self::$fieldsMemo[Str::snake($field)] = "App\\Fields\\$modelShortName\\$field";
             }
         }
 
