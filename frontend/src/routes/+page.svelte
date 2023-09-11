@@ -25,7 +25,7 @@
 <div class="tokyo_tm_home">
 	<div class="home_content">
 		<div class="avatar">
-			<div class="image avatar_img"><img src="/photo.jpg"></div>
+			<div class="image avatar_img"><img src="/avatar.jpg"></div>
 		</div>
 
 		<div class="details">
