@@ -95,6 +95,9 @@
 				{#if $page.data.locale !== 'fr' && translationPaths.fr}
 					<a on:click="{() => setLocale('fr')}" href={translationPaths.fr || $page.pathname}>Français</a>
 				{/if}
+				{#if Object.keys(translationPaths).length === 0}
+                    <span>&nbsp;</span>
+                {/if}
 			</div>
 
 			<div class="menu">
