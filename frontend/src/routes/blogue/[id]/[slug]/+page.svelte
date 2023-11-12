@@ -21,7 +21,9 @@
 
 <div class="tokyo_tm_news emilepl__blog__single">
 	<div class="tokyo_tm_modalbox_news">
-		<div class="image" style={`background-image: url('${data.featured_image_url}')`} />
+		{#if data.featured_image_url}
+			<div class="image" style={`background-image: url('${data.featured_image_url}')`} />
+		{/if}
 
 		<div class="details">
 			<div class="extra">
