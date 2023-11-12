@@ -4,7 +4,6 @@
 	import { page } from '$app/stores';
 
 	import dayjs from '$lib/dayjs';
-	import type { Post } from '$lib/types';
 	import { _t } from '$lib/translations';
 
 	export let data: PageData;
