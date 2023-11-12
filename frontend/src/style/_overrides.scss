@@ -3,9 +3,32 @@
 	height: auto;
 }
 
-.tokyo_tm_home .details .name {
-	font-size: 50px;
+.tokyo_tm_home {
+	.details {
+		.name {
+			font-size: 50px;
+			margin-bottom: 0;
+		}
+
+		.job {
+			max-width: 450px;
+			margin-bottom: 20px;
+		}
+
+		@media (max-width: 1040px) {
+			.job {
+				max-width: 100%;
+			}
+		}
+
+		.social .svg {
+			width: 36px;
+			height: 36px;
+		}
+	}
 }
+
+
 
 .tokyo_tm_read_more {
 	float: none;
@@ -32,11 +55,11 @@
 .tokyo_tm_title {
 	float: none;
 
-    h1 {
-      font-weight: 800;
-      font-family: "Montserrat";
-      font-size: 30px;
-    }
+	h1 {
+		font-weight: 800;
+		font-family: "Montserrat";
+		font-size: 30px;
+	}
 }
 
 .tokyo_tm_news.emilepl__blog {
@@ -91,9 +114,9 @@
 			float: none;
 		}
 
-        .details .title {
-            margin-bottom: 0;
-        }
+		.details .title {
+			margin-bottom: 0;
+		}
 
 		.image {
 			height: 450px;
@@ -154,16 +177,6 @@
 	}
 }
 
-.tokyo_tm_home .details .job {
-		max-width: 450px;
-}
-
-@media (max-width: 1040px) {
-	.tokyo_tm_home .details .job {
-		max-width: 100%;
-	}
-}
-
 .tokyo_tm_button a:hover,
 .ib-button:hover {
 	letter-spacing: 0px;
@@ -172,8 +185,8 @@
 
 .tokyo_tm_button a:disabled,
 .ib-button:disabled {
-    cursor: initial;
-    background-color: grey;
+	cursor: initial;
+	background-color: grey;
 }
 
 .tokyo_tm_all_wrap .leftpart_languages {
@@ -189,7 +202,7 @@
 
 .tokyo__bigger,
 .tokyo_tm_modalbox_news .main_content .bigger {
-  color: #888;
-  font-size: 20px;
-  margin-bottom: 33px;
+	color: #888;
+	font-size: 20px;
+	margin-bottom: 33px;
 }

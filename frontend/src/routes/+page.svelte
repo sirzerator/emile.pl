@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 
 	import type { About } from '$lib/types';
-	import { _t, _tl } from '$lib/translations';
+	import { _t } from '$lib/translations';
 
 	export let data: About;
 
@@ -31,6 +31,13 @@
 		<div class="details">
 			<h3 class="name">Émile<br>Plourde-Lavoie</h3>
 			<p class="job">{data.job}</p>
+
+			<div class="social">
+				<a href="https://github.com/sirzerator" target="_blank">
+					<img class="svg" src="/svg/github-mark.svg" alt="Github">
+				</a>
+			</div>
 		</div>
+
 	</div>
 </div>
