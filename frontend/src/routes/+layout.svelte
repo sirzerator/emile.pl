@@ -102,27 +102,27 @@
 
 			<div class="menu">
 				<a class:active="{currentPath === tl('sidebar', 'home')}" href="{tl('sidebar', 'home')}">
-					<img class="svg" src="/svg/home.svg" alt="" title="Accueil">
+					<img class="svg" src="/svg/home.svg" alt="" title={t('site.navigation.home')}>
 					<span class="menu_content">{t('site.navigation.home')}</span>
 				</a>
 
 				<a class:active="{currentPath === tl('sidebar', 'about')}" href="{tl('sidebar', 'about')}">
-					<img class="svg" src="/svg/avatar.svg" alt="" title="À propos">
+					<img class="svg" src="/svg/avatar.svg" alt="" title={t('site.navigation.about')}>
 					<span class="menu_content">{t('site.navigation.about')}</span>
 				</a>
 
-				<!--<a class:active="{currentPath === tl('sidebar', 'projects')}" href="{tl('sidebar', 'projects')}">
+				<a class:active="{currentPath === tl('sidebar', 'readings')}" href="{tl('sidebar', 'readings')}">
 					<img class="svg" src="/svg/briefcase.svg" alt="" title="Projets">
-					<span class="menu_content">{t('site.navigation.projects')}</span>
-				</a>-->
+					<span class="menu_content">{t('site.navigation.readings')}</span>
+				</a>
 
 				<a class:active="{currentPath === tl('sidebar', 'blog')}" href="{tl('sidebar', 'blog')}">
-					<img class="svg" src="/svg/paper.svg" alt="" title="Blogue">
+					<img class="svg" src="/svg/paper.svg" alt="" title={t('site.navigation.blog')}>
 					<span class="menu_content">{t('site.navigation.blog')}</span>
 				</a>
 
 				<a class:active="{currentPath === tl('sidebar', 'contact')}" href="{tl('sidebar', 'contact')}">
-					<img class="svg" src="/svg/mail.svg" alt="" title="Contact">
+					<img class="svg" src="/svg/mail.svg" alt="" title={t('site.navigation.contact')}>
 					<span class="menu_content">{t('site.navigation.contact')}</span>
 				</a>
 			</div>
