@@ -45,6 +45,31 @@ return [
             'locale' => 'Langue',
         ],
     ],
+    'genre' => [
+        'name' => 'Genre|Genres',
+        'actions' => [
+            'add' => 'Ajouter',
+            'delete' => 'Supprimer',
+            'edit' => 'Modifier',
+            'save' => 'Enregistrer',
+        ],
+        'description' => [
+            'all' => 'Tous les genres',
+            'edit' => 'Modifier un genre',
+            'new' => 'Créer un genre',
+        ],
+        'fields' => [
+            'created_at' => 'Création',
+            'title' => 'Titre',
+            'locale' => 'Langue',
+            'updated_at' => 'Mise-à-jour',
+        ],
+        'messages' => [
+            'created' => 'Genre créé.',
+            'deleted' => 'Genre supprimé.',
+            'updated' => 'Genre mis-à-jour.',
+        ],
+    ],
     'option' => [
         'name' => 'Option|Options',
         'about' => [
@@ -91,9 +116,31 @@ return [
             'updated_at' => 'Mise-à-jour',
         ],
         'messages' => [
-            'created' => 'Étiquette créée.',
-            'deleted' => 'Étiquette supprimée.',
-            'updated' => 'Étiquette mise-à-jour.',
+            'created' => 'Article créé.',
+            'deleted' => 'Article supprimé.',
+            'updated' => 'Article mis-à-jour.',
+        ],
+    ],
+    'reading' => [
+        'name' => 'Lecture|Lectures',
+        'actions' => [
+            'add' => 'Ajouter',
+            'delete' => 'Supprimer',
+            'edit' => 'Modifier',
+            'save' => 'Enregistrer',
+        ],
+        'description' => [
+            'all' => 'Toutes les lectures',
+            'edit' => 'Modifier une lecture',
+            'new' => 'Créer une lecture',
+        ],
+        'fields' => [
+            'author' => 'Auteur·e',
+            'comments' => 'Commentaires',
+            'created_at' => 'Création',
+            'finished_at' => 'Terminé',
+            'title' => 'Titre',
+            'updated_at' => 'Mise-à-jour',
         ],
     ],
     'tag' => [

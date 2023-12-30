@@ -10,6 +10,8 @@ use App\Orchid\Screens\OptionsScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\PostEditScreen;
 use App\Orchid\Screens\PostListScreen;
+use App\Orchid\Screens\ReadingEditScreen;
+use App\Orchid\Screens\ReadingListScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\TagEditScreen;
@@ -30,6 +32,14 @@ Route::screen('post/{post?}', PostEditScreen::class)
 
 Route::screen('posts', PostListScreen::class)
     ->name('platform.post.list');
+
+// Readings
+Route::screen('reading/{reading?}', ReadingEditScreen::class)
+    ->name('platform.reading.edit');
+
+Route::screen('readings', ReadingListScreen::class)
+    ->name('platform.reading.list');
+
 
 // Categories
 Route::screen('category/{category?}', CategoryEditScreen::class)
