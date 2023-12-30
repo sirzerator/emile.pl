@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Fields\PaginationField;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class ApiRequest extends FormRequest
@@ -89,7 +89,9 @@ class ApiRequest extends FormRequest
     }
 
     public function getPagination() {
-        return $this->getModel()->getField('pagination', $this->query());
+        $query = $this->query();
+        return $this->getModel()->getField('pagination', $query)
+            ?? new PaginationField($query);
     }
 
     public function rules() {
