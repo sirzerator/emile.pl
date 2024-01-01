@@ -11,7 +11,7 @@
 
 	$: href = reading[`comments_${locale}`] ? `${tl('sidebar', 'readings')}/${reading.id}/${reading.slug}` : '#';
 
-	const formatDate = (date) => dayjs(date).format(t('readings.date_format'));
+	const formatMonth = (date) => dayjs(date).format(t('readings.date_format'));
 </script>
 
 <li class="reading-card">
@@ -30,7 +30,7 @@
 			<div class="extra">
 				<p class="date">
 					{#if reading.finished_at}
-						<span>{t('readings.finished_at')} {formatDate(reading.finished_at)}</span>
+						<span>{t('readings.finished_at')} {formatMonth(reading.finished_at)}</span>
 					{:else if reading.abandoned_at}
 						<span>{t('readings.abandoned')}</span>
 					{:else}

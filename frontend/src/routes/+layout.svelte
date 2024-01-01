@@ -13,6 +13,7 @@
 
 	export const setLocale = (locale) => {
 		Cookies.set('lang', locale, { sameSite: 'strict' });
+		dayjs.locale(locale);
 		if (translationPaths[locale]) {
 			goto(translationPaths[locale], {
 				replaceState: true,

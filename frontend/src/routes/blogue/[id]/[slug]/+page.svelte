@@ -3,7 +3,7 @@
 
 	import { page } from '$app/stores';
 
-	import dayjs from '$lib/dayjs';
+	import { formatDate } from '$lib/dayjs';
 	import { _t } from '$lib/translations';
 
 	export let data: PageData;
@@ -15,8 +15,6 @@
 			t = _t(locale);
 		}
 	});
-
-	const formatDate = (date) => dayjs(date).format('LL');
 </script>
 
 <div class="tokyo_tm_news emilepl__blog__single">

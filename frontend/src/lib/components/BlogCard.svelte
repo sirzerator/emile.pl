@@ -1,5 +1,5 @@
 <script lang="ts">
-	import dayjs from '$lib/dayjs';
+	import { formatDate } from '$lib/dayjs';
 	import type { Post } from '$lib/types';
 
 	export let post: Post;
@@ -9,8 +9,6 @@
 	let href: string;
 
     $: href = `${tl('sidebar', 'blog')}/${post.id}/${post.slug}`
-
-	const formatDate = (date) => dayjs(date).format('LL');
 </script>
 
 <li class="blog-card">
