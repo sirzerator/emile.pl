@@ -4,10 +4,11 @@
 
 	export let post: Post;
 	export let t;
+	export let tl;
 
 	let href: string;
 
-	$: href = `/blogue/${post.id}/${post.slug}`
+    $: href = `${tl('sidebar', 'blog')}/${post.id}/${post.slug}`
 
 	const formatDate = (date) => dayjs(date).format('LL');
 </script>

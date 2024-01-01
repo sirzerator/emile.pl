@@ -1,4 +1,4 @@
-import { parse, serialize } from 'cookie';
+import { parse } from 'cookie';
 import { defaultLocale, supportedLocales } from '$lib/translations';
 
 const getLocaleFromCookie = (header: string): string | null => {

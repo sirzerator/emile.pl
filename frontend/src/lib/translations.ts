@@ -13,6 +13,7 @@ const menus: Record<SupportedLocales, Record<string, MenuDefinition>> = {
 			contact: '/contact',
 			home: '/',
 			projects: '/projets',
+			readings: '/lectures',
 		},
 	},
 	en: {
@@ -22,6 +23,7 @@ const menus: Record<SupportedLocales, Record<string, MenuDefinition>> = {
 			contact: '/contact',
 			home: '/',
 			projects: '/projects',
+			readings: '/readings',
 		},
 	},
 }
@@ -57,10 +59,16 @@ const translations = {
 			actions: {
 				submit: 'Envoyer',
 			},
-            thanks: 'Merci pour votre message! Je vous reviens rapidement.',
+			thanks: 'Merci pour votre message! Je vous reviens rapidement.',
 		},
 		interface: {
 			share: 'Partager',
+		},
+		readings: {
+			currently_reading: 'En cours de lecture',
+			date_format: 'MMMM YYYY',
+			finished_at: 'Terminé en',
+			read_more: 'Lire mes commentaires',
 		},
 		site: {
 			navigation: {
@@ -69,6 +77,7 @@ const translations = {
 				contact: 'Contact',
 				home: 'Accueil',
 				projects: 'Projets',
+				readings: 'Lectures',
 			},
 			slogan: "Le web est à l'image de notre société; il n'en est, en somme, qu'un écho virtuel.",
 			title: 'Échos Virtuels',
@@ -104,10 +113,16 @@ const translations = {
 			actions: {
 				submit: 'Send',
 			},
-            thanks: "Thank you for your message! I'll get back to you quickly.",
+			thanks: "Thank you for your message! I'll get back to you quickly.",
 		},
 		interface: {
 			share: 'Share',
+		},
+		readings: {
+			currently_reading: 'Currently reading',
+			date_format: 'MMMM YYYY',
+			finished_at: 'Finished in',
+			read_more: 'Read my comments',
 		},
 		site: {
 			navigation: {
@@ -116,6 +131,7 @@ const translations = {
 				contact: 'Contact',
 				home: 'Home',
 				projects: 'Projects',
+				readings: 'Readings',
 			},
 			slogan: "The web is a reflection of our society; of which it is, in sum, but a virtual echo.",
 			title: 'Virtual Echoes',
@@ -123,7 +139,9 @@ const translations = {
 	},
 };
 
-type Dig = ((target: Record<string, any>, key: string) => string | null);
+type SimpleRecord<T> = { [key: string]: T };
+interface RecursiveRecord extends SimpleRecord<RecursiveRecord> {}; //eslint-disable-line
+type Dig = ((target: RecursiveRecord, key: string) => string | null);
 const dig: Dig = (target, key) => {
 	const parts = key.split('.');
 

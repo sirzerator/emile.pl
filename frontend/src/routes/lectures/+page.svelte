@@ -3,19 +3,21 @@
 
 	import { page } from '$app/stores';
 
-	import BlogCard from '$lib/components/BlogCard.svelte';
+	import ReadingCard from '$lib/components/ReadingCard.svelte';
 
-	import type { Post } from '$lib/types';
+	import type { Reading } from '$lib/types';
 	import { _t, _tl } from '$lib/translations';
 
 	export let data: PageData;
 
-	let posts: Post[];
+	let locale;
+	let readings: Reading[];
 	let t;
 	let tl;
 
-	page.subscribe(({ data: { locale, posts: postsData } }) => {
-		posts = postsData;
+	page.subscribe(({ data: { locale: l, data } }) => {
+		readings = data;
+		locale = l;
 		if (locale) {
 			t = _t(locale);
 			tl = _tl(locale);
@@ -25,24 +27,24 @@
 
 <svelte:head>
 	<title>
-		{t('site.navigation.blog')} ~ Échos virtuels
+		{t('site.navigation.readings')} ~ Échos virtuels
 	</title>
 </svelte:head>
 
 <main>
-	<div class="tokyo_tm_news emilepl__blog">
+	<div class="tokyo_tm_news emilepl__readings">
 		<div class="tokyo_tm_title">
-			<div class="title_flex">
+			<div>
 				<div class="left">
-					<h1>{t('site.navigation.blog')}</h1>
+					<h1>{t('site.navigation.readings')}</h1>
 				</div>
 			</div>
 		</div>
 
-		{#if posts.length > 0}
+		{#if readings.length > 0}
 			<ul class="tokyo_tm_news_inner">
-				{#each posts as post}
-                    <BlogCard post={post} {t} {tl} />
+				{#each readings as reading}
+					<ReadingCard reading={reading} {t} {tl} {locale} />
 				{/each}
 			</ul>
 		{:else}

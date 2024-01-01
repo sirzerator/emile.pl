@@ -23,6 +23,10 @@ export interface Category extends Localized {
 	title: string;
 }
 
+export interface Genre extends Localized {
+	title: string;
+}
+
 export interface Post extends Localized {
 	id: number;
 	title: string;
@@ -32,6 +36,15 @@ export interface Post extends Localized {
 	published_at: string | null;
 	featured_image_url: string | null;
 	category: Category | null;
+}
+
+export interface Reading extends Localized {
+	id: number;
+	title: string;
+	author: string;
+	genre: Genre;
+	finished_at: string | null;
+	cover_image_url: string | null;
 }
 
 export interface User {

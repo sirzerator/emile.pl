@@ -62,6 +62,34 @@
 	}
 }
 
+.tokyo_tm_news.emilepl__readings {
+	ul li  {
+		.list_inner {
+			height: 250px;
+
+			&.no-link {
+				cursor: initial;
+
+				.image {
+					cursor: initial;
+				}
+
+				.title {
+					cursor: initial;
+				}
+			}
+		}
+
+		.details .date {
+			text-transform: initial;
+		}
+
+		.details {
+			padding: 15px;
+		}
+	}
+}
+
 .tokyo_tm_news.emilepl__blog {
 	float: none;
 	padding-bottom: 55px;
@@ -98,6 +126,10 @@
 
 				.intro {
 					flex-grow: 1;
+				}
+
+				.date {
+					text-transform: initial;
 				}
 			}
 		}

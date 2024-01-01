@@ -1,25 +1,36 @@
 .category {
-  display: inline-block;
-  background-color: rgba(0, 0, 0, 0.04);
-  text-transform: uppercase;
-  padding: 4px 10px;
-  font-weight: 600;
-  font-size: 12px;
-  color: #333;
-  font-family: "Montserrat";
-  letter-spacing: 0px;
+	display: inline-block;
+	background-color: rgba(0, 0, 0, 0.04);
+	text-transform: uppercase;
+	padding: 4px 10px;
+	font-weight: 600;
+	font-size: 12px;
+	color: #333;
+	font-family: "Montserrat";
+	letter-spacing: 0px;
 }
 
 .tag {
-  display: inline-block;
-  background-color: rgba(0, 0, 0, 0.04);
-  text-transform: uppercase;
-  padding: 0 8px;
-  font-weight: 600;
-  font-size: 10px;
-  color: #333;
-  font-family: "Montserrat";
-  letter-spacing: 0px;
-  border-radius: 12px;
-  margin: 0 5px;
+	display: inline-block;
+	background-color: rgba(0, 0, 0, 0.04);
+	text-transform: uppercase;
+	padding: 0 8px;
+	font-weight: 600;
+	font-size: 10px;
+	color: #333;
+	font-family: "Montserrat";
+	letter-spacing: 0px;
+	border-radius: 12px;
+	margin: 0 5px;
+}
+
+.reading-card {
+	> a {
+		display: flex;
+		height: 250px;
+	}
+
+	&__image {
+		max-width: 40%;
+	}
 }

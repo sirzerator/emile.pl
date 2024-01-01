@@ -60,6 +60,13 @@
 					fr: '/a-propos',
 				};
 				break;
+			case '/lectures':
+			case '/readings':
+				translationPaths = {
+					en: '/readings',
+					fr: '/lectures',
+				};
+				break;
 			case '/contact':
 			case '/':
 				translationPaths = {
