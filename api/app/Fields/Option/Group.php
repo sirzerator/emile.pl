@@ -7,16 +7,17 @@ use App\Fields\FilterableField;
 
 class Group extends Field implements FilterableField
 {
-    public ?string $group;
+    protected ?string $group;
+
+    public string $slug = 'group';
 
     public function __construct(array &$data) {
-        $this->group = data_get($data, 'group');
-        unset($data['group']);
+        $this->group = data_get($data, $this->slug);
     }
 
     public function filter($query) {
         if ($this->group !== null) {
-            return $query->where('group', $this->group);
+            return $query->where($this->slug, $this->group);
         }
 
         return $query;

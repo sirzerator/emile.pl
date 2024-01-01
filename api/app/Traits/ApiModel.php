@@ -3,10 +3,10 @@
 namespace App\Traits;
 
 use App\Fields\ComputedField;
-use App\Fields\FilterableField;
 use App\Fields\Field;
+use App\Fields\FilterableField;
+use App\Fields\OrderableField;
 use App\Http\Resources\ApiResource;
-use HaydenPierce\ClassFinder\ClassFinder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -87,6 +87,10 @@ trait ApiModel
 
     public function getItems(): array {
         return $this->items;
+    }
+
+    public function getOrderableFields(): array {
+        return array_filter($this->fields, fn($f) => in_array(OrderableField::class, class_implements($f)));
     }
 
     public function getResourceInstance($includedFields = [], $excludedFields = [], $pivot = null) {

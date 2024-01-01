@@ -10,16 +10,17 @@ use Carbon\Carbon;
 
 class Published extends Field implements FilterableField, ComputedField
 {
-    public ?bool $published;
+    protected ?bool $published;
+
+    public string $slug = 'published';
 
     public function __construct(array &$data) {
-        if (!isset($data['published'])) {
+        if (!isset($data[$this->slug])) {
             $this->published = null;
             return;
         }
 
-        $this->published = filter_var(data_get($data, 'published'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
-        unset($data['published']);
+        $this->published = filter_var(data_get($data, $this->slug), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
     }
 
     public function filter($query) {

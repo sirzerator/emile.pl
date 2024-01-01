@@ -21,7 +21,6 @@ class Repository
 
         // TODO
         // Filters
-        $parameters = $request->query();
         $filterableFields = $request->getModel()->getFilterableFields();
 
         $queryParams = $request->query();
@@ -30,6 +29,10 @@ class Repository
             $query = $filter->filter($query);
         }
         // Sorts
+        $orders = $request->getOrders();
+        foreach ($orders as $order) {
+            $query = $order($query);
+        }
         // Withs
 
         $total = $query->count();
@@ -43,7 +46,6 @@ class Repository
 
         // TODO
         // Filters
-        $parameters = $request->query();
         $filterableFields = $request->getModel()->getFilterableFields();
 
         $queryParams = $request->query();

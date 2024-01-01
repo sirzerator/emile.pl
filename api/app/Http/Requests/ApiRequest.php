@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Fields\NumberField;
+use App\Fields\OrderableField;
 use App\Fields\PaginationField;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
@@ -86,6 +88,37 @@ class ApiRequest extends FormRequest
         }
 
         return self::$model = new ("App\\Models\\$modelName");
+    }
+
+    public function getOrders() {
+        $queryParams = $this->query();
+        $orders = array_filter(explode(',', data_get($queryParams, 'order', '')), 'strlen');
+
+        $model = $this->getModel();
+
+        if (empty($orders)) {
+            return [
+                fn ($q) => (new NumberField($model->getKeyName(), $queryParams))->order($q, 'ASC'),
+            ];
+        }
+
+        $orders = array_map(function ($order) use ($model, $queryParams) {
+            $direction = 'ASC';
+            if ($order[0] === '-') {
+                $direction = 'DESC';
+                $order = substr($order, 1);
+            }
+
+            $field = $model->getField($order, $queryParams) ?? new NumberField($order, $queryParams);
+
+            if (!in_array(OrderableField::class, class_implements($field))) {
+                $field = new NumberField($order, $queryParams);
+            }
+
+            return fn ($q) => $field->order($q, $direction);
+        }, $orders);
+
+        return $orders;
     }
 
     public function getPagination() {

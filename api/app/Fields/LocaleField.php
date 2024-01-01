@@ -1,11 +1,8 @@
 <?php
 
-namespace App\Fields\Option;
+namespace App\Fields;
 
-use App\Fields\Field;
-use App\Fields\FilterableField;
-
-class Locale extends Field implements FilterableField
+abstract class LocaleField implements FilterableField
 {
     protected ?string $locale;
 

@@ -7,16 +7,17 @@ use App\Fields\FilterableField;
 
 class PublishedAt extends Field implements FilterableField
 {
-    public ?string $publishedAt;
+    protected ?string $publishedAt;
+
+    public string $slug = 'published_at';
 
     public function __construct(array &$data) {
-        $this->publishedAt = data_get($data, 'published_at');
-        unset($data['published_at']);
+        $this->publishedAt = data_get($data, $this->slug);
     }
 
     public function filter($query) {
         if ($this->publishedAt !== null) {
-            return $query->where('published_at', $this->publishedAt);
+            return $query->where($this->slug, $this->publishedAt);
         }
 
         return $query;

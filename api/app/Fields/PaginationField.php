@@ -21,9 +21,6 @@ class PaginationField extends Field implements FilterableField
         if (!empty($page) && is_numeric($page)) {
             $this->page = (int) $page;
         }
-
-        unset($data['page']);
-        unset($data['per_page']);
     }
 
     public function filter($query) {
