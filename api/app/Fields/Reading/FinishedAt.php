@@ -24,4 +24,8 @@ class FinishedAt extends DateField implements FilterableField
 
         return $query;
     }
+
+    public function order($query, $direction = 'ASC') {
+        return $query->orderByRaw("ISNULL($this->slug) DESC, $this->slug $direction");
+    }
 }
