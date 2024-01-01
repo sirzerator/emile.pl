@@ -29,7 +29,7 @@ class ReadingTableLayout extends Table
                 ->filter(Input::make())
                 ->sort()
                 ->render(function (Reading $reading) {
-                    return Link::make($reading->title)->route('platform.reading.edit', $reading);
+                    return Link::make($reading->author)->route('platform.reading.edit', $reading);
                 }),
 
             TD::make('finished_at', __('models.reading.fields.finished_at'))->sort(),
