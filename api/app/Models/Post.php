@@ -44,7 +44,6 @@ class Post extends Model
         'intro',
         'locale',
         'published_at',
-        'slug',
         'title',
     ];
 
