@@ -4,9 +4,7 @@ namespace App\Orchid\Screens;
 
 use App\Orchid\Layouts\ContactTableLayout;
 use App\Models\Contact;
-use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
-use Orchid\Support\Color;
 
 class ContactListScreen extends Screen
 {
