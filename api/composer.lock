@@ -2358,16 +2358,16 @@
         },
         {
             "name": "orchid/platform",
-            "version": "13.7.0",
+            "version": "13.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchidsoftware/platform.git",
-                "reference": "b875ac03ff9084fb485f692f14c4fba1a5412c82"
+                "reference": "a3417f10915f37f84e27c3f9a84a379e7c6052b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchidsoftware/platform/zipball/b875ac03ff9084fb485f692f14c4fba1a5412c82",
-                "reference": "b875ac03ff9084fb485f692f14c4fba1a5412c82",
+                "url": "https://api.github.com/repos/orchidsoftware/platform/zipball/a3417f10915f37f84e27c3f9a84a379e7c6052b3",
+                "reference": "a3417f10915f37f84e27c3f9a84a379e7c6052b3",
                 "shasum": ""
             },
             "require": {
@@ -2393,7 +2393,7 @@
                 "phpunit/php-code-coverage": "^9.0",
                 "phpunit/phpunit": "^9.0",
                 "sti3bas/laravel-scout-array-driver": "^3.2",
-                "vimeo/psalm": "^4.3"
+                "vimeo/psalm": "^4.3 || ^5.0"
             },
             "suggest": {
                 "orchid/crud": "Automated CRUD based on your files resources.",
@@ -2463,7 +2463,7 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2022-10-27T17:16:21+00:00"
+            "time": "2023-01-13T01:53:11+00:00"
         },
         {
             "name": "phpoption/phpoption",
