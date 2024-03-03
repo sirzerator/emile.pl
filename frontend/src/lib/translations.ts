@@ -1,11 +1,14 @@
 export const defaultLocale = 'en';
 export const fallbackLocale = 'fr';
 
-type SupportedLocales = 'fr' | 'en';
-export const supportedLocales: SupportedLocales[] = ['fr', 'en'];
+export const supportedLocales = ['fr', 'en'] as const;
+export type SupportedLocale = (typeof supportedLocales)[number];
+export function isSupportedLocale(arg: string): arg is SupportedLocale {
+	return supportedLocales.includes(arg as SupportedLocale);
+}
 
 type MenuDefinition = Record<string, string>;
-const menus: Record<SupportedLocales, Record<string, MenuDefinition>> = {
+const menus: Record<SupportedLocale, Record<string, MenuDefinition>> = {
 	fr: {
 		sidebar: {
 			about: '/a-propos',

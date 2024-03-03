@@ -1,11 +1,11 @@
 import { parse } from 'cookie';
-import { defaultLocale, supportedLocales } from '$lib/translations';
+import { defaultLocale, isSupportedLocale, supportedLocales } from '$lib/translations';
 
 const getLocaleFromCookie = (header: string): string | null => {
 	const cookie = parse(header)
 
 	if (typeof cookie.lang === 'string') {
-		if (supportedLocales.includes(cookie.lang)) {
+		if (isSupportedLocale(cookie.lang) && supportedLocales.includes(cookie.lang)) {
 			return cookie.lang;
 		}
 	}
@@ -18,7 +18,7 @@ const getLocaleFromHeader = (header: string): string | null => {
 		return null;
 	}
 
-	const acceptLanguages =  header
+	const acceptLanguages = header
 		.split(',')
 		.map((langDef) => langDef.split(';'))
 		.sort((a, b) => (a[1] || 'q=1') < (b[1] || 'q=1') ? 1 : -1)
@@ -31,10 +31,10 @@ const getLocaleFromHeader = (header: string): string | null => {
 			};
 		});
 
-	for (let i = 0; i < 2; i++) {
+	for (let i = 0; i < acceptLanguages.length; i++) {
 		const { locale } = acceptLanguages[i];
 
-		if (supportedLocales.includes(locale)) {
+		if (isSupportedLocale(locale) && supportedLocales.includes(locale)) {
 			return locale;
 		}
 	}
