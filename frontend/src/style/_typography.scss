@@ -10,17 +10,18 @@ body {
 }
 
 .typography {
-    > * + * {
-        margin-block-start: 1.5rem;
-    }
+	> * + * {
+		margin-block-start: 1.5rem;
+		margin-block-end: 1.5rem;
+	}
 
-    h2 {
-        font-size: 20px;
-    }
+	h2 {
+		font-size: 20px;
+	}
 
-    h3 {
-        font-size: 17px;
-    }
+	h3 {
+		font-size: 17px;
+	}
 
 	p {
 		color: var(--text-color);
@@ -63,6 +64,17 @@ body {
 			display: block;
 			background: url('/svg/quote.svg') center left no-repeat;
 			background-size: 40px 40px;
+		}
+	}
+
+	ul {
+		padding: 0 0 0 40px;
+		margin-left: 0;
+		margin-block-start: 1.5rem;
+		margin-block-end: 1.5rem;
+
+		li {
+			color: var(--text-color);
 		}
 	}
 }

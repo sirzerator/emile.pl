@@ -158,6 +158,17 @@
 
 		padding-bottom: 45px;
 	}
+
+	ul {
+		list-style-type: initial;
+
+		li {
+			margin: initial;
+			float: none;
+			width: auto;
+			padding-left: initial;
+		}
+	}
 }
 
 .tokyo_tm_about {

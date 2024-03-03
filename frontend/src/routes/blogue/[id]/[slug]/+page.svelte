@@ -46,9 +46,9 @@
 		</div>
 
 		<div class="main_content typography">
-            <p class="bigger">{data.intro}</p>
+			<p class="bigger">{data.intro}</p>
 
-            {@html data.content}
+			{@html data.content}
 		</div>
 	</div>
 </div>
