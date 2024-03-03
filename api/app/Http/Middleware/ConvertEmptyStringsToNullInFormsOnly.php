@@ -10,7 +10,9 @@ class ConvertEmptyStringsToNullInFormsOnly extends TransformsRequest
     protected static $skipCallbacks = [];
 
     public function handle($request, Closure $next) {
-        if ($request->isJson()) {
+        $segments = $request->segments();
+        $lastSegment = $segments[count($segments) - 1];
+        if ($request->isJson() && $lastSegment !== 'relation') {
             return $next($request);
         }
 
