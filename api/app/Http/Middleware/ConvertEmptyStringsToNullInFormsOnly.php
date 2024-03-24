@@ -11,7 +11,11 @@ class ConvertEmptyStringsToNullInFormsOnly extends TransformsRequest
 
     public function handle($request, Closure $next) {
         $segments = $request->segments();
-        $lastSegment = $segments[count($segments) - 1];
+
+		$lastSegment = '';
+		if (count($segments) > 1) {
+			$lastSegment = $segments[count($segments) - 1];
+		}
         if ($request->isJson() && $lastSegment !== 'relation') {
             return $next($request);
         }
