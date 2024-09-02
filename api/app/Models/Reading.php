@@ -36,14 +36,20 @@ class Reading extends Model
         'cover_image_url',
         'finished_at',
         'genre_id',
+        'post_id',
         'title',
     ];
 
     protected array $items = [
         'genre',
+        'post',
     ];
 
     public function genre() {
         return $this->belongsTo(Genre::class);
+    }
+
+    public function post() {
+        return $this->belongsTo(Post::class);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Orchid\Screens;
 
 use App\Http\Requests\Reading\StoreRequest;
 use App\Models\Genre;
+use App\Models\Post;
 use App\Models\Reading;
 use App\Orchid\Layouts\Modals\DeleteConfirmationModal;
 use Orchid\Screen\Actions\Button;
@@ -72,7 +73,8 @@ class ReadingEditScreen extends Screen
                 ]),
 
                 Layout::rows([
-                    Relation::make('reading.genre')
+                    Relation::make('reading.genre_id')
+                        ->allowEmpty()
                         ->fromModel(Genre::class, 'title')
                         ->disabled(!$this->reading->id)
                         ->applyScope('whereLocale', config('app.locale'))
@@ -80,6 +82,12 @@ class ReadingEditScreen extends Screen
 
                     DateTimer::make('reading.finished_at')
                         ->title(__('models.reading.fields.finished_at')),
+
+                    Relation::make('reading.post_id')
+                        ->allowEmpty()
+                        ->fromModel(Post::class, 'title')
+                        ->applyScope('isBookReview')
+                        ->title(__('models.reading.fields.post')),
                 ]),
             ]),
         ];

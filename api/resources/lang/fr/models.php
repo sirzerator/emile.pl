@@ -139,6 +139,7 @@ return [
             'comments' => 'Commentaires',
             'created_at' => 'Création',
             'finished_at' => 'Terminé',
+            'post' => 'Critique',
             'title' => 'Titre',
             'updated_at' => 'Mise-à-jour',
         ],

@@ -88,6 +88,10 @@ class Post extends Model
                      ->whereNotId($id);
     }
 
+    public function scopeIsBookReview(Builder $query) {
+        return $query->whereHas('tags', fn ($q) => $q->whereIn('tags.id', Tag::isBookReview()->pluck('id')));
+    }
+
     public function scopeNotTranslated(Builder $query) {
         return $query->whereDoesntHave('translations');
     }

@@ -37,4 +37,12 @@ class Tag extends Model
     public function posts() {
         return $this->hasMany(Post::class);
     }
+
+    public function scopeIsBookReview() {
+        return $this->where(
+            fn ($f) => $f
+                ->where('slug', 'critique-litteraire')
+                ->orWhere('slug', 'book-review')
+        );
+    }
 }
