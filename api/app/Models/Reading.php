@@ -33,8 +33,6 @@ class Reading extends Model
 
     protected $fillable = [
         'author',
-        'comments_en',
-        'comments_fr',
         'cover_image_url',
         'finished_at',
         'genre_id',

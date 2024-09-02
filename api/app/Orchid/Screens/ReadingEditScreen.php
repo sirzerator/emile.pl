@@ -86,19 +86,6 @@ class ReadingEditScreen extends Screen
                         ->title(__('models.reading.fields.finished_at')),
                 ]),
             ]),
-
-            Layout::columns([
-                Layout::rows([
-                    TextArea::make('reading.comments_fr')
-                        ->title(__('models.reading.fields.comments') . ' (FR)')
-                        ->rows(5),
-                ]),
-                Layout::rows([
-                    TextArea::make('reading.comments_en')
-                        ->title(__('models.reading.fields.comments') . ' (EN)')
-                        ->rows(5),
-                ]),
-            ]),
         ];
 
         if ($this->reading->exists) {
