@@ -159,7 +159,7 @@ class ApiRequest extends FormRequest
                     }
                     break;
                 case 1:
-                    $acc[$t[0]] = true;
+                    $acc[$t[0]] = ['*' => true];
                     break;
                 default:
                     $acc[] = $t;
