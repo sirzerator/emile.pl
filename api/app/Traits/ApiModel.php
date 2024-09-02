@@ -52,17 +52,17 @@ trait ApiModel
     }
 
     public function getField(string $slug, $data): ?Field {
-        $filter = data_get($this->fields, $slug);
+        $field = data_get($this->fields, $slug);
 
-        if (!$filter) {
+        if (!$field) {
             return null;
         }
 
-        if (!is_a($filter, Field::class, true)) {
+        if (!is_a($field, Field::class, true)) {
             return abort(500, 'Fields must extend Field');
         }
 
-        return new $filter($data);
+        return new $field($data);
     }
 
     public function getComputedFields(): array {
