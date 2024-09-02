@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Fields\ComputedField;
 use App\Models\Pivots\ApiPivot;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;

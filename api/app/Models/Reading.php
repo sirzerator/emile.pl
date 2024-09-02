@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Resources\ReadingResource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Filters\Filterable;
@@ -51,5 +52,9 @@ class Reading extends Model
 
     public function post() {
         return $this->belongsTo(Post::class);
+    }
+
+    public function getResourceInstance($includedFields = [], $excludedFields = [], $pivot = null) {
+        return new ReadingResource($this, $includedFields, $excludedFields, $pivot);
     }
 }
