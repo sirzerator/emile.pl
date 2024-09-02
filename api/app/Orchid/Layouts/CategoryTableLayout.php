@@ -5,6 +5,8 @@ namespace App\Orchid\Layouts;
 use App\Models\Category;
 use App\Models\Locale;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
@@ -14,13 +16,19 @@ class CategoryTableLayout extends Table
 
     protected function columns(): iterable {
         return [
+            TD::make('id', 'ID')->sort(),
+
             TD::make('title', __('models.category.fields.title'))
+                ->filter(Input::make())
+                ->sort()
                 ->render(function (Category $category) {
                     return Link::make($category->title)
                         ->route('platform.category.edit', $category);
                 }),
 
             TD::make('locale', __('models.category.fields.locale'))
+                ->filter(Select::make('genre.locale')->options(Locale::asOptions(withNull: true)))
+                ->sort()
                 ->render(function (Category $category) {
                     return Locale::title($category->locale);
                 })

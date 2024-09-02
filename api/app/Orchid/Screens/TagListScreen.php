@@ -6,13 +6,12 @@ use App\Orchid\Layouts\TagTableLayout;
 use App\Models\Tag;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
-use Orchid\Support\Color;
 
 class TagListScreen extends Screen
 {
     public function query(): iterable {
         return [
-            'tags' => Tag::paginate(),
+            'tags' => Tag::filters()->defaultSort('title', 'asc')->paginate(),
         ];
     }
 

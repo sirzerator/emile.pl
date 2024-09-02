@@ -6,13 +6,12 @@ use App\Orchid\Layouts\CategoryTableLayout;
 use App\Models\Category;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
-use Orchid\Support\Color;
 
 class CategoryListScreen extends Screen
 {
     public function query(): iterable {
         return [
-            'categories' => Category::paginate(),
+            'categories' => Category::filters()->defaultSort('title', 'asc')->paginate(),
         ];
     }
 
