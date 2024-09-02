@@ -40,8 +40,8 @@ trait ApiModel
 
     public function __call($method, $parameters) {
         $matches = [];
-        if (preg_match('/where(Not)(.+)/', $method, $matches)) {
-            return parent::__call('where', [Str::camel($matches[2]), '!=', $parameters[0]]);
+        if (preg_match('/whereNot(.+)/', $method, $matches)) {
+            return $this->where(Str::camel($matches[1]), '!=', $parameters[0]);
         }
 
         return parent::__call($method, $parameters);

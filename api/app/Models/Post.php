@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Builders\ApiBuilder as Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Filters\Filterable;
@@ -51,6 +52,10 @@ class Post extends Model
         'category',
     ];
 
+    public function newEloquentBuilder($query) {
+        return new Builder($query);
+    }
+
     public function category() {
         return $this->belongsTo(Category::class);
     }
@@ -75,5 +80,15 @@ class Post extends Model
                     ->using(Pivots\PostTranslation::class)
                     ->withPivot('post_is_source')
                     ->withTimestamps();
+    }
+
+    public function scopeWithAvailableTranslations(Builder $query, $locale, $id) {
+        return $query->whereNotLocale($locale)
+                     ->notTranslated()
+                     ->whereNotId($id);
+    }
+
+    public function scopeNotTranslated(Builder $query) {
+        return $query->whereDoesntHave('translations');
     }
 }

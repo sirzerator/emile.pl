@@ -81,6 +81,7 @@ class PostEditScreen extends Screen
 
                 Layout::rows([
                     Relation::make('post.category_id')
+                        ->allowEmpty()
                         ->fromModel(Category::class, 'title')
                         ->disabled(!$this->post->id)
                         ->applyScope('whereLocale', $this->post ? $this->post->locale : '')
@@ -165,7 +166,7 @@ class PostEditScreen extends Screen
                     ->allowEmpty()
                     ->fromModel(Post::class, 'title')
                     ->multiple()
-                    ->applyScope('whereNotLocale', $this->post->locale)
+                    ->applyScope('withAvailableTranslations', $this->post->locale, $this->post->id)
                     ->title(__('models.post.fields.translations')),
 
                 CheckBox::make('post.translation_is_source')
@@ -180,7 +181,7 @@ class PostEditScreen extends Screen
             Relation::make('post.translation')
                 ->allowEmpty()
                 ->fromModel(Post::class, 'title')
-                ->applyScope('whereNotLocale', $this->post->locale)
+                ->applyScope('withAvailableTranslations', $this->post->locale, $this->post->id)
                 ->title(__('models.post.fields.translation')),
 
             CheckBox::make('post.translation_is_source')
