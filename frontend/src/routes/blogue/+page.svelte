@@ -1,14 +1,10 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-
 	import { page } from '$app/stores';
 
 	import BlogCard from '$lib/components/BlogCard.svelte';
 
 	import type { Post } from '$lib/types';
 	import { _t, _tl } from '$lib/translations';
-
-	export let data: PageData;
 
 	let posts: Post[];
 	let t;

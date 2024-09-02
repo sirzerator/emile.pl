@@ -28,6 +28,7 @@
 		}
 	};
 
+	let locale;
 	let t;
 	let tl;
 	let translationPaths: Record<supportedLocales, string> = {
@@ -37,14 +38,15 @@
 
 	page.subscribe(({ url: { pathname } }) => currentPath = pathname );
 
-	page.subscribe(({ url: { pathname }, data: { translations, locale } }) => {
-		if (locale) {
-			t = _t(locale);
-			tl = _tl(locale);
-            dayjs.locale(locale);
+	page.subscribe(({ url: { pathname }, data: { translations, locale: l } }) => {
+		if (l) {
+			t = _t(l);
+			tl = _tl(l);
+            dayjs.locale(l);
 		}
 
 		translationPaths = {};
+		locale = l;
 
 		switch (pathname) {
 			case '/blog':
