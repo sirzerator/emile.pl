@@ -41,8 +41,8 @@
 				{post.intro}
 			</div>
 
-			<div class="tokyo_tm_read_more">
-				<a><span>{t('blog.read_more')}</span></a>
+			<div class="read-more">
+				<span><span>{t('blog.read_more')}</span></span>
 			</div>
 		</div>
 	</a>

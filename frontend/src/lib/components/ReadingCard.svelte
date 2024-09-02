@@ -52,7 +52,7 @@
 
 			{#if reading[`comments_${locale}`]}
 			<div class="tokyo_tm_read_more">
-				<a><span>{t('readings.read_more')}</span></a>
+					<span><span>{t('readings.read_more')}</span></span>
 			</div>
 			{/if}
 		</div>
