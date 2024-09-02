@@ -1,0 +1,9 @@
+services:
+  db:
+    environment:
+      MARIADB_DATABASE: laravel
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 1
+    image: mariadb
+    ports:
+      - ${MARIADB_PORT}:3306
+    restart: always

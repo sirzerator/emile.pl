@@ -5,6 +5,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev:backend": "cd api && php artisan serve",
+    "dev:database": "docker compose up",
     "dev:frontend": "wait-on http://localhost:8000/api/ && npm --prefix frontend run dev",
     "dev": "cross-env FORCE_COLOR=1 npm-run-all -l -p dev:*"
   },
