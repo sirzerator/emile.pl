@@ -27,8 +27,12 @@ class PlatformProvider extends OrchidServiceProvider
 
             Menu::make(_c('models.tag.name', 2))
                 ->icon('tag')
-                ->divider(true)
                 ->route('platform.tag.list'),
+
+            Menu::make(_c('models.genre.name', 2))
+                ->icon('directions')
+                ->divider(true)
+                ->route('platform.genre.list'),
 
             Menu::make(_c('models.contact.name', 2))
                 ->icon('bubble')

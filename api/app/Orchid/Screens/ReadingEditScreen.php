@@ -8,14 +8,10 @@ use App\Models\Reading;
 use App\Orchid\Layouts\Modals\DeleteConfirmationModal;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\ModalToggle;
-use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\DateTimer;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Picture;
-use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Relation;
-use Orchid\Screen\Fields\Select;
-use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
 use Orchid\Support\Facades\Alert;
@@ -76,10 +72,10 @@ class ReadingEditScreen extends Screen
                 ]),
 
                 Layout::rows([
-                    Relation::make('reading.genre_id')
+                    Relation::make('reading.genre')
                         ->fromModel(Genre::class, 'title')
                         ->disabled(!$this->reading->id)
-                        ->applyScope('whereLocale', config('locale'))
+                        ->applyScope('whereLocale', config('app.locale'))
                         ->title(_c('models.genre.name', 1)),
 
                     DateTimer::make('reading.finished_at')

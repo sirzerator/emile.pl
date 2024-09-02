@@ -6,6 +6,8 @@ use App\Orchid\Screens\CategoryEditScreen;
 use App\Orchid\Screens\CategoryListScreen;
 use App\Orchid\Screens\ContactEditScreen;
 use App\Orchid\Screens\ContactListScreen;
+use App\Orchid\Screens\GenreEditScreen;
+use App\Orchid\Screens\GenreListScreen;
 use App\Orchid\Screens\OptionsScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\PostEditScreen;
@@ -54,6 +56,13 @@ Route::screen('tag/{tag?}', TagEditScreen::class)
 
 Route::screen('tags', TagListScreen::class)
     ->name('platform.tag.list');
+
+// Genres
+Route::screen('genre/{genre?}', GenreEditScreen::class)
+    ->name('platform.genre.edit');
+
+Route::screen('genres', GenreListScreen::class)
+    ->name('platform.genre.list');
 
 // Contact
 Route::screen('contacts', ContactListScreen::class)
