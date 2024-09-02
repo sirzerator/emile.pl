@@ -71,7 +71,7 @@ const translations = {
 			currently_reading: 'En cours de lecture',
 			date_format: 'MMMM YYYY',
 			finished_at: 'Terminé en',
-			read_more: 'Lire mes commentaires',
+			read_more: 'Lire ma critique',
 		},
 		site: {
 			navigation: {
@@ -125,7 +125,7 @@ const translations = {
 			currently_reading: 'Currently reading',
 			date_format: 'MMMM YYYY',
 			finished_at: 'Finished in',
-			read_more: 'Read my comments',
+			read_more: 'Read my review',
 		},
 		site: {
 			navigation: {

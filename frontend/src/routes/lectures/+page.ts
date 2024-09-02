@@ -9,7 +9,7 @@ export const load: PageLoad = async ({ fetch, parent }) => {
 	const query = qs.stringify({
 		locale: locale || defaultLocale,
 		order: '-finished_at',
-		fields: 'title,slug,author,cover_image_url,finished_at,comments_fr,comments_en,genre.title',
+		fields: 'title,slug,author,cover_image_url,finished_at,genre.title,post.title,post.slug',
 	});
 
 	const res = await fetch(`/api/readings?${query}`);

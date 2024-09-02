@@ -2,20 +2,19 @@
 	import dayjs from '$lib/dayjs';
 	import type { Reading } from '$lib/types';
 
-	export let locale;
 	export let reading: Reading;
 	export let t;
 	export let tl;
 
 	let href: string;
 
-	$: href = reading[`comments_${locale}`] ? `${tl('sidebar', 'readings')}/${reading.id}/${reading.slug}` : '#';
+	$: href = reading.post ? `${tl('sidebar', 'blog')}/${reading.post.id}/${reading.post.slug}` : '';
 
 	const formatMonth = (date) => dayjs(date).format(t('readings.date_format'));
 </script>
 
 <li class="reading-card">
-	<a class="list_inner" {href} class:no-link={!reading[`comments_${locale}`]}>
+	<a class="list_inner" {href} class:no-link={!reading.post}>
 		{#if reading.cover_image_url}
 			<div class="reading-card__image image">
 				<img src={reading.cover_image_url} alt="" />
@@ -42,19 +41,23 @@
 				{/if}
 			</div>
 
-			<h3 class="title">
-				{reading.title}
-			</h3>
+			<div class="reading-card__details__content">
+				<div>
+					<h3 class="title">
+						{reading.title}
+					</h3>
 
-			<div class="author">
-				{reading.author}
-			</div>
+					<div class="author">
+						{reading.author}
+					</div>
+				</div>
 
-			{#if reading[`comments_${locale}`]}
-			<div class="tokyo_tm_read_more">
+				{#if reading.post}
+				<div class="read-more">
 					<span><span>{t('readings.read_more')}</span></span>
+				</div>
+				{/if}
 			</div>
-			{/if}
 		</div>
 	</a>
 </li>

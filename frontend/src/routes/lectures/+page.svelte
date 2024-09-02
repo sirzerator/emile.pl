@@ -1,14 +1,10 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-
 	import { page } from '$app/stores';
 
 	import ReadingCard from '$lib/components/ReadingCard.svelte';
 
 	import type { Reading } from '$lib/types';
 	import { _t, _tl } from '$lib/translations';
-
-	export let data: PageData;
 
 	let locale;
 	let readings: Reading[];
@@ -44,7 +40,7 @@
 		{#if readings.length > 0}
 			<ul class="tokyo_tm_news_inner">
 				{#each readings as reading}
-					<ReadingCard reading={reading} {t} {tl} {locale} />
+					<ReadingCard reading={reading} {t} {tl} />
 				{/each}
 			</ul>
 		{:else}
