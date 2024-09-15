@@ -14,7 +14,7 @@ class Reading extends Model
 
     protected static function booted(): void {
         static::creating(function (Reading $reading) {
-            $reading->slug = preg_replace('/\s+/', '-', mb_strtolower(strip_accents($reading->title)));
+            $reading->slug = preg_replace('/[^0-9a-zA-Z_-]/', '-', mb_strtolower(strip_accents($reading->title)));
         });
     }
 

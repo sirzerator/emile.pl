@@ -14,7 +14,7 @@ class Post extends Model
 
     protected static function booted(): void {
         static::creating(function (Post $post) {
-            $post->slug = preg_replace('/[^a-zA-Z_-]/', '-', mb_strtolower(strip_accents($post->title)));
+            $post->slug = preg_replace('/[^0-9a-zA-Z_-]/', '-', mb_strtolower(strip_accents($post->title)));
         });
     }
 

@@ -12,7 +12,7 @@ class Category extends Model
 
     protected static function booted(): void {
         static::creating(function (Category $category) {
-            $category->slug = preg_replace('/\s+/', '-', mb_strtolower(strip_accents($category->title)));
+            $category->slug = preg_replace('/[^0-9a-zA-Z_-]/', '-', mb_strtolower(strip_accents($category->title)));
         });
     }
 
