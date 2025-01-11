@@ -66,6 +66,9 @@ class ReadingEditScreen extends Screen
                     Input::make('reading.title')
                         ->required()
                         ->title(__('models.reading.fields.title')),
+                    Input::make('reading.slug')
+                        ->title(__('models.reading.fields.slug'))
+                        ->disabled(),
                     Input::make('reading.author')
                         ->required()
                         ->title(__('models.reading.fields.author')),
