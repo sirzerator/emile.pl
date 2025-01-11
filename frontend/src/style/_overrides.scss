@@ -1,6 +1,12 @@
-.tokyo_tm_section .container {
-	min-height: 100%;
-	height: auto;
+.tokyo_tm_section {
+  position: initial;
+
+  margin-left: 0;
+
+  .container {
+	  min-height: 100%;
+	  height: auto;
+  }
 }
 
 .tokyo_tm_home {
@@ -54,13 +60,25 @@
 
 .tokyo_tm_all_wrap {
 	float: none;
+	display: flex;
 
-	.rightpart_in {
-		float: none;
+	.rightpart {
+		padding-left: 0;
+
+		&_in {
+			float: none;
+		}
 	}
 
 	.leftpart {
 		padding: 0 102px;
+		flex: 0 0 450px;
+		position: initial;
+
+		&_inner {
+			width: 246px;
+			position: fixed;
+		}
 
 		.menu {
 			a:hover, a.active {
