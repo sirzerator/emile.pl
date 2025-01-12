@@ -103,11 +103,13 @@ class ReadingEditScreen extends Screen
     }
 
     public function storeOrUpdate(Reading $reading, StoreRequest $request) {
-        $data = $request->get('reading');
+        $reading->fill($request->get('reading'))->save();
 
-        $reading->fill($data)->save();
-
-        Alert::info('You have successfully created a reading.');
+        if ($reading->wasRecentlyCreated) {
+            Alert::info(__('models.reading.messages.created'));
+        } else {
+            Alert::info(__('models.reading.messages.updated'));
+        }
 
         return redirect()->route('platform.reading.list');
     }
@@ -115,7 +117,7 @@ class ReadingEditScreen extends Screen
     public function remove(Reading $reading) {
         $reading->delete();
 
-        Alert::info('You have successfully deleted the reading.');
+        Alert::info(__('models.reading.messages.deleted'));
 
         return redirect()->route('platform.reading.list');
     }

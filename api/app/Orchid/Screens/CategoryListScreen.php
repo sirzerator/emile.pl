@@ -25,7 +25,7 @@ class CategoryListScreen extends Screen
 
     public function commandBar(): iterable {
         return [
-            Link::make(_('models.category.actions.add'))
+            Link::make(__('models.category.actions.add'))
                 ->icon('plus')
                 ->route('platform.category.edit'),
         ];

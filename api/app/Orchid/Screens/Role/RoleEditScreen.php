@@ -30,8 +30,7 @@ class RoleEditScreen extends Screen
      *
      * @return array
      */
-    public function query(Role $role): iterable
-    {
+    public function query(Role $role): iterable {
         return [
             'role'       => $role,
             'permission' => $role->getStatusPermission(),
@@ -43,8 +42,7 @@ class RoleEditScreen extends Screen
      *
      * @return string|null
      */
-    public function name(): ?string
-    {
+    public function name(): ?string {
         return 'Manage roles';
     }
 
@@ -53,16 +51,14 @@ class RoleEditScreen extends Screen
      *
      * @return string|null
      */
-    public function description(): ?string
-    {
+    public function description(): ?string {
         return 'Access rights';
     }
 
     /**
      * @return iterable|null
      */
-    public function permission(): ?iterable
-    {
+    public function permission(): ?iterable {
         return [
             'platform.systems.roles',
         ];
@@ -73,8 +69,7 @@ class RoleEditScreen extends Screen
      *
      * @return Action[]
      */
-    public function commandBar(): iterable
-    {
+    public function commandBar(): iterable {
         return [
             Button::make(__('Remove'))
                 ->type(Color::DANGER())
@@ -101,8 +96,7 @@ class RoleEditScreen extends Screen
      *
      * @return string[]|\Orchid\Screen\Layout[]
      */
-    public function layout(): iterable
-    {
+    public function layout(): iterable {
         return [
             Layout::block([
                 RoleEditLayout::class,
@@ -124,8 +118,7 @@ class RoleEditScreen extends Screen
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save(Request $request, Role $role)
-    {
+    public function save(Request $request, Role $role) {
         $request->validate([
             'role.slug' => [
                 'required',
@@ -154,8 +147,7 @@ class RoleEditScreen extends Screen
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function remove(Role $role)
-    {
+    public function remove(Role $role) {
         $role->delete();
 
         Toast::info(__('Role was removed'));

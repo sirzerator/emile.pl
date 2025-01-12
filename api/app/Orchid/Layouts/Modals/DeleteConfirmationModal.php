@@ -16,7 +16,7 @@ class DeleteConfirmationModal
 			]),
 		])
 			->title(__('Please confirm deletion'))
-			->applyButton('Yes')
-			->closeButton('Cancel');
+			->applyButton(__('ui.modal.yes'))
+			->closeButton(__('ui.modal.cancel'));
 	}
 }

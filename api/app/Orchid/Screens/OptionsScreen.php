@@ -160,7 +160,7 @@ class OptionsScreen extends Screen
             ], $option);
         }
 
-        Alert::info('Successfully saved the site options.');
+        Alert::info(__('models.option.messages.updated'));
 
         return redirect()->route('platform.options.edit');
     }

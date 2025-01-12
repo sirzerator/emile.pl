@@ -79,11 +79,13 @@ class TagEditScreen extends Screen
     }
 
     public function storeOrUpdate(Tag $tag, StoreRequest $request) {
-        $action = $tag->id ? 'updated' : 'created';
-
         $tag->fill($request->get('tag'))->save();
 
-        Alert::info(__("models.tag.messages.$action"));
+        if ($tag->wasRecentlyCreated) {
+            Alert::info(__('models.tag.messages.created'));
+        } else {
+            Alert::info(__('models.tag.messages.updated'));
+        }
 
         return redirect()->route('platform.tag.list');
     }

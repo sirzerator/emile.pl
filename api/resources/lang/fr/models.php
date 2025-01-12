@@ -19,12 +19,12 @@ return [
             'title' => 'Titre',
             'locale' => 'Langue',
             'slug' => 'Nom système',
-            'updated_at' => 'Mise-à-jour',
+            'updated_at' => 'Mise à jour',
         ],
         'messages' => [
             'created' => 'Catégorie créée.',
             'deleted' => 'Catégorie supprimée.',
-            'updated' => 'Catégorie mise-à-jour.',
+            'updated' => 'Catégorie mise à jour.',
         ],
     ],
     'contact' => [
@@ -62,12 +62,12 @@ return [
             'created_at' => 'Création',
             'title' => 'Titre',
             'locale' => 'Langue',
-            'updated_at' => 'Mise-à-jour',
+            'updated_at' => 'Mise à jour',
         ],
         'messages' => [
             'created' => 'Genre créé.',
             'deleted' => 'Genre supprimé.',
-            'updated' => 'Genre mis-à-jour.',
+            'updated' => 'Genre mis à jour.',
         ],
     ],
     'option' => [
@@ -85,6 +85,9 @@ return [
         'contact' => [
             'content' => 'Contenu',
             'subtitle' => 'Sous-titre',
+        ],
+        'messages' => [
+            'updated' => 'Options mises à jour.',
         ],
     ],
     'post' => [
@@ -113,12 +116,12 @@ return [
             'translation' => 'Traduction de',
             'translations' => 'Traductions',
             'title' => 'Titre',
-            'updated_at' => 'Mise-à-jour',
+            'updated_at' => 'Mise à jour',
         ],
         'messages' => [
             'created' => 'Article créé.',
             'deleted' => 'Article supprimé.',
-            'updated' => 'Article mis-à-jour.',
+            'updated' => 'Article mis à jour.',
         ],
     ],
     'reading' => [
@@ -141,7 +144,12 @@ return [
             'finished_at' => 'Terminé',
             'post' => 'Critique',
             'title' => 'Titre',
-            'updated_at' => 'Mise-à-jour',
+            'updated_at' => 'Mise à jour',
+        ],
+        'messages' => [
+            'created' => 'Lecture créée.',
+            'deleted' => 'Lecture supprimée.',
+            'updated' => 'Lecture mise à jour.',
         ],
     ],
     'tag' => [
@@ -162,12 +170,12 @@ return [
             'title' => 'Titre',
             'locale' => 'Langue',
             'slug' => 'Nom système',
-            'updated_at' => 'Mise-à-jour',
+            'updated_at' => 'Mise à jour',
         ],
         'messages' => [
             'created' => 'Étiquette créée.',
             'deleted' => 'Étiquette supprimée.',
-            'updated' => 'Étiquette mise-à-jour.',
+            'updated' => 'Étiquette mise à jour.',
         ],
     ],
 ];

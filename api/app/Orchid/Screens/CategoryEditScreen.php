@@ -79,11 +79,13 @@ class CategoryEditScreen extends Screen
     }
 
     public function storeOrUpdate(Category $category, StoreRequest $request) {
-        $action = $category->id ? 'updated' : 'created';
-
         $category->fill($request->get('category'))->save();
 
-        Alert::info(__("models.category.messages.$action"));
+        if ($category->wasRecentlyCreated) {
+            Alert::info(__('models.category.messages.created'));
+        } else {
+            Alert::info(__('models.category.messages.updated'));
+        }
 
         return redirect()->route('platform.category.list');
     }

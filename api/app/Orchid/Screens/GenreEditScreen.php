@@ -76,11 +76,13 @@ class GenreEditScreen extends Screen
     }
 
     public function storeOrUpdate(Genre $genre, StoreRequest $request) {
-        $action = $genre->id ? 'updated' : 'created';
-
         $genre->fill($request->get('genre'))->save();
 
-        Alert::info(__("models.genre.messages.$action"));
+        if ($genre->wasRecentlyCreated) {
+            Alert::info(__('models.genre.messages.created'));
+        } else {
+            Alert::info(__('models.genre.messages.updated'));
+        }
 
         return redirect()->route('platform.genre.list');
     }

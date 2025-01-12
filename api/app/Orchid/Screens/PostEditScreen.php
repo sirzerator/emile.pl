@@ -125,9 +125,7 @@ class PostEditScreen extends Screen
     }
 
     public function storeOrUpdate(Post $post, StoreRequest $request) {
-        $data = $request->get('post');
-
-        $post->fill($data)->save();
+        $post->fill($request->get('post'))->save();
 
         if ($translation = data_get($data, 'translation')) {
             $post->translations()->sync([
@@ -142,7 +140,11 @@ class PostEditScreen extends Screen
         $tags = data_get($data, 'tags');
         $post->tags()->sync($tags);
 
-        Alert::info('You have successfully created a post.');
+        if ($post->wasRecentlyCreated) {
+            Alert::info(__('models.post.messages.created'));
+        } else {
+            Alert::info(__('models.post.messages.updated'));
+        }
 
         return redirect()->route('platform.post.list');
     }
@@ -150,7 +152,7 @@ class PostEditScreen extends Screen
     public function remove(Post $post) {
         $post->delete();
 
-        Alert::info('You have successfully deleted the post.');
+        Alert::info(__('models.post.messages.deleted'));
 
         return redirect()->route('platform.post.list');
     }
