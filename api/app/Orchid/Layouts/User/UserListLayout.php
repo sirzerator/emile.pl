@@ -24,8 +24,7 @@ class UserListLayout extends Table
     /**
      * @return TD[]
      */
-    public function columns(): array
-    {
+    public function columns(): array {
         return [
             TD::make('name', __('Name'))
                 ->sort()

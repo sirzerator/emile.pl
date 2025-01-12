@@ -33,8 +33,7 @@ class ChartLineExample extends Chart
      * To highlight certain values on the Y axis, markers can be set.
      * They will shown as dashed lines on the graph.
      */
-    protected function markers(): ?array
-    {
+    protected function markers(): ?array {
         return [
             [
                 'label'   => 'Medium',

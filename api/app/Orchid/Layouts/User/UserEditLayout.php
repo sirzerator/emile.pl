@@ -15,8 +15,7 @@ class UserEditLayout extends Rows
      *
      * @return Field[]
      */
-    public function fields(): array
-    {
+    public function fields(): array {
         return [
             Input::make('user.name')
                 ->type('text')

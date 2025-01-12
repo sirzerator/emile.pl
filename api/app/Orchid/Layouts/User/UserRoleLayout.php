@@ -16,8 +16,7 @@ class UserRoleLayout extends Rows
      *
      * @return Field[]
      */
-    public function fields(): array
-    {
+    public function fields(): array {
         return [
             Select::make('user.roles.')
                 ->fromModel(Role::class, 'name')

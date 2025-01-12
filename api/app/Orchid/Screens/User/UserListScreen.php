@@ -23,8 +23,7 @@ class UserListScreen extends Screen
      *
      * @return array
      */
-    public function query(): iterable
-    {
+    public function query(): iterable {
         return [
             'users' => User::with('roles')
                 ->filters(UserFiltersLayout::class)
@@ -38,8 +37,7 @@ class UserListScreen extends Screen
      *
      * @return string|null
      */
-    public function name(): ?string
-    {
+    public function name(): ?string {
         return 'User';
     }
 
@@ -48,16 +46,14 @@ class UserListScreen extends Screen
      *
      * @return string|null
      */
-    public function description(): ?string
-    {
+    public function description(): ?string {
         return 'All registered users';
     }
 
     /**
      * @return iterable|null
      */
-    public function permission(): ?iterable
-    {
+    public function permission(): ?iterable {
         return [
             'platform.systems.users',
         ];
@@ -68,8 +64,7 @@ class UserListScreen extends Screen
      *
      * @return \Orchid\Screen\Action[]
      */
-    public function commandBar(): iterable
-    {
+    public function commandBar(): iterable {
         return [
             Link::make(__('Add'))
                 ->icon('plus')
@@ -82,8 +77,7 @@ class UserListScreen extends Screen
      *
      * @return string[]|\Orchid\Screen\Layout[]
      */
-    public function layout(): iterable
-    {
+    public function layout(): iterable {
         return [
             UserFiltersLayout::class,
             UserListLayout::class,
@@ -98,8 +92,7 @@ class UserListScreen extends Screen
      *
      * @return array
      */
-    public function asyncGetUser(User $user): iterable
-    {
+    public function asyncGetUser(User $user): iterable {
         return [
             'user' => $user,
         ];
@@ -109,8 +102,7 @@ class UserListScreen extends Screen
      * @param Request $request
      * @param User    $user
      */
-    public function saveUser(Request $request, User $user): void
-    {
+    public function saveUser(Request $request, User $user): void {
         $request->validate([
             'user.email' => [
                 'required',
@@ -126,8 +118,7 @@ class UserListScreen extends Screen
     /**
      * @param Request $request
      */
-    public function remove(Request $request): void
-    {
+    public function remove(Request $request): void {
         User::findOrFail($request->get('id'))->delete();
 
         Toast::info(__('User was removed'));

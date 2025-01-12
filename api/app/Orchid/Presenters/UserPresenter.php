@@ -15,24 +15,21 @@ class UserPresenter extends Presenter implements Searchable, Personable
     /**
      * @return string
      */
-    public function label(): string
-    {
+    public function label(): string {
         return 'Users';
     }
 
     /**
      * @return string
      */
-    public function title(): string
-    {
+    public function title(): string {
         return $this->entity->name;
     }
 
     /**
      * @return string
      */
-    public function subTitle(): string
-    {
+    public function subTitle(): string {
         $roles = $this->entity->roles->pluck('name')->implode(' / ');
 
         return (string) Str::of($roles)
@@ -43,16 +40,14 @@ class UserPresenter extends Presenter implements Searchable, Personable
     /**
      * @return string
      */
-    public function url(): string
-    {
+    public function url(): string {
         return route('platform.systems.users.edit', $this->entity);
     }
 
     /**
      * @return string
      */
-    public function image(): ?string
-    {
+    public function image(): ?string {
         $hash = md5(strtolower(trim($this->entity->email)));
 
         return "https://www.gravatar.com/avatar/$hash?d=mp";
@@ -63,8 +58,7 @@ class UserPresenter extends Presenter implements Searchable, Personable
      *
      * @return int
      */
-    public function perSearchShow(): int
-    {
+    public function perSearchShow(): int {
         return 3;
     }
 
@@ -73,8 +67,7 @@ class UserPresenter extends Presenter implements Searchable, Personable
      *
      * @return Builder
      */
-    public function searchQuery(string $query = null): Builder
-    {
+    public function searchQuery(string $query = null): Builder {
         return $this->entity->search($query);
     }
 }

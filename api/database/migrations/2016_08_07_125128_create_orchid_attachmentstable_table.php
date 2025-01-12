@@ -9,8 +9,7 @@ class CreateOrchidAttachmentstableTable extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('attachments', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
@@ -48,8 +47,7 @@ class CreateOrchidAttachmentstableTable extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down()
-    {
+    public function down() {
         Schema::drop('attachmentable');
         Schema::drop('attachments');
     }

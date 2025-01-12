@@ -9,8 +9,7 @@ class CreateOrchidRoleUsersTable extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('role_users', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
             $table->unsignedInteger('role_id');
@@ -31,8 +30,7 @@ class CreateOrchidRoleUsersTable extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('role_users');
     }
 }

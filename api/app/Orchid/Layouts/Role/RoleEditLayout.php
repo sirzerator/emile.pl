@@ -15,8 +15,7 @@ class RoleEditLayout extends Rows
      *
      * @return Field[]
      */
-    public function fields(): array
-    {
+    public function fields(): array {
         return [
             Input::make('role.name')
                 ->type('text')
