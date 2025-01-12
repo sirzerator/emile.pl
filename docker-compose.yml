@@ -7,3 +7,14 @@ services:
     ports:
       - ${MARIADB_PORT}:3306
     restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOSTS: db
+      UPLOAD_LIMIT: 128M
+      PMA_USER: root
+      PMA_PASSWORD: ""
+    ports:
+      - ${PHPMYADMIN_PORT}:80
+
