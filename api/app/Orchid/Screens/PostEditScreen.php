@@ -127,17 +127,17 @@ class PostEditScreen extends Screen
     public function storeOrUpdate(Post $post, StoreRequest $request) {
         $post->fill($request->get('post'))->save();
 
-        if ($translation = data_get($data, 'translation')) {
+        if ($translation = data_get($post, 'translation')) {
             $post->translations()->sync([
                 $translation => [
-                    'post_is_source' => data_get($data, 'translation_is_source'),
+                    'post_is_source' => data_get($post, 'translation_is_source'),
                 ],
             ]);
-        } elseif ($translations = data_get($data, 'translations')) {
+        } elseif ($translations = data_get($post, 'translations')) {
             $post->translations()->sync($translations);
         }
 
-        $tags = data_get($data, 'tags');
+        $tags = data_get($post, 'tags');
         $post->tags()->sync($tags);
 
         if ($post->wasRecentlyCreated) {
