@@ -1,12 +1,12 @@
 .tokyo_tm_section {
-  position: initial;
+	position: initial;
 
-  margin-left: 0;
+	margin-left: 0;
 
-  .container {
-	  min-height: 100%;
-	  height: auto;
-  }
+	.container {
+		min-height: 100%;
+		height: auto;
+	}
 }
 
 .tokyo_tm_home {
@@ -34,28 +34,26 @@
 	}
 }
 
-
-
 .tokyo_tm_read_more {
 	float: none;
 }
 
 .tokyo_tm_news ul li .list_inner .read-more > span:before {
-  @media screen and (max-width: 767px) {
-    animation: read-more-anim-2;
-    animation-fill-mode: forwards;
-    animation-duration: 0.4s;
-    animation-timing-function: cubic-bezier(0.6, 0.01, 0, 1);
-  }
+	@media screen and (max-width: 767px) {
+		animation: read-more-anim-2;
+		animation-fill-mode: forwards;
+		animation-duration: 0.4s;
+		animation-timing-function: cubic-bezier(0.6, 0.01, 0, 1);
+	}
 }
 .tokyo_tm_news ul li .list_inner:hover .read-more > span:before {
-  animation: read-more-anim-2;
-  animation-fill-mode: forwards;
-  animation-duration: 0.4s;
-  animation-timing-function: cubic-bezier(0.6, 0.01, 0, 1);
+	animation: read-more-anim-2;
+	animation-fill-mode: forwards;
+	animation-duration: 0.4s;
+	animation-timing-function: cubic-bezier(0.6, 0.01, 0, 1);
 }
 .tokyo_tm_news ul li .list_inner:hover .read-more > span > span {
-  transform: translateX(0%);
+	transform: translateX(0%);
 }
 
 .tokyo_tm_all_wrap {
@@ -99,7 +97,7 @@
 }
 
 .tokyo_tm_news.emilepl__readings {
-	ul li  {
+	ul li	{
 		.list_inner {
 			height: 250px;
 
@@ -245,8 +243,16 @@
 }
 
 @media (max-width: 1200px) {
-	.tokyo_tm_all_wrap .leftpart {
-		width: 100%;
+	.tokyo_tm_all_wrap {
+		display: block;
+
+		.leftpart {
+			width: 100%;
+
+			&_inner {
+				position: initial;
+			}
+		}
 	}
 }
 
