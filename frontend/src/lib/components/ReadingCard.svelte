@@ -8,7 +8,7 @@
 
 	let href: string;
 
-	$: href = reading.post ? `${tl('sidebar', 'blog')}/${reading.post.id}/${reading.post.slug}` : '';
+	$: href = reading.post ? `${tl('sidebar', 'blog')}/${reading.post.id}/${reading.post.slug}` : null;
 
 	const formatMonth = (date) => dayjs(date).format(t('readings.date_format'));
 </script>
