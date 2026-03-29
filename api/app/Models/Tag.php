@@ -41,7 +41,7 @@ class Tag extends Model
     public function scopeIsBookReview() {
         return $this->where(
             fn ($f) => $f
-                ->where('slug', 'critique-litteraire')
+                ->where('slug', 'critique-de-livre')
                 ->orWhere('slug', 'book-review')
         );
     }
