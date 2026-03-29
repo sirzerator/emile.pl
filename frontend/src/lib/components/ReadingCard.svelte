@@ -15,15 +15,13 @@
 
 <li class="reading-card">
 	<a class="list_inner" {href} class:no-link={!reading.post}>
-		{#if reading.cover_image_url}
-			<div class="reading-card__image image">
-				<img src={reading.cover_image_url} alt="" />
-				<div
-					class="main"
-					style={`background-image: url('${reading.cover_image_url}')`}
-				/>
-			</div>
-		{/if}
+		<div class="reading-card__image image">
+			<img src={reading.cover_image_url} alt="" />
+			<div
+				class="main"
+				style={`background-image: url('${reading.cover_image_url}')`}
+			/>
+		</div>
 
 		<div class="details reading-card__details">
 			<div class="extra">

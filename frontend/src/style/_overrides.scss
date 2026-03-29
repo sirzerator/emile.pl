@@ -38,6 +38,38 @@
 	float: none;
 }
 
+.tokyo_tm_news ul {
+	margin: 0;
+	display: flex;
+	gap: 45px;
+	flex-wrap: wrap;
+}
+
+.tokyo_tm_news ul li {
+	margin: 0;
+	float: none;
+	width: auto;
+	padding-left: 0;
+
+	flex-basis: calc(50% - 45px);
+
+	@media screen and (max-width: 576px) {
+		margin: 0;
+	}
+
+	@media screen and (max-width: 1400px) {
+		flex-basis: 100%;
+	}
+
+	@media screen and (max-width: 1200px) {
+		flex-basis: calc(50% - 45px);
+	}
+
+	@media screen and (max-width: 800px) {
+		flex-basis: 100%;
+	}
+}
+
 .tokyo_tm_news ul li .list_inner .read-more > span:before {
 	@media screen and (max-width: 767px) {
 		animation: read-more-anim-2;
