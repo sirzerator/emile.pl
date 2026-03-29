@@ -2,11 +2,7 @@
 
 ## Developing
 
-Start the backend and frontend dev servers:
-
-```bash
-npm run dev
-```
+`docker compose up`
 
 ## Deploying
 
