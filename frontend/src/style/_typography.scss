@@ -65,6 +65,12 @@ body {
 			background: url('/svg/quote.svg') center left no-repeat;
 			background-size: 40px 40px;
 		}
+
+		+ blockquote::before {
+			background: none;
+			border-left: 3px black dotted;
+			left: 31px;
+		}
 	}
 
 	ul {
@@ -76,6 +82,12 @@ body {
 		li {
 			color: var(--text-color);
 		}
+	}
+
+	pre {
+		background: black;
+		padding: 1rem;
+		color: white;
 	}
 }
 
