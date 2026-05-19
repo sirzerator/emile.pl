@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Orchid\Filters\Types\Like;
+use Orchid\Filters\Types\Where;
 use Orchid\Platform\Models\User as Authenticatable;
 
 class User extends Authenticatable
@@ -40,10 +42,10 @@ class User extends Authenticatable
     ];
 
     protected $allowedFilters = [
-        'id',
-        'name',
-        'email',
-        'permissions',
+        'id'          => Where::class,
+        'name'        => Like::class,
+        'email'       => Like::class,
+        'permissions' => Where::class,
     ];
 
     /**

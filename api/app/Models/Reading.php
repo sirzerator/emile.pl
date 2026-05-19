@@ -6,6 +6,8 @@ use App\Http\Resources\ReadingResource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Filters\Filterable;
+use Orchid\Filters\Types\Like;
+use Orchid\Filters\Types\WhereDateStartEnd;
 use Orchid\Screen\AsSource;
 
 class Reading extends Model
@@ -28,8 +30,8 @@ class Reading extends Model
     ];
 
     protected $allowedFilters = [
-        'title',
-        'finished_at',
+        'title'       => Like::class,
+        'finished_at' => WhereDateStartEnd::class,
     ];
 
     protected $fillable = [

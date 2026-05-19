@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Orchid\Filters\Filterable;
+use Orchid\Filters\Types\Like;
+use Orchid\Filters\Types\Where;
 use Orchid\Screen\AsSource;
 
 class Tag extends Model
@@ -25,8 +27,8 @@ class Tag extends Model
     ];
 
     protected $allowedFilters = [
-        'title',
-        'locale',
+        'title'  => Like::class,
+        'locale' => Where::class,
     ];
 
     protected $fillable = [

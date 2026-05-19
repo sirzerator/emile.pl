@@ -6,6 +6,9 @@ use App\Builders\ApiBuilder as Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Filters\Filterable;
+use Orchid\Filters\Types\Like;
+use Orchid\Filters\Types\Where;
+use Orchid\Filters\Types\WhereDateStartEnd;
 use Orchid\Screen\AsSource;
 
 class Post extends Model
@@ -28,9 +31,9 @@ class Post extends Model
     ];
 
     protected $allowedFilters = [
-        'title',
-        'locale',
-        'published_at',
+        'title'        => Like::class,
+        'locale'       => Where::class,
+        'published_at' => WhereDateStartEnd::class,
     ];
 
     protected array $collections = [
