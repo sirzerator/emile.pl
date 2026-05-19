@@ -7,9 +7,9 @@ RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -yqq && \
-	apt-get install libjpeg-dev libpng-dev libxpm-dev libzip-dev unzip -yqq
+	apt-get install libcurl4-openssl-dev libjpeg-dev libpng-dev libxpm-dev libzip-dev unzip -yqq
 
-RUN docker-php-ext-install gd zip pcntl bcmath mysqli pdo_mysql sockets gettext
+RUN docker-php-ext-install curl gd zip pcntl bcmath mysqli pdo_mysql sockets gettext
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

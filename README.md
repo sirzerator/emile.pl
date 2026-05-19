@@ -11,6 +11,7 @@
   `rsync -av --delete --exclude=.env --exclude=stats --exclude=storage api/ USER@HOST:PATH/api` and.
   `rsync -av --delete --exclude=.env --exclude=build frontend/ USER@HOST:PATH/private/`.
 - Run `php8.1 artisan migrate` through SSH while in the "api" directory.
+- Run `rm uploads && ln -s ../storage/app/public/ uploads` in the `api/public` folder.
 - Run `npm run build` through SSH while in the "private" directory.
 - Run `HOST=127.0.0.1 PORT=4123 ORIGIN=https://emile.pl nohup node build &`
   through SSH while in the "private" directory.
