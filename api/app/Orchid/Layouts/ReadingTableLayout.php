@@ -2,11 +2,9 @@
 
 namespace App\Orchid\Layouts;
 
-use App\Models\Locale;
 use App\Models\Reading;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
@@ -16,7 +14,7 @@ class ReadingTableLayout extends Table
 
     protected function columns(): iterable {
         return [
-            TD::make('id', 'ID')->sort(),
+            TD::make('id', 'ID')->width('60px')->sort(),
 
             TD::make('title', __('models.reading.fields.title'))
                 ->filter(Input::make())

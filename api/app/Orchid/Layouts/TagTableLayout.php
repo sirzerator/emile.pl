@@ -16,7 +16,7 @@ class TagTableLayout extends Table
 
     protected function columns(): iterable {
         return [
-            TD::make('id', 'ID')->sort(),
+            TD::make('id', 'ID')->width('60px')->sort(),
 
             TD::make('title', __('models.tag.fields.title'))
                 ->filter(Input::make())

@@ -16,7 +16,7 @@ class CategoryTableLayout extends Table
 
     protected function columns(): iterable {
         return [
-            TD::make('id', 'ID')->sort(),
+            TD::make('id', 'ID')->width('60px')->sort(),
 
             TD::make('title', __('models.category.fields.title'))
                 ->filter(Input::make())
