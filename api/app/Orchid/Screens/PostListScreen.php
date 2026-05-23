@@ -28,7 +28,7 @@ class PostListScreen extends Screen
         return [
             Link::make(_('models.post.actions.add'))
                 ->icon('plus')
-                ->route('platform.post.edit'),
+                ->route('platform.post.create'),
         ];
     }
 

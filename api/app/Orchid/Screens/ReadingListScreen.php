@@ -28,7 +28,7 @@ class ReadingListScreen extends Screen
         return [
             Link::make(_('models.reading.actions.add'))
                 ->icon('plus')
-                ->route('platform.reading.edit'),
+                ->route('platform.reading.create'),
         ];
     }
 

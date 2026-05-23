@@ -27,7 +27,7 @@ class CategoryListScreen extends Screen
         return [
             Link::make(__('models.category.actions.add'))
                 ->icon('plus')
-                ->route('platform.category.edit'),
+                ->route('platform.category.create'),
         ];
     }
 

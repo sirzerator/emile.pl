@@ -27,7 +27,7 @@ class TagListScreen extends Screen
         return [
             Link::make(_('models.tag.actions.add'))
                 ->icon('plus')
-                ->route('platform.tag.edit'),
+                ->route('platform.tag.create'),
         ];
     }
 

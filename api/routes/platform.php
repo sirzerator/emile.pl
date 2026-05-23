@@ -29,14 +29,20 @@ Route::screen('/main', PlatformScreen::class)
     ->name('platform.main');
 
 // Posts
-Route::screen('post/{post?}', PostEditScreen::class)
+Route::screen('post/create', PostEditScreen::class)
+    ->name('platform.post.create');
+
+Route::screen('post/{post}', PostEditScreen::class)
     ->name('platform.post.edit');
 
 Route::screen('posts', PostListScreen::class)
     ->name('platform.post.list');
 
 // Readings
-Route::screen('reading/{reading?}', ReadingEditScreen::class)
+Route::screen('reading/create', ReadingEditScreen::class)
+    ->name('platform.reading.create');
+
+Route::screen('reading/{reading}', ReadingEditScreen::class)
     ->name('platform.reading.edit');
 
 Route::screen('readings', ReadingListScreen::class)
@@ -44,21 +50,30 @@ Route::screen('readings', ReadingListScreen::class)
 
 
 // Categories
-Route::screen('category/{category?}', CategoryEditScreen::class)
+Route::screen('category/create', CategoryEditScreen::class)
+    ->name('platform.category.create');
+
+Route::screen('category/{category}', CategoryEditScreen::class)
     ->name('platform.category.edit');
 
 Route::screen('categories', CategoryListScreen::class)
     ->name('platform.category.list');
 
 // Tags
-Route::screen('tag/{tag?}', TagEditScreen::class)
+Route::screen('tag/create', TagEditScreen::class)
+    ->name('platform.tag.create');
+
+Route::screen('tag/{tag}', TagEditScreen::class)
     ->name('platform.tag.edit');
 
 Route::screen('tags', TagListScreen::class)
     ->name('platform.tag.list');
 
 // Genres
-Route::screen('genre/{genre?}', GenreEditScreen::class)
+Route::screen('genre/create', GenreEditScreen::class)
+    ->name('platform.genre.create');
+
+Route::screen('genre/{genre}', GenreEditScreen::class)
     ->name('platform.genre.edit');
 
 Route::screen('genres', GenreListScreen::class)
@@ -68,7 +83,10 @@ Route::screen('genres', GenreListScreen::class)
 Route::screen('contacts', ContactListScreen::class)
     ->name('platform.contact.list');
 
-Route::screen('contacts/{contact?}', ContactEditScreen::class)
+Route::screen('contacts/create', ContactEditScreen::class)
+    ->name('platform.contact.create');
+
+Route::screen('contacts/{contact}', ContactEditScreen::class)
     ->name('platform.contact.edit');
 
 // Options

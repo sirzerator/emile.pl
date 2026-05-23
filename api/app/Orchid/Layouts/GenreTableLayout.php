@@ -23,7 +23,7 @@ class GenreTableLayout extends Table
                 ->sort()
                 ->render(function (Genre $genre) {
                     return Link::make($genre->title)
-                        ->route('platform.genre.edit', $genre);
+                        ->route('platform.genre.create', $genre);
                 }),
 
             TD::make('locale', __('models.genre.fields.locale'))

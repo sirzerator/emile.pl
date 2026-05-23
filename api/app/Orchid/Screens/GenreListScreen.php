@@ -27,7 +27,7 @@ class GenreListScreen extends Screen
         return [
             Link::make(_('models.genre.actions.add'))
                 ->icon('plus')
-                ->route('platform.genre.edit'),
+                ->route('platform.genre.create'),
         ];
     }
 

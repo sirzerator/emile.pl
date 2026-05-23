@@ -143,6 +143,7 @@ return [
             'created_at' => 'Création',
             'finished_at' => 'Terminé',
             'post' => 'Critique',
+            'slug' => 'Nom système',
             'title' => 'Titre',
             'updated_at' => 'Mise à jour',
         ],
